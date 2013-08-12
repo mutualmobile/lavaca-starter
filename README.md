@@ -142,3 +142,8 @@ Released under the MIT license
 iScroll 4.1.9
 (c) 2011 Matteo Spinelli
 Released under the MIT license
+=======
+lavaca-starter
+==============
+
+A starter app for lavaca
