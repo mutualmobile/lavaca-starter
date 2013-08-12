@@ -23,4 +23,6 @@
 /build
 /log
 
+test/runner.html
+
 .tern-port
