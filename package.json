@@ -4,12 +4,15 @@
   "description": "A Lavaca app",
   "main": "Gruntfile.js",
   "url": "http://getlavaca.com",
-  "scripts": {},
+  "scripts": {
+    "postinstall": "node ./postinstall.js"
+  },
   "dependencies": {
     "lavaca": "2.1.1"    
   },
   "devDependencies": {
     "mout": "0.x",
+    "fs-extra": "~0.6.3",
     "grunt": "0.4.1",
     "express": "3.1.x",
     "underscore": "1.4.x",
