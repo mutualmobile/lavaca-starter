@@ -1,9 +1,8 @@
-Lavaca 2.1.0
-======
+# Lavaca-starter 2.1.1
 
-[![Build Status](https://travis-ci.org/mutualmobile/lavaca.png?branch=amd)](https://travis-ci.org/mutualmobile/lavaca)
+[![Build Status](https://travis-ci.org/mutualmobile/lavaca.png?branch=amd)](https://travis-ci.org/mutualmobile/lavaca-starter)
 
-Lavaca is a web application framework designed to jumpstart development of hybrid and single page applications.
+Introducing Lavaca-starter, the open source, HTML5 application framework by Mutual Mobile. Jumpstart development of your project by basing them off of Lavaca and using Lavaca's build tools.
 
 Lavaca features:
 * An AMD architecture utilizing ([require.js](http://requirejs.org/))
@@ -19,28 +18,11 @@ Lavaca features:
 
 Lavaca has a ton packed into it, and is designed to work well as a cohesive whole, while still remaining lightweight. Lavaca is built with extensibility in mind and allows you to easily extend components and build your own on top of its framework.
 
-# Getting Started
-
-## Quick Start
-1. __Install *getlavaca* CLI tool__
-```bash
-$ curl https://raw.github.com/mutualmobile/lavaca/master/getlavaca > /usr/local/bin/getlavaca && chmod +x /usr/local/bin/getlavaca
-```
-
-2. __Go to your prefered root directory then run__
-```bash
-$ getlavaca
-```
-then follow instructions. You're good to go.
-
-
-
-## Manual Setup
+## Getting Started
 
 1. __Get the code__
 ```bash
-$ mkdir [my_app] && cd [my_app]
-$ git clone git@github.com:mutualmobile/lavaca.git .
+$ git clone git@github.com:mutualmobile/lavaca-starter.git [my_app] && cd [my_app]
 ```
 
 2. __Install grunt-cli globally__
@@ -120,7 +102,7 @@ $ grunt yuidoc
 
 Legal stuff:
 
-Lavaca 2.1
+Lavaca 2.1.1
 Copyright (c) 2013 Mutual Mobile
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
