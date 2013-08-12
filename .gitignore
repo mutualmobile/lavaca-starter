@@ -5,6 +5,8 @@
 
 /src/www/js/lavaca
 /src/www/js/libs
+/src/www/js/app/boot.js
+/src/www/js/app/boot.js.old
 
 /src/android/.classpath
 /src/android/.project

@@ -25,7 +25,6 @@ $ git clone git@github.com:mutualmobile/lavaca-starter.git [my_app] && cd [my_ap
 ```
 
 2. __Install grunt-cli globally__
-
 Note: this may require sudo
 ```bash
 $ npm install -g grunt-cli
