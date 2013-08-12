@@ -3,6 +3,9 @@
 /libs/atnotate/atnotate.pyc
 .idea
 
+/src/www/js/lavaca
+/src/www/js/libs
+
 /src/android/.classpath
 /src/android/.project
 /src/android/bin/*

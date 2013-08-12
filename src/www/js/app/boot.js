@@ -6,12 +6,12 @@ require.config({
     'jquery': 'libs/jquery-2.0.0',
     'jquery-mobile': 'libs/jquery-mobile',
     'cordova': 'libs/cordova',
-    'mout': 'libs/mout/src',
+    'mout': 'libs/mout',
     'docCookies': 'libs/docCookies',
     'dust': 'libs/dust-full-1.2.4',
     'dust-helpers': 'libs/dust-helpers-1.1.1',
     'rdust': 'libs/require-dust',
-    'iScroll': 'libs/iscroll-lite-4.1.6',
+    'iscroll': 'libs/iscroll-lite',
     'lavaca': 'lavaca'
   },
   shim: {
