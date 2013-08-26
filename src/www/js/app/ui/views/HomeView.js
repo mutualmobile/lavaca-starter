@@ -1,30 +1,29 @@
 define(function(require) {
 
   var BaseView = require('./BaseView');
-  require('rdust!templates/example');
-  var Config = require('lavaca/util/Config');
+  require('rdust!templates/home');
 
   /**
    * Example view type
-   * @class app.ui.views.ExampleView
+   * @class app.ui.views.HomeView
    * @extends app.ui.views.BaseView
    */
-  var ExampleView = BaseView.extend({
+  var HomeView = BaseView.extend({
     /**
      * The name of the template used by the view
      * @property {String} template
-     * @default 'example'
+     * @default 'home'
      */
-    template: 'templates/example',
+    template: 'templates/home',
     /**
      * A class name added to the view container
      * @property {String} className
-     * @default 'example'
+     * @default 'home'
      */
-    className: 'example'
+    className: 'home'
 
   });
 
-  return ExampleView;
+  return HomeView;
 
 });
