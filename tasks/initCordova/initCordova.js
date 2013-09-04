@@ -7,7 +7,7 @@ module.exports = function(grunt) {
     var name = options.appName;
     var id = options.id;
     var paths = grunt.config.get('paths');
-    var src = paths.src.root;
+    var src = paths.cordovaInit.root;
     var done = this.async();
     var doneFunction = function (error, result, code) {
       if (error) {

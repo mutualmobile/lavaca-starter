@@ -6,14 +6,19 @@
 /src/www/js/lavaca
 /src/www/js/libs
 
-/src/android/.classpath
-/src/android/.project
-/src/android/bin/*
-/src/android/gen/*
+/src/platforms/android/.classpath
+/src/platforms/android/.project
+/src/platforms/android/bin/*
+/src/platforms/android/gen/*
+/src/platforms/android/assets/www
 
-/src/ios/App.xcodeproj/project.xcworkspace/xcuserdata
-/src/ios/App.xcodeproj/xcuserdata
-/src/ios/CordovaLib/CordovaLib.xcodeproj/xcuserdata
+/src/platforms/ios/App.xcodeproj/project.xcworkspace/xcuserdata
+/src/platforms/ios/App.xcodeproj/xcuserdata
+/src/platforms/ios/CordovaLib/CordovaLib.xcodeproj/xcuserdata
+/src/platforms/ios/www
+
+
+/cordova/www
 
 /node_modules
 /docs
@@ -25,3 +30,10 @@
 
 .tern-port
 test/runner.html
+
+
+
+#### items from generated gitignore file in cordova ios project
+*.mode1v3
+*.perspectivev3
+*.pbxuser

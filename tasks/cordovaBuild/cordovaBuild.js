@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
     var paths = grunt.config.get('paths');
 
-    var build = paths.build.root;
+    var build = paths.cordovaInit.root;
 
     var done = this.async();
 

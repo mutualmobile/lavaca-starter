@@ -6,18 +6,19 @@ module.exports = function(grunt) {
     var paths = grunt.config.get('paths');
     var options = this.options({});
     var tasks = options.tasks;
-    tasks.unshift('clean:tmp', 'clean:build', 'copy:tmp');
+    tasks.unshift('clean:build', 'copy:tmp');
     var target = this.target;
     var platforms = grunt.config.get('initPlatforms').init.options.platforms;
     var preProcessIndex = grunt.util._.indexOf(options.tasks, 'preprocess');
-    var isCordova = grunt.file.exists(paths.src.root + '/.cordova');
+    var isCordova = grunt.file.exists(paths.cordovaInit.root);
     var platformTasks = [];
 
     platformTasks.push('copy:www');
-    platformTasks.push('copy:cordova');
-    platformTasks.push('chmod:build');
+
 
     if (isCordova) {
+      platformTasks.push('clean:cordova');
+      platformTasks.push('copy:cordova');
       if (platform) {
         platformTasks.push('cordovaBuild:' + platform);
       } else {

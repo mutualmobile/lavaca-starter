@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     var options = this.options({});
     var platforms = options.platforms;
     var paths = grunt.config.get('paths');
-    var src = paths.src.root;
+    var src = paths.cordovaInit.root;
     var done = this.async();
     var doneFunction = function (error, result, code) {
       if (error) {
@@ -30,7 +30,6 @@ module.exports = function(grunt) {
     };
 
     var cordova = grunt.util.spawn(options, doneFunction);
-
   });
 
 };
