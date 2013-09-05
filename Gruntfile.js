@@ -50,7 +50,8 @@ module.exports = function( grunt ) {
         root: 'build',
         www: '<%= paths.build.root %>/www',
         ios: '<%= paths.cordovaInit.root %>/platforms/ios',
-        android: '<%= paths.cordovaInit.root %>/platforms/android'
+        android: '<%= paths.cordovaInit.root %>/platforms/android',
+        androidLocalProperties: '<%= paths.build.android %>local.properties',
       },
       asset: {
         ios: '<%= paths.build.ios %>/www',
