@@ -16,7 +16,9 @@
 /cordova/platforms/ios/App.xcodeproj/project.xcworkspace/xcuserdata
 /cordova/platforms/ios/App.xcodeproj/xcuserdata
 /cordova/platforms/ios/CordovaLib/CordovaLib.xcodeproj/xcuserdata
+/cordova/platforms/ios/CordovaLib/build
 /cordova/platforms/ios/www
+/cordova/platforms/ios/build
 
 /cordova/www
 
