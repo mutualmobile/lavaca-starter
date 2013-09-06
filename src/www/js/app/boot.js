@@ -4,7 +4,7 @@ require.config({
     'es5-shim': 'libs/es5-shim',
     '$': 'libs/jquery-2.0.0',
     'jquery': 'libs/jquery-2.0.0',
-    'jquery-mobile': 'libs/jquery-mobile',
+    'hammer': 'extlibs/jquery.hammer',
     'cordova': 'libs/cordova',
     'mout': 'libs/mout',
     'docCookies': 'libs/docCookies',
@@ -20,6 +20,9 @@ require.config({
     },
     jquery: {
       exports: '$'
+    },
+    hammer: {
+      deps: ['$']
     },
     dust: {
       exports: 'dust'

@@ -6,8 +6,7 @@ define(function(require) {
   var Translation = require('lavaca/util/Translation');
   var headerView = require('app/ui/views/controls/HeaderView');
   require('lavaca/ui/DustTemplate');
-  require('jquery-mobile/events/touch');
-  require('jquery-mobile/events/orientationchange');
+  require('hammer');
 
 
   // Uncomment this section to use hash-based browser history instead of HTML5 history.

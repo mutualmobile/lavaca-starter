@@ -5,6 +5,7 @@
 
 /src/www/js/lavaca
 /src/www/js/libs
+/src/www/js/extlibs
 
 /cordova/platforms/android/.classpath
 /cordova/platforms/android/.project
