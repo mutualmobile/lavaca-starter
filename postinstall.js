@@ -7,10 +7,12 @@ var config = {
 };
 
 config.symlinkSrcRoot = '../../../node_modules/lavaca/src/js';
+config.hammerSrcRoot = '../../../../node_modules/hammerjs/dist';
 config.requirejsMainConfig = path.join(config.lavacaModuleRoot, 'src/boot.js');
 config.requireBootTarget = path.join(config.dstpathRoot, 'app/boot.js');
 config.symlinkTargetLavaca = path.join(config.dstpathRoot, 'lavaca');
 config.symlinkTargetLibs = path.join(config.dstpathRoot, 'libs');
+config.symlinkTargetHammer = path.join(config.dstpathRoot, 'extlibs/jquery.hammer.js')
 
 fs.exists(config.lavacaModuleRoot, function(isLavacaInstalled) {
 	if (!isLavacaInstalled) {
@@ -31,4 +33,7 @@ fs.exists(config.lavacaModuleRoot, function(isLavacaInstalled) {
 	// create symlink for 'src/www/js/libs'
 	fs.removeSync(config.symlinkTargetLibs);
 	fs.symlinkSync(path.join(config.symlinkSrcRoot, 'libs'), config.symlinkTargetLibs);
+
+  fs.removeSync(config.symlinkTargetHammer);
+  fs.symlinkSync(path.join(config.hammerSrcRoot, 'jquery.hammer.js'), config.symlinkTargetHammer);
 });
