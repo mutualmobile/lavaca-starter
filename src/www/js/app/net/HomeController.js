@@ -1,7 +1,8 @@
 define(function(require) {
 
   var HomeView = require('app/ui/views/HomeView'),
-      BaseController = require('app/net/BaseController');
+      BaseController = require('app/net/BaseController'),
+      Model = require('lavaca/mvc/Model');
 
   /**
    * Home controller
@@ -14,16 +15,14 @@ define(function(require) {
      * @method home
      *
      * @param {Object} params  Action arguments
-     * @param {Object} model  History state model
+     * @param {Object} history  History state model
      * @return {Lavaca.util.Promise}  A promise
      */
-    index: function(params, model) {
-      if (!model) {
-        model = {};
-      }
+    index: function(params, history) {
+      var model = new Model();
       return this
         .view(null, HomeView, model)
-        .then(this.updateState(model, 'Home Page', params.url));
+        .then(this.updateState(history, 'Home Page', params.url));
     }
   });
 
