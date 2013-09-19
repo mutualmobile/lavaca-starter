@@ -22,7 +22,8 @@ require.config({
       exports: '$'
     },
     hammer: {
-      deps: ['$']
+      deps: ['$'],
+      exports: 'Hammer'
     },
     dust: {
       exports: 'dust'
