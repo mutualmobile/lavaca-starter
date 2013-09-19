@@ -21,11 +21,13 @@ fs.exists(config.lavacaModuleRoot, function(isLavacaInstalled) {
 	}
 	// make sure dir 'src/www/js/app' is in starter or existing project
 	fs.mkdirsSync(path.join(config.dstpathRoot, 'app'));
+  // create symlink for lavaca
 	fs.removeSync(config.symlinkTargetLavaca);
 	fs.symlinkSync(path.join(config.symlinkSrcRoot, 'lavaca'), config.symlinkTargetLavaca);
-	// create symlink for 'src/www/js/libs'
+	// create symlink for libs
 	fs.removeSync(config.symlinkTargetLibs);
 	fs.symlinkSync(path.join(config.symlinkSrcRoot, 'libs'), config.symlinkTargetLibs);
+  // create symlink for hammer js
   fs.removeSync(config.symlinkTargetHammer);
   fs.mkdirSync(config.symlinkExtLibs);
   fs.symlinkSync(path.join(config.hammerSrcRoot, 'jquery.hammer.js'), config.symlinkTargetHammer);
