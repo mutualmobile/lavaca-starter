@@ -30,9 +30,6 @@ require.config({
     },
     'dust-helpers': {
       deps: ['dust']
-    },
-    templates: {
-      deps: ['dust']
     }
   }
 });
