@@ -29,6 +29,7 @@ fs.exists(config.lavacaModuleRoot, function(isLavacaInstalled) {
 	fs.symlinkSync(path.join(config.symlinkSrcRoot, 'libs'), config.symlinkTargetLibs);
   // create symlink for hammer js
   fs.removeSync(config.symlinkTargetHammer);
+  fs.rmdirSync(config.symlinkExtLibs);
   fs.mkdirSync(config.symlinkExtLibs);
   fs.symlinkSync(path.join(config.hammerSrcRoot, 'jquery.hammer.js'), config.symlinkTargetHammer);
 });
