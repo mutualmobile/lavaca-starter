@@ -32,7 +32,7 @@ fs.exists(config.lavacaModuleRoot, function(isLavacaInstalled) {
 
   // create symlink for hammer js
   // if extLibs exists already, don't create it!
-  if (!fs.existsSync(config.symlinkTargetLibs)) {
+  if (!fs.existsSync(config.symlinkExtLibs)) {
     fs.mkdirSync(config.symlinkExtLibs);
   }
   fs.removeSync(config.symlinkTargetHammer);
