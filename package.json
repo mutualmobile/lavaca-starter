@@ -8,7 +8,7 @@
     "postinstall": "node ./postinstall.js"
   },
   "dependencies": {
-    "lavaca": "2.1.3"
+    "lavaca": "2.2.x"
   },
   "devDependencies": {
     "mout": "0.x",
