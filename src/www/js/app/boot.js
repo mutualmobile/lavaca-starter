@@ -7,7 +7,6 @@ require.config({
     'hammer': 'extlibs/jquery.hammer',
     'cordova': 'libs/cordova',
     'mout': 'libs/mout',
-    'docCookies': 'libs/docCookies',
     'dust': 'libs/dust-full-2.0.3',
     'dust-helpers': 'libs/dust-helpers-1.1.1',
     'rdust': 'libs/require-dust',
