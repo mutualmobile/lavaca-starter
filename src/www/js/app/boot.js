@@ -4,11 +4,11 @@ require.config({
     'es5-shim': 'libs/es5-shim',
     '$': 'libs/jquery-2.0.0',
     'jquery': 'libs/jquery-2.0.0',
-    'jquery-mobile': 'libs/jquery-mobile',
+    'hammer': 'extlibs/jquery.hammer',
     'cordova': 'libs/cordova',
     'mout': 'libs/mout',
     'docCookies': 'libs/docCookies',
-    'dust': 'libs/dust-full-1.2.4',
+    'dust': 'libs/dust-full-2.0.3',
     'dust-helpers': 'libs/dust-helpers-1.1.1',
     'rdust': 'libs/require-dust',
     'iscroll': 'libs/iscroll-lite',
@@ -21,13 +21,14 @@ require.config({
     jquery: {
       exports: '$'
     },
+    hammer: {
+      deps: ['$'],
+      exports: 'Hammer'
+    },
     dust: {
       exports: 'dust'
     },
     'dust-helpers': {
-      deps: ['dust']
-    },
-    templates: {
       deps: ['dust']
     }
   }

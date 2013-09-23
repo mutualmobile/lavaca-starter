@@ -1,3 +1,10 @@
+Changed in 2.2.0
+======
+* Separated Lavaca's core javascript into another repo
+* Moved from https://github.com/mutualmobile/lavaca to https://github.com/mutualmobile/lavaca-starter
+* Simplified app into a better starter app
+* Added support for Cordova 3.0 support
+
 Changed in 2.0.4
 ======
 * Fix for Disposing of childviews and widgets in View.js

@@ -1,4 +1,4 @@
-# Lavaca-starter 2.1.1
+Lavaca-starter 2.2.0
 
 [![Build Status](https://travis-ci.org/mutualmobile/lavaca.png?branch=amd)](https://travis-ci.org/mutualmobile/lavaca-starter)
 

@@ -8,7 +8,7 @@
     "postinstall": "node ./postinstall.js"
   },
   "dependencies": {
-    "lavaca": "2.1.1"    
+    "lavaca": "2.2.x"
   },
   "devDependencies": {
     "mout": "0.x",
@@ -21,7 +21,6 @@
     "deferreds": "1.x",
     "grunt-contrib-clean": "0.4.1",
     "grunt-contrib-copy": "0.4.1",
-    "grunt-contrib-concat": "0.3.0",
     "grunt-contrib-less": "0.6.3",
     "grunt-contrib-uglify": "0.2.2",
     "grunt-contrib-jshint": "0.1.x",
@@ -33,9 +32,10 @@
     "promisemonkey": "0.1.x",
     "grunt-contrib-yuidoc": "0.4.0",
     "grunt-contrib-watch": "0.4.4",
-    "dustjs-linkedin": "1.2.5",
+    "dustjs-linkedin": "2.0.2",
     "dustjs-helpers": "1.1.1",
-    "grunt-chmod": "1.0.x"
+    "grunt-shell": "0.3.x",
+    "hammerjs": "1.0.5"
   },
   "repository": "git@github.com:mutualmobile/lavaca.git",
   "keywords": [

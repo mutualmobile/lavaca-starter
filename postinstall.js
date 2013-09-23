@@ -7,10 +7,13 @@ var config = {
 };
 
 config.symlinkSrcRoot = '../../../node_modules/lavaca/src/js';
+config.hammerSrcRoot = '../../../../node_modules/hammerjs/dist';
 config.requirejsMainConfig = path.join(config.lavacaModuleRoot, 'src/boot.js');
 config.requireBootTarget = path.join(config.dstpathRoot, 'app/boot.js');
+config.symlinkExtLibs = path.join(config.dstpathRoot, 'extlibs');
 config.symlinkTargetLavaca = path.join(config.dstpathRoot, 'lavaca');
 config.symlinkTargetLibs = path.join(config.dstpathRoot, 'libs');
+config.symlinkTargetHammer = path.join(config.dstpathRoot, 'extlibs/jquery.hammer.js')
 
 fs.exists(config.lavacaModuleRoot, function(isLavacaInstalled) {
 	if (!isLavacaInstalled) {
@@ -18,17 +21,21 @@ fs.exists(config.lavacaModuleRoot, function(isLavacaInstalled) {
 	}
 	// make sure dir 'src/www/js/app' is in starter or existing project
 	fs.mkdirsSync(path.join(config.dstpathRoot, 'app'));
-	// copy boot.js
-	// fs.exists(config.requireBootTarget, function(exists) {
-	// 	if (exists) {
-	// 		fs.renameSync(config.requireBootTarget, config.requireBootTarget + '.old');
-	// 	}
-	// 	fs.createReadStream(config.requirejsMainConfig).pipe(fs.createWriteStream(config.requireBootTarget));
-	// });
-	// create symlink for 'src/www/js/lavaca'
+
+  // create symlink for lavaca
 	fs.removeSync(config.symlinkTargetLavaca);
 	fs.symlinkSync(path.join(config.symlinkSrcRoot, 'lavaca'), config.symlinkTargetLavaca);
-	// create symlink for 'src/www/js/libs'
+
+	// create symlink for libs
 	fs.removeSync(config.symlinkTargetLibs);
 	fs.symlinkSync(path.join(config.symlinkSrcRoot, 'libs'), config.symlinkTargetLibs);
+
+  // create symlink for hammer js
+  // if extLibs exists already, don't create it!
+  if (!fs.existsSync(config.symlinkExtLibs)) {
+    fs.mkdirSync(config.symlinkExtLibs);
+  }
+  fs.removeSync(config.symlinkTargetHammer);
+  fs.symlinkSync(path.join(config.hammerSrcRoot, 'jquery.hammer.js'), config.symlinkTargetHammer);
+
 });
