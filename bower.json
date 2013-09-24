@@ -3,7 +3,7 @@
   "version": "2.2.1",
   "homepage": "http://getlavaca.com",
   "authors": [
-    "George Henderson <georgehendersonmusic@gmail.com>"
+    "Mutual Mobile <george.henderson@mutualmobile.com>"
   ],
   "license": "MIT",
   "ignore": [
@@ -14,6 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "lavaca": "/Users/georgehenderson/lavaca#bower"
+    "lavaca": "https://github.com/mutualmobile/lavaca.git#bower"
   }
 }
