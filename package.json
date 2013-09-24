@@ -4,12 +4,6 @@
   "description": "A Lavaca app",
   "main": "Gruntfile.js",
   "url": "http://getlavaca.com",
-  "scripts": {
-    "postinstall": "node ./postinstall.js"
-  },
-  "dependencies": {
-    "lavaca": "2.2.x"
-  },
   "devDependencies": {
     "mout": "0.x",
     "fs-extra": "~0.6.3",
@@ -34,8 +28,7 @@
     "grunt-contrib-watch": "0.4.4",
     "dustjs-linkedin": "2.0.2",
     "dustjs-helpers": "1.1.1",
-    "grunt-shell": "0.3.x",
-    "hammerjs": "1.0.5"
+    "grunt-shell": "0.3.x"
   },
   "repository": "git@github.com:mutualmobile/lavaca.git",
   "keywords": [

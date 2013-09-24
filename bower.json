@@ -1,0 +1,19 @@
+{
+  "name": "lavaca-starter",
+  "version": "2.2.1",
+  "homepage": "http://getlavaca.com",
+  "authors": [
+    "George Henderson <georgehendersonmusic@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lavaca": "/Users/georgehenderson/lavaca#bower"
+  }
+}
