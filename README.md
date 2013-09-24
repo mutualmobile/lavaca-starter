@@ -21,9 +21,7 @@ Lavaca has a ton packed into it, and is designed to work well as a cohesive whol
 ## Getting Started
 
 1. __Get the code__
-```bash
-$ git clone git@github.com:mutualmobile/lavaca-starter.git [my_app] && cd [my_app]
-```
+[Download source https://github.com/mutualmobile/lavaca-starter/archive/bower.zip](https://github.com/mutualmobile/lavaca-starter/archive/master.zip)
 
 2. __Install grunt-cli globally__
 Note: this may require sudo
@@ -31,9 +29,15 @@ Note: this may require sudo
 $ npm install -g grunt-cli
 ```
 
-3. __Install dev dependencies for our tasks to work__
+3. __Install bower globally__
+Note: this may require sudo
 ```bash
-$ npm install
+$ npm install -g bower
+```
+
+4. __Install dev dependencies__
+```bash
+$ npm install && bower install
 ```
 
 4. __Start Development Server__
