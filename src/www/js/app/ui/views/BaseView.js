@@ -71,17 +71,18 @@ define(function(require) {
      * @return {Lavaca.util.Promise} A promise
      */
     enter: function(container, exitingViews) {
+      var isRoutingBack = History.isRoutingBack;
       return View.prototype.enter.apply(this, arguments)
         .then(function() {
-          if (History.isRoutingBack) {
+          if (isRoutingBack) {
             if (History.animationBreadcrumb.length > 0) {
               this.pageTransition = History.animationBreadcrumb.pop();
             }
           } else {
             History.animationBreadcrumb.push(this.pageTransition);
           }
-          var animationIn = History.isRoutingBack ? this.pageTransition['inReverse']:this.pageTransition['in'],
-              animationOut = History.isRoutingBack ? this.pageTransition['outReverse']:this.pageTransition['out'],
+          var animationIn = isRoutingBack ? this.pageTransition['inReverse']:this.pageTransition['in'],
+              animationOut = isRoutingBack ? this.pageTransition['outReverse']:this.pageTransition['out'],
               i = -1,
               exitingView;
 
