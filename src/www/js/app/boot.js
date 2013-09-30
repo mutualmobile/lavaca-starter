@@ -5,14 +5,12 @@ require.config({
     '$': '../components/jquery/index',
     'jquery': '../components/jquery/index',
     'hammer': '../components/hammerjs/dist/jquery.hammer',
-    'cordova': '../components/lavaca/src/js/libs/cordova',
     'mout': '../components/mout/src',
-    'docCookies': '../components/lavaca/src/js/libs/docCookies',
     'dust': '../components/dustjs-linkedin/dist/dust-full-2.0.4',
     'dust-helpers': '../components/dustjs-linkedin-helpers/dist/dust-helpers-1.1.1',
-    'rdust': '../components/lavaca/src/js/libs/require-dust',
+    'rdust': '../components/require-dust/require-dust',
     'iScroll': '../components/iscroll/dist/iscroll-lite-min',
-    'lavaca': '../components/lavaca/src/js/lavaca'
+    'lavaca': '../components/lavaca/src'
   },
   shim: {
     $: {
