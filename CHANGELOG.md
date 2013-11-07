@@ -1,3 +1,7 @@
+Changed in 2.3.1
+======
+* Version bump to match core
+
 Changed in 2.3.0
 ======
 * Updated project to use bower for client-side dependecies including lavaca-core

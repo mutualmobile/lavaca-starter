@@ -1,6 +1,6 @@
 {
   "name": "lavaca-starter",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "homepage": "http://getlavaca.com",
   "authors": [
     "Mutual Mobile <george.henderson@mutualmobile.com>"
@@ -14,6 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "lavaca": "~2.3.0"
+    "lavaca": "~2.3.1"
   }
 }
