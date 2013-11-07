@@ -14,6 +14,6 @@
     "tests"
   ],
   "dependencies": {
-    "lavaca": "https://github.com/mutualmobile/lavaca.git#dev"
+    "lavaca": "~2.3.0"
   }
 }

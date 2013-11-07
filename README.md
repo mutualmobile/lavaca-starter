@@ -1,27 +1,15 @@
-Lavaca-starter 2.2.0
+Lavaca-starter 2.3.0
 
-[![Build Status](https://travis-ci.org/mutualmobile/lavaca.png?branch=amd)](https://travis-ci.org/mutualmobile/lavaca-starter)
+[![Build Status](https://travis-ci.org/mutualmobile/lavaca.png?branch=master)](https://travis-ci.org/mutualmobile/lavaca-starter)
 
-Introducing Lavaca-starter, the open source, HTML5 application framework by Mutual Mobile. Jumpstart development of your project by basing them off of Lavaca and using Lavaca's build tools.
+This project is a seed for creating a new Lavaca app. It includes a build system and opional integration with Cordova.
 
-Lavaca features:
-* An AMD architecture utilizing ([require.js](http://requirejs.org/))
-* A build system leveraging ([Grunt](http://gruntjs.com/))
-* A JavaScript MVC framework -> [learn more](3.0.-MVC-in-Lavaca)
-* Integration with Cordova out-of-the-box
-* A JavaScript documentation generation system ([YUIDoc](http://yui.github.io/yuidoc/))
-* A unit testing framework ([Jasmine](http://pivotal.github.io/jasmine/))
-* A templating framework ([LinkedIn fork of Dust](http://linkedin.github.com/dustjs/))
-* A translation framework
-* Dynamic CSS with ([LESS](http://lesscss.org/))
-* ...as well as many other common components.
-
-Lavaca has a ton packed into it, and is designed to work well as a cohesive whole, while still remaining lightweight. Lavaca is built with extensibility in mind and allows you to easily extend components and build your own on top of its framework.
+[Startup guide](http://getlavaca.com/#/guide#@3)
 
 ## Getting Started
 
 1. __Get the code__
-[Download source https://github.com/mutualmobile/lavaca-starter/archive/bower.zip](https://github.com/mutualmobile/lavaca-starter/archive/master.zip)
+  - [Download source](https://github.com/mutualmobile/lavaca-starter/archive/master.zip)
 
 2. __Install grunt-cli globally__
 Note: this may require sudo
@@ -48,7 +36,7 @@ Your application should now be running on `localhost:8080`.
 
 ## Grunt Tasks
 
-Below is a list of grunt tasks to aid development and facilitate deployment.
+Below is a list of grunt tasks to aid development and facilitate deployment. [More on Build Configuration](http://getlavaca.com/#/guide/Build-Configuration#@1)
 
 ### Server
 
@@ -101,53 +89,3 @@ Generates JavaScript documentation using [yuidoc](https://github.com/gruntjs/gru
 ```bash
 $ grunt yuidoc
 ```
-
-
-
-Legal stuff:
-
-Lavaca 2.1.1
-Copyright (c) 2013 Mutual Mobile
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-Contains components from or inspired by:
-
-Simple Reset
-(c) 2011 Eric Meyer
-Released to public domain
-
-jQuery v2.0.0
-(c) 2011, John Resig
-Dual licensed under the MIT or GPL Version 2 licenses.
-
-Sizzle.js
-(c) 2011, The Dojo Foundation
-Released under the MIT, BSD, and GPL licenses.
-
-Backbone.js 0.9.1 and Underscore.js 1.3.1
-(c) 2012, Jeremy Ashkenas, DocumentCloud Inc
-Released under the MIT license.
-
-LinkedIn Fork of Dust.js 1.1
-(c) 2010, Aleksander Williams
-Released under the MIT license.
-
-
-ChildBrowser
-(c) 2012 Jesse MacFadyen, Nitobi
-Released under the MIT license
-
-
-iScroll 4.1.9
-(c) 2011 Matteo Spinelli
-Released under the MIT license
-=======
-lavaca-starter
-==============
-
-A starter app for lavaca

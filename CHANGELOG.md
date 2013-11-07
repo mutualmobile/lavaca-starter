@@ -1,3 +1,9 @@
+Changed in 2.3.0
+======
+* Updated project to use bower for client-side dependecies including lavaca-core
+* updated readme with new build steps
+* bug fix for routing back logic in BaseView
+
 Changed in 2.2.0
 ======
 * Separated Lavaca's core javascript into another repo
