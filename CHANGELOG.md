@@ -1,3 +1,7 @@
+Changed in 2.3.2
+======
+* Switched bower.json to link to latest of lavaca
+
 Changed in 2.3.1
 ======
 * Version bump to match core
