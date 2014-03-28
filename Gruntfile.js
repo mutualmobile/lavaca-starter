@@ -220,8 +220,8 @@ module.exports = function( grunt ) {
       },
       prod: {
         options: {
-          port: 8080,
-          vhost: 'localhost',
+          port: process.env.PORT || 8080,
+          hostname: '0.0.0.0',
           base: 'build/www',
           apiPrefix: '/api*'
         }
