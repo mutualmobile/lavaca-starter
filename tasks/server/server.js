@@ -3,7 +3,9 @@ module.exports = function(grunt) {
 
   /* server.js */
   var express = require('express'),
-      util = require('util');
+    util = require('util'),
+    phantom = require('phantom'),
+    portscanner = require('portscanner');
 
   var startServer = function(config) {
     config = config || {};
@@ -74,6 +76,28 @@ module.exports = function(grunt) {
     server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 
     server.all(apiPrefix + '*', proxyRequest);
+
+    server.all('/seo/*', function(request, response){
+      portscanner.findAPortNotInUse(40000, 60000, 'localhost', function(err, freeport) {
+        phantom.create({'port': freeport}, function(ph){
+          return ph.createPage(function(page) {
+            var url = 'http://' + request.headers.host + '/' + request.originalUrl.replace('/seo/', '#');
+            console.log('open', url);
+            return page.open(url, function(status) {
+              console.log("opened url for SEO", status);
+              return page.evaluate((function() {
+                return document.documentElement.outerHTML;
+              }), function(result) {
+                response.status(200);
+                response.send(result);
+                return ph.exit();
+              });
+            });
+          });
+        }); // ! phantom.create
+      });
+    });
+
  
     server.get('/*', function(req, res) {
       res.redirect(util.format('/#%s#', req.originalUrl));

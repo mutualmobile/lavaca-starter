@@ -30,7 +30,10 @@
     "dustjs-linkedin": "2.0.2",
     "dustjs-helpers": "1.1.1",
     "grunt-shell": "0.3.x",
-    "bower": "1.2.x"
+    "bower": "1.2.x",
+    "phantomjs": "1.9.x",
+    "phantom": "0.5.7",
+    "portscanner": "0.2.3"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"

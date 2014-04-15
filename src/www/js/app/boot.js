@@ -1,5 +1,5 @@
 require.config({
-  baseUrl: 'js',
+  baseUrl: '/js',
   paths: {
     'es5-shim': '../components/es5-shim/es5-shim',
     '$': '../components/jquery/jquery',
