@@ -77,21 +77,30 @@ module.exports = function(grunt) {
 
     server.all(apiPrefix + '*', proxyRequest);
 
-    server.all('/seo/*', function(request, response){
+    server.all(/^\/[^\.]+$/, function(request, response){
+      // TODO: implement caching.
       portscanner.findAPortNotInUse(40000, 60000, 'localhost', function(err, freeport) {
         phantom.create({'port': freeport}, function(ph){
           return ph.createPage(function(page) {
-            var url = 'http://' + request.headers.host + '/' + request.originalUrl.replace('/seo/', '#');
+            var url = 'http://' + request.headers.host + '/#' + request.originalUrl;
             console.log('open', url);
             return page.open(url, function(status) {
-              console.log("opened url for SEO", status);
-              return page.evaluate((function() {
-                return document.documentElement.outerHTML;
-              }), function(result) {
-                response.status(200);
-                response.send(result);
-                return ph.exit();
-              });
+
+              setTimeout(function(){
+                var thisPage = page.evaluate((function() {
+                  console.log('testing');
+                  window.addEventListener('enterComplete', function(){
+                    console.log('enterComplete');
+                  });
+                  return document.documentElement.outerHTML;
+                }), function(result) {
+                  //html = result;
+                  response.status(200);
+                  response.send(result);
+                  return ph.exit();
+                });
+                return thisPage;
+              }.bind(this), 500);
             });
           });
         }); // ! phantom.create

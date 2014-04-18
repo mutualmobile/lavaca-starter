@@ -21,7 +21,8 @@ define(function(require) {
   var app = new Application(function() {
     // Add routes
     this.router.add({
-      '/': [HomeController, 'index']
+      '/': [HomeController, 'index'],
+      '/test': [HomeController, 'test']
     });
     // Initialize messages
     Translation.init('en_US');

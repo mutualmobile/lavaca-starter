@@ -23,6 +23,14 @@ define(function(require) {
       return this
         .view(null, HomeView, model)
         .then(this.updateState(history, 'Home Page', params.url));
+    },
+    test: function(params, history) {
+      console.log('test');
+      var model = new Model();
+      model.set('test', 'test')
+      return this
+        .view(null, HomeView, model)
+        .then(this.updateState(history, 'Home Page', params.url));
     }
   });
 
