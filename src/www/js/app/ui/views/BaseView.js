@@ -124,7 +124,7 @@ define(function(require) {
               }
             }
             this.trigger('entercomplete');
-            console.log('enterComplete');
+            $(window).trigger('enterComplete');
           }
         });
     },

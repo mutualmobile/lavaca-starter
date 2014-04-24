@@ -88,7 +88,6 @@ module.exports = function(grunt) {
 
               setTimeout(function(){
                 var thisPage = page.evaluate((function() {
-                  console.log('testing');
                   window.addEventListener('enterComplete', function(){
                     console.log('enterComplete');
                   });
