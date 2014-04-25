@@ -18,6 +18,12 @@ define(function(require) {
   var BaseView = View.extend(function() {
     View.apply(this, arguments);
     this.mapEvent('.cancel', 'tap', this.onTapCancel);
+    this.on('entercomplete', function(){
+      if (typeof window.callPhantom === 'function') {
+        window.callPhantom({ hello: 'world' });
+      }
+      console.log('enterComplete');
+    });
   }, {
 
     /**
@@ -124,7 +130,6 @@ define(function(require) {
               }
             }
             this.trigger('entercomplete');
-            $(window).trigger('enterComplete');
           }
         });
     },

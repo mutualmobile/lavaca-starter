@@ -5,7 +5,8 @@ module.exports = function(grunt) {
   var express = require('express'),
     util = require('util'),
     phantom = require('phantom'),
-    portscanner = require('portscanner');
+    portscanner = require('portscanner'),
+    LRU = require('lru-cache');
 
   var startServer = function(config) {
     config = config || {};
@@ -77,30 +78,51 @@ module.exports = function(grunt) {
 
     server.all(apiPrefix + '*', proxyRequest);
 
+    // SEO
+    if (config.cache) {
+      var cache = LRU({
+        max: config.cache.size // number of pages to cache
+      });
+    }
+
     server.all(/^\/[^\.]+$/, function(request, response){
-      // TODO: implement caching.
+      if (cache) {
+        var cached = cache.get(request.originalUrl);
+        if (cached) {
+          response.status(200);
+          response.send(cached);
+          return;
+        }
+      }
+
       portscanner.findAPortNotInUse(40000, 60000, 'localhost', function(err, freeport) {
         phantom.create({'port': freeport}, function(ph){
-          return ph.createPage(function(page) {
-            var url = 'http://' + request.headers.host + '/#' + request.originalUrl;
-            console.log('open', url);
-            return page.open(url, function(status) {
+          ph.createPage(function(page) {
 
-              setTimeout(function(){
-                var thisPage = page.evaluate((function() {
-                  window.addEventListener('enterComplete', function(){
-                    console.log('enterComplete');
-                  });
-                  return document.documentElement.outerHTML;
-                }), function(result) {
-                  //html = result;
-                  response.status(200);
-                  response.send(result);
-                  return ph.exit();
-                });
-                return thisPage;
-              }.bind(this), 500);
-            });
+            var url = 'http://' + request.headers.host + '/#' + request.originalUrl;
+
+            var outputPage = function() {
+              var thisPage = page.evaluate((function() {
+                return document.documentElement.outerHTML;
+              }), function(result) {
+                cache && cache.set(request.originalUrl, result);
+                response.status(200);
+                response.send(result);
+                return ph.exit();
+              });
+            };
+
+
+            page.onCallback = outputPage.bind(this);
+            setTimeout(outputPage.bind(this), 1000);
+
+            setTimeout(function(){
+              page.open(url, function(status) {
+                console.log('open', url, status);
+              });
+            }.bind(this), 1);
+
+
           });
         }); // ! phantom.create
       });
@@ -131,7 +153,8 @@ module.exports = function(grunt) {
         port: options.port,
         apiPrefix: options.apiPrefix,
         proxyPort: options.proxyPort || '80',
-        proxyProtocol: options.proxyProtocol || 'http'
+        proxyProtocol: options.proxyProtocol || 'http',
+        cache: options.cache
     }),
     args = this.args,
     done = args[args.length-1] === 'watch' ? function() {} : this.async();
