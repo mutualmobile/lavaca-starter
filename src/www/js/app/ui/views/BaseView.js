@@ -18,12 +18,11 @@ define(function(require) {
   var BaseView = View.extend(function() {
     View.apply(this, arguments);
     this.mapEvent('.cancel', 'tap', this.onTapCancel);
-    this.on('entercomplete', function(){
-      if (typeof window.callPhantom === 'function') {
-        window.callPhantom({ hello: 'world' });
-      }
-      console.log('enterComplete');
-    });
+    if (typeof window.callPhantom === 'function') {
+      this.on('entercomplete', function(){
+          window.callPhantom({ event: 'enterComplete' });
+      });
+    }
   }, {
 
     /**

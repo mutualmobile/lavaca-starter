@@ -4,8 +4,7 @@ module.exports = function(grunt) {
   /* server.js */
   var express = require('express'),
     util = require('util'),
-    phantom = require('phantom'),
-    portscanner = require('portscanner'),
+    phantom = require('node-phantom'),
     LRU = require('lru-cache');
 
   var startServer = function(config) {
@@ -95,16 +94,13 @@ module.exports = function(grunt) {
         }
       }
 
-      portscanner.findAPortNotInUse(40000, 60000, 'localhost', function(err, freeport) {
-        phantom.create({'port': freeport}, function(ph){
-          ph.createPage(function(page) {
-
+        phantom.create(function(err, ph) {
+          return ph.createPage(function(err,page) {
             var url = 'http://' + request.headers.host + '/#' + request.originalUrl;
-
             var outputPage = function() {
-              var thisPage = page.evaluate((function() {
+              page.evaluate((function() {
                 return document.documentElement.outerHTML;
-              }), function(result) {
+              }), function(err, result) {
                 cache && cache.set(request.originalUrl, result);
                 response.status(200);
                 response.send(result);
@@ -112,20 +108,19 @@ module.exports = function(grunt) {
               });
             };
 
+            page.onCallback = function(data) {
+              if (data.event && data.event == 'enterComplete') {
+                outputPage.call(this);
+              }
+            };
+            setTimeout(outputPage.bind(this), 10000); // timeout in 10 seconds
 
-            page.onCallback = outputPage.bind(this);
-            setTimeout(outputPage.bind(this), 1000);
-
-            setTimeout(function(){
-              page.open(url, function(status) {
-                console.log('open', url, status);
-              });
-            }.bind(this), 1);
-
-
+            return page.open(url, function(err, status) {
+              console.log('open', url, status);
+            });
           });
         }); // ! phantom.create
-      });
+
     });
 
  

@@ -11,7 +11,7 @@ define(function(require) {
 
   // Uncomment this section to use hash-based browser history instead of HTML5 history.
   // You should use hash-based history if there's no server-side component supporting your app's routes.
-  History.overrideStandardsMode();
+  // History.overrideStandardsMode();
 
   /**
    * Global application-specific object
