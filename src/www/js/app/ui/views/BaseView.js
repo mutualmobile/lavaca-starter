@@ -19,8 +19,10 @@ define(function(require) {
     View.apply(this, arguments);
     this.mapEvent('.cancel', 'tap', this.onTapCancel);
     if (typeof window.callPhantom === 'function') {
-      this.on('entercomplete', function(){
-          window.callPhantom({ event: 'enterComplete' });
+      this.on('entercomplete', function() {
+        window.callPhantom({
+          event: 'enterComplete'
+        });
       });
     }
   }, {

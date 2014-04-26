@@ -224,8 +224,11 @@ module.exports = function( grunt ) {
           hostname: '0.0.0.0',
           base: 'build/www',
           apiPrefix: '/api*',
-          cache: {
-            size: 100
+          compress: true,
+          staticEmulation: {
+            cache: {
+              size: 100
+            }
           }
         }
       },

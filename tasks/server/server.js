@@ -70,38 +70,44 @@ module.exports = function(grunt) {
       req.end();
     }
 
-    server.use(express['static'](base, {maxAge: hourMs}));
-    server.use(express.directory(base, {icons: true}));
-    server.use(express.bodyParser());
-    server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
+    //server.use(express.logger());
+    config.compress && server.use(express.compress());
 
-    server.all(apiPrefix + '*', proxyRequest);
-
-    // SEO
-    if (config.cache) {
-      var cache = LRU({
-        max: config.cache.size // number of pages to cache
-      });
-    }
-
-    server.all(/^\/[^\.]+$/, function(request, response){
-      if (cache) {
-        var cached = cache.get(request.originalUrl);
-        if (cached) {
+    if (config.staticEmulation) {
+      if (config.staticEmulation.cache) {
+        var cache = LRU({
+          max: config.staticEmulation.cache.size // number of pages to cache
+        });
+      }
+      server.get(/^\/[^\.]*$/, function(request, response) {
+        //console.log('request', request);
+        if (request.url == '/' && request.headers['user-agent'].indexOf('PhantomJS') !== -1) {
           response.status(200);
-          response.send(cached);
+          response.sendfile(base + '/index.html');
           return;
         }
-      }
+        console.log('req to phantom', request.url);
+        console.time("phantom");
+        if (cache) {
+          var cached = cache.get(request.originalUrl);
+          if (cached) {
+            console.log('response from cache.');
+            response.status(200);
+            response.send(cached);
+            return;
+          }
+        }
 
         phantom.create(function(err, ph) {
           return ph.createPage(function(err,page) {
-            var url = 'http://' + request.headers.host + '/#' + request.originalUrl;
+            var url = request.protocol + '://' + request.headers.host + '/#' + request.url;
             var outputPage = function() {
+
               page.evaluate((function() {
                 return document.documentElement.outerHTML;
               }), function(err, result) {
                 cache && cache.set(request.originalUrl, result);
+                console.timeEnd("phantom");
                 response.status(200);
                 response.send(result);
                 return ph.exit();
@@ -109,8 +115,9 @@ module.exports = function(grunt) {
             };
 
             page.onCallback = function(data) {
+              console.log('onCallback data', data);
               if (data.event && data.event == 'enterComplete') {
-                outputPage.call(this);
+                outputPage();
               }
             };
             setTimeout(outputPage.bind(this), 10000); // timeout in 10 seconds
@@ -120,13 +127,20 @@ module.exports = function(grunt) {
             });
           });
         }); // ! phantom.create
+      });
+    } else {
+      // dev mode.
+      server.get(/^\/[^\.]*$/, function(req, res) {
+        res.redirect(util.format('/#%s#', req.originalUrl));
+      });
+    }
 
-    });
+    server.use(express.static(base, {maxAge: hourMs}));
+    //server.use(express.directory(base, {icons: true}));
+    server.use(express.bodyParser()); // TODO: Protect agains exploit: http://andrewkelley.me/post/do-not-use-bodyparser-with-express-js.html
+    server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 
- 
-    server.get('/*', function(req, res) {
-      res.redirect(util.format('/#%s#', req.originalUrl));
-    });
+    server.all(apiPrefix + '*', proxyRequest);
 
     if (vhost) {
       server.use(express.vhost(vhost, server));
@@ -136,10 +150,8 @@ module.exports = function(grunt) {
     return server;
   };
 
-
   grunt.registerMultiTask('server', 'Runs a static web and proxy server', function() {
-    var options = this.options({
-    });
+    var options = this.options({});
     var server = startServer({
         host: options.apiBaseUrl, // override this with your third party API host, such as 'search.twitter.com'.
         hourMs: 0*60*60,
@@ -149,7 +161,8 @@ module.exports = function(grunt) {
         apiPrefix: options.apiPrefix,
         proxyPort: options.proxyPort || '80',
         proxyProtocol: options.proxyProtocol || 'http',
-        cache: options.cache
+        staticEmulation: options.staticEmulation,
+        compress: options.compress
     }),
     args = this.args,
     done = args[args.length-1] === 'watch' ? function() {} : this.async();
