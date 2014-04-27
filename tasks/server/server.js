@@ -79,74 +79,75 @@ module.exports = function(grunt) {
           max: config.staticEmulation.cache.size // number of pages to cache
         });
       }
-      server.get(/^\/[^\.]*$/, function(request, response) {
-        //console.log('request', request);
-        if (request.url == '/' && request.headers['user-agent'].indexOf('PhantomJS') !== -1) {
-          response.status(200);
-          response.sendfile(base + '/index.html');
-          return;
-        }
-        console.log('req to phantom', request.url);
-        console.time("phantom");
-        if (cache) {
-          var cached = cache.get(request.originalUrl);
-          if (cached) {
-            console.log('response from cache.');
-            response.status(200);
-            response.send(cached);
-            return;
-          }
-        }
 
-        phantom.create(function(err, ph) {
-          return ph.createPage(function(err,page) {
+      phantom.create(function(err, ph) {
+        server.get(/^\/[^\.]*$/, function(request, response) {
+          ph.createPage(function(err,page) {
+            if (request.url == '/' && request.headers['user-agent'].indexOf('PhantomJS') !== -1) {
+              response.status(200);
+              response.sendfile(base + '/index.html');
+              return;
+            }
+            console.log('req to phantom', request.url);
+            if (cache) {
+              var cached = cache.get(request.originalUrl);
+              if (cached) {
+                console.log('response from cache.');
+                response.status(200);
+                response.send(cached);
+                return;
+              }
+            }
             var url = request.protocol + '://' + request.headers.host + '/#' + request.url;
             var outputPage = function() {
-
               page.evaluate((function() {
                 return document.documentElement.outerHTML;
               }), function(err, result) {
                 cache && cache.set(request.originalUrl, result);
-                console.timeEnd("phantom");
                 response.status(200);
                 response.send(result);
+                clearTimeout(timeout);
                 return ph.exit();
               });
             };
 
             page.onCallback = function(data) {
-              console.log('onCallback data', data);
               if (data.event && data.event == 'enterComplete') {
                 outputPage();
               }
             };
-            setTimeout(outputPage.bind(this), 10000); // timeout in 10 seconds
+            var timeout = setTimeout(outputPage.bind(this), 10000); // timeout in 10 seconds
 
             return page.open(url, function(err, status) {
               console.log('open', url, status);
-            });
+            });// ! server.get()
           });
-        }); // ! phantom.create
-      });
+          otherServers();
+        });
+      }); // ! phantom.create
     } else {
       // dev mode.
       server.get(/^\/[^\.]*$/, function(req, res) {
         res.redirect(util.format('/#%s#', req.originalUrl));
       });
+      otherServers();
     }
 
-    server.use(express.static(base, {maxAge: hourMs}));
-    //server.use(express.directory(base, {icons: true}));
-    server.use(express.bodyParser()); // TODO: Protect agains exploit: http://andrewkelley.me/post/do-not-use-bodyparser-with-express-js.html
-    server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
+    function otherServers() {
+      server.use(express.static(base, {maxAge: hourMs}));
+      //server.use(express.directory(base, {icons: true}));
+      server.use(express.bodyParser()); // TODO: Protect agains exploit: http://andrewkelley.me/post/do-not-use-bodyparser-with-express-js.html
+      server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
 
-    server.all(apiPrefix + '*', proxyRequest);
+      server.all(apiPrefix + '*', proxyRequest);
 
-    if (vhost) {
-      server.use(express.vhost(vhost, server));
+      if (vhost) {
+        server.use(express.vhost(vhost, server));
+      }
+
+      server.listen(port);
     }
 
-    server.listen(port);
     return server;
   };
 
