@@ -18,7 +18,7 @@ $ npm install
 
 3. __Set Your Path__
 ```bash
-$ source set_env.sh
+$ source ./set_env.sh
 ```
 
 4. __Start Development Server__
