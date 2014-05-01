@@ -8,24 +8,24 @@ This project is a seed for creating a new Lavaca app. It includes a build system
 
 ## Getting Started
 
-1. __Get the code__
-  - [Download source](https://github.com/mutualmobile/lavaca-starter/archive/master.zip)
+__Get the code__
+[Download source](https://github.com/mutualmobile/lavaca-starter/archive/master.zip)
 
-2. __Install Node Packages__
+__Install Node Packages__
 ```bash
 $ npm install
 ```
-
-3. __Set Your Path__
+    
+__Set Your Path__
 ```bash
 $ source ./set_env.sh
 ```
 
-4. __Start Development Server__
+__Start Development Server__
+
 ```bash
 $ grunt server
 ```
-Your application should now be running on `localhost:8080`.
 
 ## Grunt Tasks
 
