@@ -11,21 +11,14 @@ This project is a seed for creating a new Lavaca app. It includes a build system
 1. __Get the code__
   - [Download source](https://github.com/mutualmobile/lavaca-starter/archive/master.zip)
 
-2. __Install grunt-cli globally__
-Note: this may require sudo
+2. __Install Node Packages__
 ```bash
-$ npm install -g grunt-cli
+$ npm install
 ```
 
-3. __Install bower globally__
-Note: this may require sudo
+3. __Set Your Path__
 ```bash
-$ npm install -g bower
-```
-
-4. __Install dev dependencies__
-```bash
-$ npm install && bower install
+$ source set_env.sh
 ```
 
 4. __Start Development Server__
