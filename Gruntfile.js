@@ -225,7 +225,7 @@ module.exports = function( grunt ) {
           base: 'build/www',
           apiPrefix: '/api*',
           compress: true,
-          staticEmulation: {
+          preRender: {
             cache: {
               size: 100
             }

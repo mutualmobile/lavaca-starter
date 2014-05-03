@@ -1,23 +1,27 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   'use strict';
 
   /* server.js */
   var express = require('express'),
     util = require('util'),
     phantom = require('node-phantom'),
-    LRU = require('lru-cache');
+    LRU = require('lru-cache'),
+    bodyParser = require('body-parser'),
+    compression = require('compression'),
+    errorhandler = require('errorhandler'),
+    vhost = require('vhost');
 
-  var startServer = function(config) {
+  var startServer = function (config) {
     config = config || {};
     var requester = require(config.proxyProtocol);
     var server = express();
-    var hourMs = config.hourMs || 0*60*60,
-        vhost = config.vhost || 'localhost',
-        base = config.base,
-        port = config.port,
-        host = config.host,
-        apiPrefix = config.apiPrefix || '/api',
-        basicAuth = config.basicAuth;
+    var hourMs = config.hourMs || 0 * 60 * 60,
+      domain = config.vhost || 'localhost',
+      base = config.base,
+      port = config.port,
+      host = config.host,
+      apiPrefix = config.apiPrefix || '/api',
+      basicAuth = config.basicAuth;
 
     function proxyRequest(request, response) {
       var postData = request.body;
@@ -36,19 +40,19 @@ module.exports = function(grunt) {
       if ('POST' === request.method && typeof postData === 'object') {
         postData = JSON.stringify(postData);
       }
-      var req = requester.request(options, function(res) {
+      var req = requester.request(options, function (res) {
         var output = '';
-        console.log(options.method + ' @ ' + options.host + options.path + ' Code: '+ res.statusCode);
+        console.log(options.method + ' @ ' + options.host + options.path + ' Code: ' + res.statusCode);
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
           output += chunk;
         });
-        res.on('end', function() {
+        res.on('end', function () {
           response
             .status(res.statusCode);
           try {
             jsonData = JSON.parse(output);
-          } catch(e) {
+          } catch (e) {
             jsonData = null;
           }
           if (typeof jsonData === 'object') {
@@ -59,7 +63,7 @@ module.exports = function(grunt) {
         });
       });
 
-      req.on('error', function(e) {
+      req.on('error', function (e) {
         console.log('problem with request: ' + e.message);
       });
 
@@ -70,25 +74,34 @@ module.exports = function(grunt) {
       req.end();
     }
 
-    //server.use(express.logger());
-    config.compress && server.use(express.compress());
+    config.compress && server.use(compression());
+    server.use(bodyParser()); // TODO: Protect agains exploit: http://andrewkelley.me/post/do-not-use-bodyparser-with-express-js.html
+    server.use(errorhandler({dumpExceptions: true, showStack: true}));
 
-    if (config.staticEmulation) {
-      if (config.staticEmulation.cache) {
+    if (config.preRender) {
+      if (config.preRender.cache) {
         var cache = LRU({
-          max: config.staticEmulation.cache.size // number of pages to cache
+          max: config.preRender.cache.size // number of pages to cache
         });
       }
 
-      phantom.create(function(err, ph) {
-        server.get(/^\/[^\.]*$/, function(request, response) {
-          ph.createPage(function(err,page) {
-            if (request.url == '/' && request.headers['user-agent'].indexOf('PhantomJS') !== -1) {
-              response.status(200);
+      phantom.create(function (err, ph) {
+        server.get('/*', function (request, response) {
+          if ((request.url == '/') || (request.url == '/index.html')) {
+            if (request.headers['user-agent'].indexOf('PhantomJS') !== -1) {
               response.sendfile(base + '/index.html');
+            } else {
+              console.log('trying to get through phantom.');
+              getThroughPhantom(true);
+            }
+            return;
+          }
+          response.sendfile(base + request.url, {maxAge: hourMs}, getThroughPhantom);
+
+          function getThroughPhantom(error) {
+            if (!error) {
               return;
             }
-            console.log('req to phantom', request.url);
             if (cache) {
               var cached = cache.get(request.originalUrl);
               if (cached) {
@@ -98,79 +111,76 @@ module.exports = function(grunt) {
                 return;
               }
             }
-            var url = request.protocol + '://' + request.headers.host + '/#' + request.url;
-            var outputPage = function() {
-              page.evaluate((function() {
-                return document.documentElement.outerHTML;
-              }), function(err, result) {
-                cache && cache.set(request.originalUrl, result);
-                response.status(200);
-                response.send(result);
-                clearTimeout(timeout);
-                return ph.exit();
+
+            ph.createPage(function (err, page) {
+              var url = request.protocol + '://' + request.headers.host + '/#' + request.url;
+              var outputPage = function () {
+                page.evaluate((function () {
+                  return document.documentElement.outerHTML;
+                }), function (err, result) {
+                  cache && cache.set(request.originalUrl, result);
+                  response.status(200);
+                  response.send(result);
+                  clearTimeout(timeout);
+                  page.close();
+                  return ph;
+                });
+              };
+
+              page.onCallback = function (data) {
+                if (data.event && data.event == 'enterComplete') {
+                  outputPage();
+                }
+              };
+              var timeout = setTimeout(outputPage.bind(this), 10000); // timeout in 10 seconds
+
+              return page.open(url, function (err, status) {
+                //console.log('open', url, status);
               });
-            };
-
-            page.onCallback = function(data) {
-              if (data.event && data.event == 'enterComplete') {
-                outputPage();
-              }
-            };
-            var timeout = setTimeout(outputPage.bind(this), 10000); // timeout in 10 seconds
-
-            return page.open(url, function(err, status) {
-              console.log('open', url, status);
-            });// ! server.get()
-          });
-          otherServers();
+            });
+          }
         });
+        listenUp();
       }); // ! phantom.create
     } else {
       // dev mode.
-      server.get(/^\/[^\.]*$/, function(req, res) {
+      server.use(express.static(base, {maxAge: hourMs}));
+      server.get('/*', function (req, res) {
         res.redirect(util.format('/#%s#', req.originalUrl));
       });
-      otherServers();
+      listenUp();
     }
 
-    function otherServers() {
-      server.use(express.static(base, {maxAge: hourMs}));
-      //server.use(express.directory(base, {icons: true}));
-      server.use(express.bodyParser()); // TODO: Protect agains exploit: http://andrewkelley.me/post/do-not-use-bodyparser-with-express-js.html
-      server.use(express.errorHandler({dumpExceptions: true, showStack: true}));
-
-      server.all(apiPrefix + '*', proxyRequest);
-
-      if (vhost) {
-        server.use(express.vhost(vhost, server));
+    function listenUp() {
+      if (domain) {
+        server.use(vhost(domain, server));
       }
-
       server.listen(port);
+      console.log('Express server running at %s:%d', domain, port);
     }
 
     return server;
   };
 
-  grunt.registerMultiTask('server', 'Runs a static web and proxy server', function() {
+  grunt.registerMultiTask('server', 'Runs a static web and proxy server', function () {
     var options = this.options({});
     var server = startServer({
         host: options.apiBaseUrl, // override this with your third party API host, such as 'search.twitter.com'.
-        hourMs: 0*60*60,
+        hourMs: 0 * 60 * 60,
         vhost: options.vhost,
         base: options.base,
         port: options.port,
         apiPrefix: options.apiPrefix,
         proxyPort: options.proxyPort || '80',
         proxyProtocol: options.proxyProtocol || 'http',
-        staticEmulation: options.staticEmulation,
+        preRender: options.preRender,
         compress: options.compress
-    }),
-    args = this.args,
-    done = args[args.length-1] === 'watch' ? function() {} : this.async();
+      }),
+      args = this.args,
+      done = args[args.length - 1] === 'watch' ? function () {
+      } : this.async();
 
     server.on('close', done);
-
-    console.log('Express server running at %s:%d', options.vhost, options.port);
   });
 
 };

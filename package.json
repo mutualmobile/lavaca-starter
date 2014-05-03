@@ -9,7 +9,7 @@
     "fs-extra": "~0.6.3",
     "grunt": "0.4.1",
     "grunt-cli": "~0.1.9",
-    "express": "3.1.x",
+    "express": "4.1.1",
     "underscore": "1.4.x",
     "preprocess": "1.0.x",
     "connect": "2.4.4",
@@ -32,7 +32,11 @@
     "grunt-shell": "0.3.x",
     "bower": "1.2.x",
     "node-phantom": "0.2.5",
-    "lru-cache": "2.5.0"
+    "lru-cache": "2.5.0",
+    "body-parser": "^1.0.2",
+    "compression": "^1.0.2",
+    "errorhandler": "^1.0.1",
+    "vhost": "^1.0.0"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
