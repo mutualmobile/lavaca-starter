@@ -215,7 +215,8 @@ module.exports = function( grunt ) {
           apiPrefix: '/api',
           apiBaseUrl: 'configure-to-specific-api',
           proxyPort: '80',// change to 443 for https
-          proxyProtocol: 'http'//change to https if ssl is required
+          proxyProtocol: 'http', //change to https if ssl is required
+          livereload: true
         }
       },
       prod: {

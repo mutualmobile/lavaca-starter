@@ -9,7 +9,8 @@ module.exports = function (grunt) {
     bodyParser = require('body-parser'),
     compression = require('compression'),
     errorhandler = require('errorhandler'),
-    vhost = require('vhost');
+    vhost = require('vhost'),
+    livereload = require('express-livereload');
 
   var startServer = function (config) {
     config = config || {};
@@ -151,6 +152,8 @@ module.exports = function (grunt) {
       listenUp();
     }
 
+    config.livereload && livereload(server, {watchDir: base});
+
     function listenUp() {
       if (domain) {
         server.use(vhost(domain, server));
@@ -174,7 +177,8 @@ module.exports = function (grunt) {
         proxyPort: options.proxyPort || '80',
         proxyProtocol: options.proxyProtocol || 'http',
         preRender: options.preRender,
-        compress: options.compress
+        compress: options.compress,
+        livereload: options.livereload
       }),
       args = this.args,
       done = args[args.length - 1] === 'watch' ? function () {
