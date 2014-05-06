@@ -9,10 +9,8 @@
     "fs-extra": "~0.6.3",
     "grunt": "0.4.1",
     "grunt-cli": "~0.1.9",
-    "express": "3.1.x",
     "underscore": "1.4.x",
     "preprocess": "1.0.x",
-    "connect": "2.4.4",
     "deferreds": "1.x",
     "grunt-contrib-clean": "0.4.1",
     "grunt-contrib-copy": "0.4.1",
@@ -32,6 +30,10 @@
     "grunt-shell": "0.3.x",
     "bower": "1.2.x",
     "cordova": "3.4.x"
+  },
+  "devDependencies": {
+    "express": "3.1.x",
+    "connect": "2.4.4"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
