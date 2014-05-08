@@ -10,12 +10,14 @@ module.exports = function (grunt) {
     compression = require('compression'),
     errorhandler = require('errorhandler'),
     vhost = require('vhost'),
-    livereload = require('express-livereload');
+    livereload = require('express-livereload'),
+    spdy = require('spdy'),
+    fs = require('fs');
 
   var startServer = function (config) {
     config = config || {};
     var requester = require(config.proxyProtocol);
-    var server = express();
+    var app = express();
     var hourMs = config.hourMs || 0 * 60 * 60,
       domain = config.vhost || 'localhost',
       base = config.base,
@@ -75,10 +77,10 @@ module.exports = function (grunt) {
       req.end();
     }
 
-    config.compress && server.use(compression());
-    server.use(bodyParser()); // TODO: Protect agains exploit: http://andrewkelley.me/post/do-not-use-bodyparser-with-express-js.html
-    server.use(errorhandler({dumpExceptions: true, showStack: true}));
-
+    config.compress && app.use(compression());
+    app.use(bodyParser()); // TODO: Protect agains exploit: http://andrewkelley.me/post/do-not-use-bodyparser-with-express-js.html
+    app.use(errorhandler({dumpExceptions: true, showStack: true}));
+    
     if (config.preRender) {
       if (config.preRender.cache) {
         var cache = LRU({
@@ -87,12 +89,11 @@ module.exports = function (grunt) {
       }
 
       phantom.create(function (err, ph) {
-        server.get('/*', function (request, response) {
+        app.get('/*', function (request, response) {
           if ((request.url == '/') || (request.url == '/index.html')) {
             if (request.headers['user-agent'].indexOf('PhantomJS') !== -1) {
               response.sendfile(base + '/index.html');
             } else {
-              console.log('trying to get through phantom.');
               getThroughPhantom(true);
             }
             return;
@@ -104,9 +105,8 @@ module.exports = function (grunt) {
               return;
             }
             if (cache) {
-              var cached = cache.get(request.originalUrl);
+              var cached = cache.get(request.url);
               if (cached) {
-                console.log('response from cache.');
                 response.status(200);
                 response.send(cached);
                 return;
@@ -137,37 +137,58 @@ module.exports = function (grunt) {
 
               return page.open(url, function (err, status) {
                 //console.log('open', url, status);
+                err && console.log('page.open error:', err);
               });
             });
           }
         });
         listenUp();
-      }); // ! phantom.create
+      }, {parameters:{'ignore-ssl-errors':'yes'}}); // ! phantom.create
     } else {
       // dev mode.
-      server.use(express.static(base, {maxAge: hourMs}));
-      server.get('/*', function (req, res) {
+      app.use(express.static(base, {maxAge: hourMs}));
+      app.get('/*', function (req, res) {
         res.redirect(util.format('/#%s#', req.originalUrl));
       });
       listenUp();
     }
 
-    config.livereload && livereload(server, {watchDir: base});
+    config.livereload && livereload(app, {watchDir: base});
 
     function listenUp() {
       if (domain) {
-        server.use(vhost(domain, server));
+        app.use(vhost(domain, app));
       }
-      server.listen(port);
-      console.log('Express server running at %s:%d', domain, port);
+
+      if (config.ssl) {
+        var spdyOptions = {
+          key: fs.readFileSync(config.ssl.key),
+          cert: fs.readFileSync(config.ssl.cert),
+          ca: fs.readFileSync(config.ssl.ca)
+        };
+        var spdyServer = spdy.createServer(spdyOptions, app);
+        spdyServer.listen(config.ssl.port);
+        console.log('SPDY server running at %s:%d', domain, config.ssl.port);
+        // set up a route to redirect http to https
+        var httpServer = express();
+        httpServer.use('*', function(req,res){
+          res.redirect('https://' + req.headers.host + (config.ssl.port == 443 ? '' : ':' + config.ssl.port) + req.url)
+        });
+        domain && httpServer.use(vhost(domain, httpServer));
+        httpServer.listen(port);
+        console.log('Express forwarder running at %s:%d', domain, port);
+      } else {
+        app.listen(port);
+        console.log('Express server running at %s:%d', domain, port);
+      }
     }
 
-    return server;
+    return app;
   };
 
   grunt.registerMultiTask('server', 'Runs a static web and proxy server', function () {
     var options = this.options({});
-    var server = startServer({
+    var app = startServer({
         host: options.apiBaseUrl, // override this with your third party API host, such as 'search.twitter.com'.
         hourMs: 0 * 60 * 60,
         vhost: options.vhost,
@@ -178,13 +199,13 @@ module.exports = function (grunt) {
         proxyProtocol: options.proxyProtocol || 'http',
         preRender: options.preRender,
         compress: options.compress,
-        livereload: options.livereload
+        livereload: options.livereload,
+        ssl: options.ssl
       }),
       args = this.args,
       done = args[args.length - 1] === 'watch' ? function () {
       } : this.async();
-
-    server.on('close', done);
+    app.on('close', done);
   });
 
 };

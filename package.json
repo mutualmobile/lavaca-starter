@@ -37,7 +37,8 @@
     "compression": "^1.0.2",
     "errorhandler": "^1.0.1",
     "vhost": "^1.0.0",
-    "express-livereload": "0.0.24"
+    "express-livereload": "0.0.24",
+    "spdy": "^1.25.6"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"

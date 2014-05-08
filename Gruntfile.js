@@ -221,7 +221,7 @@ module.exports = function( grunt ) {
       },
       prod: {
         options: {
-          port: process.env.PORT || 8080,
+          port: 80,
           hostname: '0.0.0.0',
           base: 'build/www',
           apiPrefix: '/api*',
@@ -230,6 +230,13 @@ module.exports = function( grunt ) {
             cache: {
               size: 100
             }
+          },
+          // Uncommenting will server all traffic through SPDY/HTTPS on default ports.
+          ssl: {
+            port: 443,
+            key: 'keys/server.key',
+            cert: 'keys/server.crt',
+            ca: 'keys/server.csr'
           }
         }
       },
