@@ -78,7 +78,8 @@ module.exports = function (grunt) {
     }
 
     config.compress && app.use(compression());
-    app.use(bodyParser()); // TODO: Protect agains exploit: http://andrewkelley.me/post/do-not-use-bodyparser-with-express-js.html
+    app.all(apiPrefix + '*', proxyRequest);
+    app.use(bodyParser());
     app.use(errorhandler({dumpExceptions: true, showStack: true}));
     
     if (config.preRender) {
@@ -119,6 +120,7 @@ module.exports = function (grunt) {
                 page.evaluate((function () {
                   return document.documentElement.outerHTML;
                 }), function (err, result) {
+                  links.length && response.setHeader('Link', links);
                   cache && cache.set(request.originalUrl, result);
                   response.status(200);
                   response.send(result);
@@ -133,6 +135,17 @@ module.exports = function (grunt) {
                   outputPage();
                 }
               };
+
+              // Add resource hinting.
+              var links = [];
+              page.onResourceReceived = function(resourceRequest) {
+                if (resourceRequest.id == 1 || resourceRequest.stage != 'end') {
+                  return;
+                }
+                links.push('<' + resourceRequest.url + '>; rel=subresource');
+//                response.setHeader('Link', '<' + resourceRequest.url + '>; rel=subresource');
+              }
+
               var timeout = setTimeout(outputPage.bind(this), 10000); // timeout in 10 seconds
 
               return page.open(url, function (err, status) {
