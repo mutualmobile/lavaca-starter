@@ -143,7 +143,6 @@ module.exports = function (grunt) {
                   return;
                 }
                 links.push('<' + resourceRequest.url + '>; rel=subresource');
-//                response.setHeader('Link', '<' + resourceRequest.url + '>; rel=subresource');
               }
 
               var timeout = setTimeout(outputPage.bind(this), 10000); // timeout in 10 seconds

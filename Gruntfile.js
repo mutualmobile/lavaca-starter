@@ -221,7 +221,7 @@ module.exports = function( grunt ) {
       },
       prod: {
         options: {
-          port: 80,
+          port: process.env.PORT || 8080,
           hostname: '0.0.0.0',
           base: 'build/www',
           apiPrefix: '/api*',
@@ -231,13 +231,13 @@ module.exports = function( grunt ) {
               size: 100
             }
           },
-          // Uncommenting will server all traffic through SPDY/HTTPS on default ports.
-          ssl: {
-            port: 443,
-            key: 'keys/server.key',
-            cert: 'keys/server.crt',
-            ca: 'keys/server.csr'
-          }
+          // Uncommenting will server all traffic through SPDY/HTTPS.
+//          ssl: {
+//            port: 443,
+//            key: 'keys/server.key',
+//            cert: 'keys/server.crt',
+//            ca: 'keys/server.csr'
+//          }
         }
       },
       doc: {
