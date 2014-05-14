@@ -67,6 +67,11 @@ module.exports = function(grunt) {
 
       req.end();
     }
+console.log(config);
+    if(config.authUser && config.authPassword) {
+      console.log("Test");
+      server.use(express.basicAuth(config.authUser, config.authPassword));
+    }
 
     server.use(express['static'](base, {maxAge: hourMs}));
     server.use(express.directory(base, {icons: true}));
@@ -99,7 +104,9 @@ module.exports = function(grunt) {
         port: options.port,
         apiPrefix: options.apiPrefix,
         proxyPort: options.proxyPort || '80',
-        proxyProtocol: options.proxyProtocol || 'http'
+        proxyProtocol: options.proxyProtocol || 'http',
+        authUser: options.authUser,
+        authPassword: options.authPassword
     }),
     args = this.args,
     done = args[args.length-1] === 'watch' ? function() {} : this.async();

@@ -223,7 +223,9 @@ module.exports = function( grunt ) {
           port: process.env.PORT || 8080,
           hostname: '0.0.0.0',
           base: 'build/www',
-          apiPrefix: '/api*'
+          apiPrefix: '/api*',
+          authUser: 'username',
+          authPassword: 'password'
         }
       },
       doc: {
