@@ -67,7 +67,7 @@ module.exports = function(grunt) {
 
       req.end();
     }
-console.log(config);
+
     if(config.authUser && config.authPassword) {
       console.log("Test");
       server.use(express.basicAuth(config.authUser, config.authPassword));
