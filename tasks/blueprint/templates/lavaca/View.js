@@ -2,15 +2,13 @@ define(function(require) {
 
   var View = require('lavaca/mvc/View');
   require('rdust!templates/<%=objectName %>');
-  var Config = require('lavaca/util/Config');
-  var Translation = require('lavaca/util/Translation');
 
 /**
  * @class <%= fqn %>
  * @super lavaca.mvc.View
  * <%= className %> view type
  */
-  var <%= className %> = BaseView.extend(function(){
+  var <%= className %> = View.extend(function(){
     View.apply(this, arguments);
   },{
   /**

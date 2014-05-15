@@ -2,8 +2,6 @@ define(function(require) {
 
   var BaseView = require('app/ui/views/BaseView');
   require('rdust!templates/<%=objectName %>');
-  var Config = require('lavaca/util/Config');
-  var Translation = require('lavaca/util/Translation');
 
 /**
  * @class <%= fqn %>
