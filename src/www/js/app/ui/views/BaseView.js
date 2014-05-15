@@ -89,6 +89,11 @@ define(function(require) {
           var triggerEnterComplete = function() {
             this.trigger('entercomplete');
             this.shell.removeClass(animationIn);
+
+            var cachedView = viewManager.pageViews.get(this.cacheKey);
+            if (cachedView) {
+              cachedView.shell.removeClass(animationIn);
+            }
           };
 
           if (Detection.animationEnabled && animationIn !== '') {
@@ -96,7 +101,13 @@ define(function(require) {
             if (exitingViews.length) {
               i = -1;
               while (!!(exitingView = exitingViews[++i])) {
+                var cachedView = viewManager.pageViews.get(exitingView.cacheKey);
                 exitingView.shell.addClass(animationOut);
+                exitingView.shell.nextAnimationEnd(function() {
+                  if (cachedView) {
+                    cachedView.shell.removeClass(animationOut + ' current');
+                  }
+                });
                 if (animationOut === '') {
                   exitingView.exitPromise.resolve();
                 }
@@ -140,7 +151,7 @@ define(function(require) {
     exit: function(container, enteringViews) {
       var animation = History.isRoutingBack ? this.pageTransition['outReverse'] : (enteringViews.length ? enteringViews[0].pageTransition['out'] : '');
 
-      if (History.isRoutingBack && this.shell.data('layer-index') > 0) {
+      if (History.isRoutingBack && !enteringViews.length) {
         this.pageTransition = History.animationBreadcrumb.pop();
         animation = this.pageTransition['outReverse'];
       }
@@ -154,8 +165,15 @@ define(function(require) {
               this.exitPromise.resolve();
             });
             this.shell.removeClass(animation + ' current');
-          }.bind(this))
-          .addClass(animation);
+            var cachedView = viewManager.pageViews.get(this.cacheKey);
+            if (cachedView) {
+              cachedView.shell.removeClass(animation + ' current');
+            }
+          }.bind(this));
+
+        if (!enteringViews.length) {  
+          this.shell.addClass(animation);
+        }
 
         return this.exitPromise;
       } else {
