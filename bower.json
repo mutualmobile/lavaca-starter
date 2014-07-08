@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "lavaca": "latest",
+    "lavaca-dust-helpers": "mutualmobile/lavaca-dust-helpers",
     "less.js": "1.7.x"
   }
 }

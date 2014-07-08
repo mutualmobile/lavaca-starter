@@ -1,8 +1,8 @@
 define(function(require) {
 
   var View = require('lavaca/mvc/View'),
-      stateModel = require('app/models/StateModel');
-  require('rdust!templates/header');
+      stateModel = require('app/models/StateModel'),
+      template = require('rdust!templates/header');
 
   /**
    * Header view type
@@ -19,17 +19,19 @@ define(function(require) {
       });
     }, {
     /**
-     * The name of the template used by the view
-     * @property {String} template
-     * @default 'templates/header'
-     */
-    template: 'templates/header',
-    /**
      * A class name added to the view container
      * @property {String} className
      * @default 'header'
      */
     className: 'header',
+
+    generateHtml: function(model) {
+      return new Promise(function(resolve) {
+        template.render(model, function(err, html) {
+          resolve(html);
+        });
+      });
+    },
 
     onModelChange: function() {
       this.redraw('.title');

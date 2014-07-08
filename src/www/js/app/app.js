@@ -5,7 +5,6 @@ define(function(require) {
   var Application = require('lavaca/mvc/Application');
   var Translation = require('lavaca/util/Translation');
   var headerView = require('app/ui/views/controls/HeaderView');
-  require('lavaca/ui/DustTemplate');
   require('hammer');
 
 

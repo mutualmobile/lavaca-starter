@@ -2,7 +2,6 @@ define(function(require) {
 
   var Detection = require('lavaca/env/Detection'),
       View = require('lavaca/mvc/View'),
-      Promise = require('lavaca/util/Promise'),
       viewManager = require('lavaca/mvc/ViewManager'),
       History = require('lavaca/net/History');
   require('lavaca/fx/Animation'); //jquery plugins
@@ -30,7 +29,7 @@ define(function(require) {
      * The name of the template used by the view
      * @property {Object} pageTransition
      * @default 'default'
-     
+
      */
     pageTransition: {
       'in': '',
@@ -122,7 +121,7 @@ define(function(require) {
               this.shell.addClass('current');
               this.trigger('entercomplete');
             }
-            
+
           } else {
             this.shell.addClass('current');
             if (exitingViews.length > 0) {
@@ -136,7 +135,7 @@ define(function(require) {
             }
             this.trigger('entercomplete');
           }
-        });
+        }.bind(this));
     },
     /**
      * Executes when the user navigates away from this view. This implementation
@@ -171,7 +170,7 @@ define(function(require) {
             }
           }.bind(this));
 
-        if (!enteringViews.length) {  
+        if (!enteringViews.length) {
           this.shell.addClass(animation);
         }
 

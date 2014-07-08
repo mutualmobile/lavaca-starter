@@ -8,6 +8,7 @@ require.config({
     'mout': '../components/mout/src',
     'dust': '../components/dustjs-linkedin/dist/dust-full-2.0.4',
     'dust-helpers': '../components/dustjs-linkedin-helpers/dist/dust-helpers-1.1.1',
+    'lavaca-dust-helpers': '../components/lavaca-dust-helpers/src/lavaca-dust-helpers',
     'rdust': '../components/require-dust/require-dust',
     'iScroll': '../components/iscroll/dist/iscroll-lite-min',
     'lavaca': '../components/lavaca/src'
@@ -31,5 +32,7 @@ require.config({
     }
   }
 });
+
 require(['es5-shim']);
+require(['lavaca-dust-helpers']);
 require(['app/app']);

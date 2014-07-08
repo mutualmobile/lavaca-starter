@@ -1,7 +1,7 @@
 define(function(require) {
 
   var BaseView = require('./BaseView');
-  require('rdust!templates/home');
+  var template = require('rdust!templates/home');
 
   /**
    * Example view type
@@ -10,17 +10,19 @@ define(function(require) {
    */
   var HomeView = BaseView.extend({
     /**
-     * The name of the template used by the view
-     * @property {String} template
-     * @default 'home'
-     */
-    template: 'templates/home',
-    /**
      * A class name added to the view container
      * @property {String} className
      * @default 'home'
      */
-    className: 'home'
+    className: 'home',
+
+    generateHtml: function(model) {
+      return new Promise(function(resolve) {
+        template.render(model, function(err, html) {
+          resolve(html);
+        });
+      });
+    }
 
   });
 
