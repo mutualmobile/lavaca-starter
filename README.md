@@ -18,7 +18,7 @@ $ npm install
     
 __Set Your Path__
 ```bash
-$ source ./set_env.sh
+$ source ./set_path.sh
 ```
 
 __Start Development Server__
