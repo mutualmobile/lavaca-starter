@@ -87,11 +87,11 @@ define(function(require) {
 
           var triggerEnterComplete = function() {
             this.trigger('entercomplete');
-            this.shell.removeClass(animationIn);
+            this.el.removeClass(animationIn);
 
             var cachedView = viewManager.pageViews.get(this.cacheKey);
             if (cachedView) {
-              cachedView.shell.removeClass(animationIn);
+              cachedView.el.removeClass(animationIn);
             }
           };
 
@@ -101,10 +101,10 @@ define(function(require) {
               i = -1;
               while (!!(exitingView = exitingViews[++i])) {
                 var cachedView = viewManager.pageViews.get(exitingView.cacheKey);
-                exitingView.shell.addClass(animationOut);
-                exitingView.shell.nextAnimationEnd(function() {
+                exitingView.el.addClass(animationOut);
+                exitingView.el.nextAnimationEnd(function() {
                   if (cachedView) {
-                    cachedView.shell.removeClass(animationOut + ' current');
+                    cachedView.el.removeClass(animationOut + ' current');
                   }
                 });
                 if (animationOut === '') {
@@ -114,20 +114,20 @@ define(function(require) {
             }
 
             if ((this.layer > 0 || exitingViews.length > 0)) {
-              this.shell
+              this.el
                   .nextAnimationEnd(triggerEnterComplete.bind(this))
                   .addClass(animationIn + ' current');
             } else {
-              this.shell.addClass('current');
+              this.el.addClass('current');
               this.trigger('entercomplete');
             }
 
           } else {
-            this.shell.addClass('current');
+            this.el.addClass('current');
             if (exitingViews.length > 0) {
               i = -1;
               while (!!(exitingView = exitingViews[++i])) {
-                exitingView.shell.removeClass('current');
+                exitingView.el.removeClass('current');
                 if (exitingView.exitPromise) {
                   exitingView.exitPromise.resolve();
                 }
@@ -158,25 +158,25 @@ define(function(require) {
       if (Detection.animationEnabled && animation) {
         this.exitPromise = new Promise(this);
 
-        this.shell
+        this.el
           .nextAnimationEnd(function() {
             View.prototype.exit.apply(this, arguments).then(function() {
               this.exitPromise.resolve();
             });
-            this.shell.removeClass(animation + ' current');
+            this.el.removeClass(animation + ' current');
             var cachedView = viewManager.pageViews.get(this.cacheKey);
             if (cachedView) {
-              cachedView.shell.removeClass(animation + ' current');
+              cachedView.el.removeClass(animation + ' current');
             }
           }.bind(this));
 
         if (!enteringViews.length) {
-          this.shell.addClass(animation);
+          this.el.addClass(animation);
         }
 
         return this.exitPromise;
       } else {
-        this.shell.removeClass('current');
+        this.el.removeClass('current');
         return View.prototype.exit.apply(this, arguments);
       }
     }

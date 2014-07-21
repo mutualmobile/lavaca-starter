@@ -9,7 +9,7 @@ define(function(require) {
    * @class app.ui.views.globalUI.HeaderView
    * @super Lavaca.mvc.View
    */
-  var HeaderView = View.extend(function(){
+  var HeaderView = View.extend(function HeaderView(){
       View.apply(this, arguments);
 
       this.mapEvent({
@@ -34,7 +34,7 @@ define(function(require) {
     },
 
     onModelChange: function() {
-      this.redraw('.title');
+      this.render('.title');
     }
   });
 
