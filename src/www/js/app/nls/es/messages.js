@@ -1,0 +1,3 @@
+define({
+  headline: "¡Hola, mundo!"
+});

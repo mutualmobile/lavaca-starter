@@ -1,7 +1,8 @@
 define(function(require) {
 
-  var BaseView = require('./BaseView');
-  var template = require('rdust!templates/home');
+  var BaseView = require('./BaseView'),
+      messages = require('i18n!app/nls/messages'),
+      template = require('rdust!templates/home');
 
   /**
    * Example view type
@@ -17,6 +18,7 @@ define(function(require) {
     className: 'home',
 
     generateHtml: function(model) {
+      model.messages = messages;
       return new Promise(function(resolve) {
         template.render(model, function(err, html) {
           resolve(html);

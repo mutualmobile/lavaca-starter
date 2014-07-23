@@ -11,7 +11,8 @@ require.config({
     'lavaca-dust-helpers': '../components/lavaca-dust-helpers/src/lavaca-dust-helpers',
     'rdust': '../components/require-dust/require-dust',
     'iScroll': '../components/iscroll/dist/iscroll-lite-min',
-    'lavaca': '../components/lavaca/src'
+    'lavaca': '../components/lavaca/src',
+    'i18n': '../components/i18n/i18n'
   },
   shim: {
     $: {

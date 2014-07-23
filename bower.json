@@ -14,8 +14,9 @@
     "tests"
   ],
   "dependencies": {
-    "lavaca": "latest",
+    "lavaca": "mutualmobile/lavaca#v3",
     "lavaca-dust-helpers": "mutualmobile/lavaca-dust-helpers",
-    "less.js": "1.7.x"
+    "less.js": "1.7.x",
+    "i18n": "requirejs/i18n#2.0.4"
   }
 }
