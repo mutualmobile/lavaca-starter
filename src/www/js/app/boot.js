@@ -2,6 +2,7 @@ require.config({
   baseUrl: 'js',
   paths: {
     'es5-shim': '../components/es5-shim/es5-shim',
+    'es6-shim': '../components/es6-shim/es6-shim',
     '$': '../components/jquery/jquery',
     'jquery': '../components/jquery/jquery',
     'hammer': '../components/hammerjs/dist/jquery.hammer',
@@ -31,9 +32,11 @@ require.config({
     'dust-helpers': {
       deps: ['dust']
     }
-  }
+  },
+  waitSeconds: 0
 });
 
 require(['es5-shim']);
+require(['es6-shim']);
 require(['lavaca-dust-helpers']);
 require(['app/app']);
