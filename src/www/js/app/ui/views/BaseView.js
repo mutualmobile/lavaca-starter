@@ -1,7 +1,6 @@
 define(function(require) {
 
-  var Detection = require('lavaca/env/Detection'),
-      View = require('lavaca/mvc/View'),
+  var View = require('lavaca/mvc/View'),
       viewManager = require('lavaca/mvc/ViewManager'),
       History = require('lavaca/net/History');
   require('lavaca/fx/Animation'); //jquery plugins
@@ -95,7 +94,7 @@ define(function(require) {
             }
           };
 
-          if (Detection.animationEnabled && animationIn !== '') {
+          if (animationIn !== '') {
 
             if (exitingViews.length) {
               i = -1;
@@ -155,7 +154,7 @@ define(function(require) {
         animation = this.pageTransition['outReverse'];
       }
 
-      if (Detection.animationEnabled && animation) {
+      if (animation) {
         this.exitPromise = new Promise(this);
 
         this.el
