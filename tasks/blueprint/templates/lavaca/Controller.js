@@ -3,11 +3,11 @@ define(function(require) {
   var BaseController = require('app/net/BaseController');
 
   /**
-   * @class <%= fqn %>
+   * @class <%= classDotNotation %>
    * @super app.net.BaseController
-   * <%= className %>
+   * <%= className %><%=postfix%>
    */
-  var <%= className %> = Controller.extend(function(){
+  var <%= className %><%=postfix%> = Collection.extend(function <%= className %><%=postfix%>(){
       BaseController.apply(this, arguments);
     }, {
     /**
@@ -28,5 +28,5 @@ define(function(require) {
      }
   });
 
-  return <%= className %>;
+  return <%= className %><%=postfix%>;
 });

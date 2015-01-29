@@ -334,19 +334,47 @@ module.exports = function( grunt ) {
 
     blueprint: {
       options: {
-        dest: '<%= paths.src.www %>/js/app',
-        appName: 'app'
-      },
-      lavaca:{
-        options:{
-          map:{
-            View: 'ui/views/View',
-            PageView: 'ui/views/pageviews/PageView',
-            Model: 'models/Model',
-            Collection: 'collections/Collection',
-            Controller: 'net/Controller',
-            Control: 'ui/views/controls/Control'
-          }
+        appName: 'app',
+        cssRoot: '<%= paths.src.www %>/css/<%= blueprint.options.appName %>',
+        jsRoot: '<%= paths.src.www %>/js/<%= blueprint.options.appName %>',
+        templateRoot: '<%= paths.src.www %>/js/templates',
+        pageviewTemplateFolder: 'pageviews',
+        pageviewCssFolder: 'pageviews',
+        viewTemplateFolder: 'childviews',
+        viewCssFolder: 'childviews',
+        templateFileType: '.html',
+        cssFileType: '.less',
+        map:{
+          view: {
+            location: 'ui/views/childviews',
+            postfix: 'View',
+            filetype: '.js'
+          },
+          pageview: {
+            location: 'ui/views/pageviews',
+            postfix: 'View',
+            filetype: '.js'
+          },
+          model: {
+            location: 'models',
+            postfix: 'Model',
+            filetype: '.js'
+          },
+          collection: {
+            location: 'collections',
+            postfix: 'Collection',
+            filetype: '.js'
+          },
+          controller: {
+            location: 'net',
+            postfix: 'Controller',
+            filetype: '.js'
+          },
+          widget: {
+            location: 'ui/widgets',
+            postfix: 'Widget',
+            filetype: '.js'
+          }  
         }
       }
     },
