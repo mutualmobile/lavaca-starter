@@ -1,0 +1,44 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				"getlavaca",
+				"*.sublime*",
+				"MIT-*",
+				"*.md",
+				"*.min",
+				"*.min.*",
+				".jshintrc",
+				".travis.yml",
+				".editorconfig",
+				"set_path.sh",
+				"npm-debug.log",
+				"Procfile"
+			],
+			"folder_exclude_patterns":
+			[
+				"chrome",
+				"node_modules",
+				".tmp",
+				"config",
+				"yuidoc",
+				"ios",
+				"test",
+				"log",
+				"es5*",
+				"jquery",
+				"less*",
+				"mout",
+				"hammer*",
+				"tmp",
+				"doc",
+				"tasks",
+				"cordova"
+			],
+			"follow_symlinks": true,
+			"path": "/Users/alexwasner/Projects/lavaca-react"
+		}
+	]
+}

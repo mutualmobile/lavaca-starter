@@ -1,0 +1,1946 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"view",
+				"viewIndex"
+			],
+			[
+				"Lavaca",
+				"LavacaViewMixin"
+			],
+			[
+				"has",
+				"hasPrevious"
+			],
+			[
+				"curre",
+				"currentIndex"
+			],
+			[
+				"current",
+				"currentIndex"
+			],
+			[
+				"data",
+				"dataset"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"pill",
+				"pillHeight"
+			],
+			[
+				"auth",
+				"auth"
+			],
+			[
+				"sess",
+				"sessionStorage"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"date",
+				"dateFormat"
+			],
+			[
+				"days",
+				"daysReversed"
+			],
+			[
+				"dash",
+				"dashboardModel"
+			],
+			[
+				"set",
+				"setSelectedUser"
+			],
+			[
+				"selected",
+				"selectedIndex"
+			],
+			[
+				"trend",
+				"TrendsView"
+			],
+			[
+				"selec",
+				"selected"
+			],
+			[
+				"selecte",
+				"selectedIndex"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"_",
+				"_exec"
+			],
+			[
+				"Alert",
+				"AlertView"
+			],
+			[
+				"templ",
+				"template"
+			],
+			[
+				"modal",
+				"modalAnimationBreadcrumb"
+			],
+			[
+				"show",
+				"showModal"
+			],
+			[
+				"rou",
+				"routeToDashboard"
+			],
+			[
+				"ignore",
+				"ignoreAuth"
+			],
+			[
+				"onTap",
+				"onTapOrderLookup"
+			],
+			[
+				"us",
+				"username"
+			],
+			[
+				"username",
+				"usernameField"
+			],
+			[
+				"degre",
+				"degreeRate"
+			],
+			[
+				"sara",
+				"saraDetails"
+			],
+			[
+				"charlie",
+				"charlieRoutineSuccess"
+			],
+			[
+				"meganJou",
+				"meganJournalChange"
+			],
+			[
+				"meg",
+				"meganHome"
+			],
+			[
+				"temp",
+				"template"
+			],
+			[
+				"charli",
+				"charlie-routine"
+			],
+			[
+				"me",
+				"megan-journal-change"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"curr",
+				"currentTabIndex"
+			],
+			[
+				"cu",
+				"currentTabIndex"
+			],
+			[
+				"proto",
+				"protocol"
+			],
+			[
+				"wpa",
+				"wpa2e"
+			],
+			[
+				"network",
+				"networkModel"
+			],
+			[
+				"pass",
+				"passMaxLength"
+			],
+			[
+				"net",
+				"networkName"
+			],
+			[
+				"accou",
+				"accountModel"
+			],
+			[
+				"order",
+				"order-lookup"
+			],
+			[
+				"authen",
+				"authenticate"
+			],
+			[
+				"fail",
+				"failRoute"
+			],
+			[
+				"state",
+				"stateModel"
+			],
+			[
+				"_on",
+				"_onImageSuccess"
+			],
+			[
+				"succes",
+				"successRoute"
+			],
+			[
+				"his",
+				"historyForBack"
+			],
+			[
+				"close",
+				"closeTimeout"
+			],
+			[
+				"user",
+				"userId"
+			],
+			[
+				"users",
+				"usersList"
+			],
+			[
+				"image",
+				"imageData"
+			],
+			[
+				"is",
+				"isAuthenticated"
+			],
+			[
+				"login",
+				"loginPromise"
+			],
+			[
+				"use",
+				"useMock"
+			],
+			[
+				"primary",
+				"primaryUser"
+			],
+			[
+				"over",
+				"overrideBack"
+			],
+			[
+				"backgou",
+				"background-image"
+			],
+			[
+				"device",
+				"deviceAddress"
+			],
+			[
+				"total",
+				"totalSleepSessionTime"
+			],
+			[
+				"week",
+				"weekdayShort"
+			],
+			[
+				"weekday",
+				"weekday"
+			],
+			[
+				"av",
+				"avgRespirationRate"
+			],
+			[
+				"secon",
+				"secondaryUser"
+			],
+			[
+				"custoM",
+				"customIndex"
+			],
+			[
+				"isa",
+				"isAttemptingLogin"
+			],
+			[
+				"custom",
+				"customTagList"
+			],
+			[
+				"netowrk",
+				"networkModel"
+			],
+			[
+				"tuto",
+				"tutorialModel"
+			],
+			[
+				"_onTa",
+				"_onTapNew"
+			],
+			[
+				"Network",
+				"NetworkModel"
+			],
+			[
+				"reset",
+				"resetNetowrks"
+			],
+			[
+				"add",
+				"addCustomDetection"
+			],
+			[
+				"respo",
+				"response"
+			],
+			[
+				"histo",
+				"historyState"
+			],
+			[
+				"_check",
+				"_checkIfStepsAre"
+			],
+			[
+				"response",
+				"responseText"
+			],
+			[
+				"new",
+				"newNetwork"
+			],
+			[
+				"succ",
+				"successRoute"
+			],
+			[
+				"wifi",
+				"wifiId"
+			],
+			[
+				"ext",
+				"extEventMap"
+			],
+			[
+				"ato",
+				"atobResponse"
+			],
+			[
+				"_tran",
+				"_transitionProp"
+			],
+			[
+				"ac",
+				"accountModel"
+			],
+			[
+				"se",
+				"sessionStorage"
+			],
+			[
+				"cross",
+				"crosswalkInit"
+			],
+			[
+				"codeDiscover",
+				"codeErrorDiscoverCharacteristics"
+			],
+			[
+				"codeEnable",
+				"codeNotEnabled"
+			],
+			[
+				"codeWrite",
+				"codeWriteDescriptorValueNotFound"
+			],
+			[
+				"USE",
+				"_USEMOCK"
+			],
+			[
+				"Re",
+				"ResponsiveMagic"
+			],
+			[
+				"nw",
+				"newTime"
+			],
+			[
+				"e",
+				"e"
+			],
+			[
+				"fetch",
+				"fetchDailyDataForUser"
+			],
+			[
+				"promise",
+				"promiseArray"
+			],
+			[
+				"border-ra",
+				"border-top-right-radius"
+			],
+			[
+				"text",
+				"text-indent"
+			],
+			[
+				"slice",
+				"slicesRemoved"
+			],
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"end",
+				"endDate"
+			],
+			[
+				"form",
+				"FormData"
+			],
+			[
+				"anima",
+				"animateDonut"
+			],
+			[
+				"ani",
+				"animateDonut"
+			],
+			[
+				"donu",
+				"doughnutChildView"
+			],
+			[
+				"max",
+				"maxAmount"
+			],
+			[
+				"sec",
+				"sectionCount"
+			],
+			[
+				"_tr",
+				"_transitionDurationProp"
+			],
+			[
+				"rotat",
+				"rotationAngle"
+			],
+			[
+				"should",
+				"shouldHideAfter"
+			],
+			[
+				"lock",
+				"lockOrientation"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"timer",
+				"connectTimer"
+			],
+			[
+				"prod_",
+				"prod_api_url"
+			],
+			[
+				"upm",
+				"upmId"
+			],
+			[
+				"um",
+				"upmId"
+			],
+			[
+				"ump",
+				"upmId"
+			],
+			[
+				"event",
+				"eventObj"
+			],
+			[
+				"fromd",
+				"fromDateString"
+			],
+			[
+				"news",
+				"newStatus"
+			],
+			[
+				"upmId",
+				"upmid"
+			],
+			[
+				"fe",
+				"fetchSuccess"
+			],
+			[
+				"even",
+				"eventId"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/js/app/app.js",
+			"settings":
+			{
+				"buffer_size": 1127,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/packages/lavaca/src/LavacaReactMixin.js",
+			"settings":
+			{
+				"buffer_size": 2499,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/app/boot.js",
+			"settings":
+			{
+				"buffer_size": 1046,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/packages/lavaca/src/mvc/Application.js",
+			"settings":
+			{
+				"buffer_size": 7356,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/app/net/HomeController.jsx",
+			"settings":
+			{
+				"buffer_size": 1105,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "define(function(require) {\n  var React = require('react');\n\n  var mixin = require('lavaca-mixin');\n  var $ = require('$'),\n    View = require('lavaca/mvc/View'),\n    Cache = require('lavaca/util/Cache'),\n    Disposable = require('lavaca/util/Disposable'),\n    merge = require('mout/object/merge'),\n    contains = require('mout/array/contains'),\n    removeAll = require('mout/array/removeAll');\n\n  /**\n   * Manager responsible for drawing views\n   * @class lavaca.mvc.ViewManager\n   * @extends lavaca.util.Disposable\n   *\n   * @constructor\n   * @param {jQuery} el  The element that contains all layers\n   */\n  var ViewManager = Disposable.extend(function(el) {\n    Disposable.call(this);\n    /**\n     * The element that contains all view layers\n     * @property {jQuery} el\n     * @default null\n     */\n    this.el = $(el || document.body);\n    /**\n     * A cache containing all views\n     * @property {Lavaca.util.Cache} views\n     * @default new Lavaca.util.Cache()\n     */\n    this.pageViews = new Cache();\n    /**\n     * A list containing all layers\n     * @property {Array} layers\n     * @default []\n     */\n    this.layers = [];\n    /**\n     * A list containing all views that are currently exiting\n     * @property {Array} exitingPageViews\n     * @default []\n     */\n    this.exitingPageViews = [];\n    /**\n     * A list containing all views that are currently entering\n     * @property {Array} enteringPageViews\n     * @default []\n     */\n    this.enteringPageViews = [];\n  }, {\n    /**\n     * When true, the view manager is prevented from loading views.\n     * @property {Boolean} locked\n     * @default false\n     */\n    locked: false,\n    viewIndex:0,\n    /**\n     * Sets the el property on the instance\n     * @method setEl\n     *\n     * @param {jQuery} el  A jQuery object of the element that contains all layers\n     * @return {Lavaca.mvc.ViewManager}  This View Manager instance\n     */\n    /**\n     * Sets the el property on the instance\n     * @method setEl\n     *\n     * @param {String} el  A CSS selector matching the element that contains all layers\n     * @return {Lavaca.mvc.ViewManager}  This View Manager instance\n     */\n    setEl: function(el) {\n      this.el = typeof el === 'string' ? $(el) : el;\n      return this;\n    },\n    /**\n     * Loads a view\n     * @method load\n     *\n     * @param {String} cacheKey  The cache key associated with the view\n     * @param {Function} ReactView  The type of view to load (should derive from [[Lavaca.mvc.View]])\n     * @param {Object} model  The views model\n     * @param {Number} layer  The index of the layer on which the view will sit\n     * @return {Promise}  A promise\n     */\n    /**\n     * Loads a view\n     * @method load\n     *\n     * @param {String} cacheKey  The cache key associated with the view\n     * @param {Function} ReactView  The type of view to load (should derive from [[Lavaca.mvc.View]])\n     * @param {Object} model  The views model\n     * @param {Object} params  Parameters to be mapped to the view\n     * @return {Promise}  A promise\n     */\n    load: function(ReactView, model, params) {\n      if (this.locked) {\n        return Promise.reject('locked');\n      } else {\n        // this.locked = true;\n      }\n      if(this.viewIndex){\n        // var exitingView = document.getElementById('view'+this.viewIndex);\n        // this.el.detach(exitingView);\n      }\n      // this.viewIndex++;\n      this.el.append('<div class=\"view\" id=\"view'+this.viewIndex+'\"></div>');\n      debugger;\n      React.renderComponent(<ReactView model={model}/>, document.getElementById('view'+this.viewIndex));\n      return Promise.resolve();;\n      // params = params || {};\n      // var layer = ReactView.prototype.layer || 0,\n      //     pageView = this.pageViews.get(cacheKey);\n\n      // if (typeof params === 'number') {\n      //   layer = params;\n      // } else if (params.layer) {\n      //   layer = params.layer;\n      // }\n\n      // var shouldRender = false;\n      // if (!pageView) {\n      //   pageView = new ReactView(null, model, layer);\n      //   if (typeof params === 'object') {\n      //     merge(pageView, params);\n      //   }\n      //   shouldRender = true;\n      //   if (cacheKey !== null) {\n      //     this.pageViews.set(cacheKey, pageView);\n      //     pageView.cacheKey = cacheKey;\n      //   }\n      // } else {\n      //   if (typeof params === 'object') {\n      //     merge(pageView, params);\n      //   }\n      // }\n\n      return Promise.resolve()\n        .then(function() {\n      //     if (shouldRender) {\n      //       return pageView.render();\n      //     }\n        })\n        .then(function() {\n      //     return this.beforeEnterExit(layer-1, pageView);\n        }.bind(this))\n      //   .then(function() {\n      //     this.enteringPageViews = [pageView];\n      //     return Promise.all([\n      //       (function() {\n      //         if (this.layers[layer] !== pageView) {\n      //           return pageView.enter(this.el, this.exitingPageViews);\n      //         }\n      //       }.bind(this))(),\n      //       (function() {\n      //         return this.dismissLayersAbove(layer-1, pageView);\n      //       }.bind(this))()\n      //     ]);\n      //   }.bind(this))\n      //   .then(function() {\n      //     this.locked = false;\n      //     this.enteringPageViews = [];\n      //     this.layers[layer] = pageView;\n      //   }.bind(this));\n    },\n    /**\n     * Execute beforeEnter or beforeExit for each layer. Both functions\n     * beforeEnter and beforeExit must return promises.\n     * @method beforeEnterExit\n     *\n     * @param {Number}  index The index above which is to be cleared\n     * @return {Promise}  A promise\n     */\n    /**\n     * Execute beforeEnter or beforeExit for each layer. Both functions\n     * beforeEnter and beforeExit must return promises.\n     * @method beforeEnterExit\n     *\n     * @param {Number} index  The index above which is to be cleared\n     * @param {Lavaca.mvc.View}  enteringView A view that will be entering\n     * @return {Promise}  A promise\n     */\n    beforeEnterExit: function(index, enteringView) {\n      var i,\n        layer,\n        list = [];\n      if (enteringView && typeof enteringView.beforeEnter === 'function') {\n        list.push(enteringView.beforeEnter());\n      }\n      for (i = this.layers.length - 1; i > index; i--) {\n        if ((layer = this.layers[i]) && (!enteringView || enteringView !== layer)) {\n          (function(layer) {\n            if (typeof layer.beforeExit === 'function') {\n              list.push(layer.beforeExit());\n            }\n          }).call(this, layer);\n        }\n      }\n      return Promise.all(list);\n    },\n    /**\n     * Removes all views on a layer\n     * @method dismiss\n     *\n     * @param {Number} index  The index of the layer to remove\n     * @return {Promise}  A promise\n     */\n    /**\n     * Removes all views on a layer\n     * @method dismiss\n     *\n     * @param {jQuery} el  An element on the layer to remove (or the layer itself)\n     * @return {Promise}  A promise\n     */\n    /**\n     * Removes all views on a layer\n     * @method dismiss\n     *\n     * @param {Lavaca.mvc.View} view  The view on the layer to remove\n     * @return {Promise}  A promise\n     */\n    dismiss: function(layer) {\n      if (typeof layer === 'number') {\n        return this.dismissLayersAbove(layer - 1);\n      } else if (layer instanceof View) {\n        return this.dismiss(layer.layer);\n      } else {\n        layer = $(layer);\n        var index = layer.attr('data-layer-index');\n        if (index === null) {\n          layer = layer.closest('[data-layer-index]');\n          index = layer.attr('data-layer-index');\n        }\n        if (index !== null) {\n          return this.dismiss(Number(index));\n        }\n      }\n    },\n    /**\n     * Removes all layers above a given index\n     * @method dismissLayersAbove\n     *\n     * @param {Number}  index The index above which to clear\n     * @return {Promise}  A promise\n     */\n    /**\n     * Removes all layers above a given index\n     * @method dismissLayersAbove\n     *\n     * @param {Number} index  The index above which to clear\n     * @param {Lavaca.mvc.View}  exceptForView A view that should not be dismissed\n     * @return {Promise}  A promise\n     */\n    dismissLayersAbove: function(index, exceptForView) {\n      var toDismiss = this.layers.slice(index+1)\n        .filter(function(layer) {\n          return (layer && (!exceptForView || exceptForView !== layer));\n        });\n\n      this.layers = this.layers.map(function(layer) {\n        if (contains(toDismiss, layer)) {\n          return null;\n        }\n        return layer;\n      });\n\n      var promises = toDismiss\n        .map(function(layer) {\n          return Promise.resolve()\n            .then(function() {\n              this.exitingPageViews.push(layer);\n              return layer.exit(this.el, this.enteringPageViews);\n            }.bind(this))\n            .then(function() {\n              removeAll(this.exitingPageViews, layer);\n              if (!layer.cacheKey || (exceptForView && exceptForView.cacheKey === layer.cacheKey)) {\n                layer.dispose();\n              }\n            }.bind(this));\n        }.bind(this));\n\n      return Promise.all(promises);\n    },\n    /**\n     * Empties the view cache\n     * @method flush\n     */\n    flush: function(cacheKey) {\n      // Don't dispose of any views that are currently displayed\n      //flush individual cacheKey\n      if (cacheKey){\n        this.pageViews.remove(cacheKey);\n      } else {\n        var i = -1,\n          layer;\n        while (!!(layer = this.layers[++i])) {\n          if (layer.cacheKey) {\n            this.pageViews.remove(layer.cacheKey);\n          }\n        }\n        this.pageViews.dispose();\n        this.pageViews = new Cache();\n      }\n    },\n    /**\n     * Readies the view manager for garbage collection\n     * @method dispose\n     */\n    dispose: function() {\n      Disposable.prototype.dispose.call(this);\n    }\n  });\n\n  return new ViewManager(null);\n\n});\n",
+			"file": "src/packages/lavaca/src/mvc/ViewManager.jsx",
+			"file_size": 9989,
+			"file_write_time": 130688354130000000,
+			"settings":
+			{
+				"buffer_size": 9974,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/packages/lavaca/src/mvc/View.js",
+			"settings":
+			{
+				"buffer_size": 30101,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/app/components/DashboardView.jsx",
+			"settings":
+			{
+				"buffer_size": 576,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/app/components/HomeView.jsx",
+			"settings":
+			{
+				"buffer_size": 401,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/css/app/DashboardView.less",
+			"settings":
+			{
+				"buffer_size": 26,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 1361,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/js/app/models/DashboardViewModel.js",
+			"settings":
+			{
+				"buffer_size": 251,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 69.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"package control: isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"package control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 118.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/alexwasner/Projects/lavaca-react",
+		"/Users/alexwasner/Projects/lavaca-react/src",
+		"/Users/alexwasner/Projects/lavaca-react/src/assets",
+		"/Users/alexwasner/Projects/lavaca-react/src/css",
+		"/Users/alexwasner/Projects/lavaca-react/src/css/app",
+		"/Users/alexwasner/Projects/lavaca-react/src/js",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/components",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/mvc",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lodash",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/requirejs-react-jsx"
+	],
+	"file_history":
+	[
+		"/Users/alexwasner/Projects/lavaca-react/src/index.html",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/react/react-with-addons.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/react/react.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/css/libs/reset.less",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/LavacaReactMixin.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/events/EventDispatcher.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/lavaca.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/css/app/app.less",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/mvc/Controller.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/mvc/View.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/css/libs/mixins.less",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/mvc/Model.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/modernizr/feature-detects/contenteditable.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/env/Config.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/mvc/Collection.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/net/BaseController.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/components/BaseView.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/boot.js",
+		"/Users/alexwasner/Projects/lavaca-react/gulpfile.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/assets/img/headtilt-off.svg",
+		"/Users/alexwasner/Projects/lavaca-react/src/assets/img/heartrate.svg",
+		"/Users/alexwasner/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/mvc/ViewManager.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/components/DashboardView.jsx",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/modernizr/feature-detects/battery-api.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/css/app/app.css",
+		"/Users/alexwasner/Projects/lavaca-react/src/assets/img/expand-triangle.svg",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/modernizr.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/mvc/Application.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/assets/img/lamp.svg",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/dustjs-linkedin/LICENSE",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/modernizr/feature-detects/vibration.js",
+		"/Users/alexwasner/Projects/lavaca-react/utility/versionize.py",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/modernizr/feature-detects/css-objectfit.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/es6-shim/component.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/env/Device.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca-dust-helpers/package.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca-dust-helpers/Gruntfile.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca-dust-helpers/bower.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca-dust-helpers/.bower.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/util/Cache.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/package.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/Gruntfile.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/bower.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/.bower.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca/src/fx/Animation.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/lavaca-dust-helpers/src/lavaca-dust-helpers.js",
+		"/Users/alexwasner/Projects/lavaca-react/bower.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/requirejs-react-jsx/.bower.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/models/StateModel.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/packages/requirejs-text/text.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/assets/img/tag-ellipsis.svg",
+		"/Users/alexwasner/Projects/lavaca-react/src/css/app/theme.less",
+		"/Users/alexwasner/Projects/lavaca-react/package.json",
+		"/Users/alexwasner/Projects/lavaca-react/.bowerrc",
+		"/Users/alexwasner/Projects/lavaca-react/src/css/app/DashboardView.less",
+		"/Users/alexwasner/Projects/lavaca-react/src/assets/img/dashboard-icon.svg",
+		"/Users/alexwasner/Projects/lavaca-react/src/assets/img/daily-addicon.svg",
+		"/Users/alexwasner/Projects/lavaca-react/src/components/dustjs-linkedin/bin/dustc",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/ui/views/DashboardView.jsx",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/ui/components/BaseView.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/components/forge/setup/m4/as-python.m4",
+		"/Users/alexwasner/Projects/lavaca-react/src/components/grunt/AUTHORS",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/lavaca/src/mvc/LavacaReact.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/lavaca/src/mvc/ViewManager.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/models/DashboardViewModel.js",
+		"/Users/alexwasner/Projects/lavaca-react/build/www/assets/img/dashboard-icon.svg",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/ui/views/DashboardView.jsx",
+		"/Users/alexwasner/Projects/lavaca-react/src/js/app/net/HomeController.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/net/HomeController.js",
+		"/Users/alexwasner/Projects/lavaca-react/lavaca-react.sublime-project",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/app.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/index.html",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/lavaca/src/mvc/View.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/moment/locale/vi.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/boot.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/modernizr/feature-detects/pointerlock-api.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/es6-shim/es6-shim.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/forge/js/sha1.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/assets/mock/sleepData.json",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/modernizr/feature-detects/css-backgroundrepeat.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/net/BaseController.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/models/DashboardViewModel.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/css/app/DashboardView.less",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/templates/dashboard.html",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/service/Service.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/ui/views/DashboardView.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/ui/views/BaseView.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/css/app/main.less",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/env/ModernizrTests.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/forge/minify.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/modernizr/feature-detects/css-backgroundposition-shorthand.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/assets/img/dashboard-icon.svg",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/modernizr/feature-detects/file-api.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/net/HomeController.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/service/Service.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/models/AuthModel.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/models/AccountModel.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/app.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/css/app/app.less",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/css/app/controlviews/HeaderView.less",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/service/AnalyticsService.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/css/app/pageviews/DashboardView.less",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/models/viewmodels/DashboardViewModel.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/templates/pageviews/registration-order-lookup.html",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/components/modernizr/feature-detects/battery-api.js",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/templates/pageviews/dashboard.html",
+		"/Users/alexwasner/Projects/lavaca-react/src/www/js/app/ui/views/pageviews/BaseView.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/ui/views/controlviews/TabBarView.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/css/app/theme.less",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/ui/widgets/ResponsiveMagic.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/ui/views/pageviews/RootTabBarView.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/models/viewmodels/RootTabBarViewModel.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/templates/pageviews/root-tab-bar.html",
+		"/Users/alexwasner/Projects/sleepiq/src/www/css/app/controlviews/TabBarView.less",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/ui/views/childviews/SleepView.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/css/app/childviews/SleepView.less",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/ui/views/childviews/FamilyDailyView.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/ui/views/pageviews/DashboardView.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/ui/views/childviews/AdultDailyView.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/templates/childviews/adult-daily.html",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/ui/widgets/PillChart.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/css/app/misc/PillChart.less",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/templates/childviews/family-daily.html",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/templates/pageviews/dashboard.html",
+		"/Users/alexwasner/Projects/sleepiq/src/www/css/app/pageviews/DashboardView.less",
+		"/Users/alexwasner/Projects/sleepiq/src/www/js/app/models/FamilyModel.js",
+		"/Users/alexwasner/Projects/sleepiq/src/www/assets/img/dashboard-icon.svg"
+	],
+	"find":
+	{
+		"height": 36.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"",
+			"/Users/alexwasner/Projects/sleepiq/src/www",
+			"/Users/alexwasner/Projects/sleepiq/src/www/css",
+			"/Users/alexwasner/Projects/sleepiq/src/www/",
+			"/Users/alexwasner/Projects/sleepiq/src/www/css/app/childviews/subviews",
+			"/Users/alexwasner/Projects/sleepiq/src/",
+			"/Users/alexwasner/Projects/sleepiq/src/www/js/templates/controlviews",
+			"",
+			"/Users/alexwasner/Projects/s",
+			"/Users/alexwasner/Projects/sleepiq/",
+			"/Users/alexwasner/Projects/sleepiq/src/www/",
+			"/Users/alexwasner/Projects/sleepiq/src/www/components",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"beforeEnterExit",
+			"script",
+			"locked",
+			"DashboardView",
+			"reactView",
+			"layer",
+			"TPageView",
+			", layer",
+			"viewManager",
+			"ViewManager",
+			"viewManager",
+			"ViewManager",
+			"viewManager",
+			"ViewManager",
+			"viewManager",
+			"'view'",
+			"view",
+			"'view",
+			"view",
+			"enter",
+			"__dirname",
+			"plugins",
+			"$",
+			"console.log('hit",
+			"calls",
+			"\"",
+			"_triggerAttributeEvent",
+			"change",
+			"model(",
+			"LavacaMixin",
+			"createLavacaClass",
+			"LavacaMixin",
+			"componentDidMount",
+			"subscribe",
+			"modelOrCollection",
+			"ConsiderAsCollection",
+			"identity",
+			"Backbone",
+			"BackboneMixin",
+			"trigger",
+			"moment",
+			"text",
+			"requirejs-text",
+			"\"",
+			"jsx",
+			"\"",
+			"/text",
+			"lavaca-dust",
+			"components/require",
+			"components",
+			"li",
+			"browserify",
+			"app",
+			"watch",
+			"TodoListItem",
+			"Backbone",
+			"bower_components/",
+			"MainView",
+			"TodoListItem",
+			"TodoList",
+			"header",
+			"try{",
+			"try",
+			"auth.",
+			"authmodel",
+			"auth",
+			"authmodel",
+			"FamilyDashboardView",
+			"SleepViewModel",
+			"3.4",
+			"9rem",
+			"4re",
+			"7rem",
+			"6rem",
+			"pillHeight",
+			"4rem",
+			"5.4rem",
+			"10rem",
+			"2rem",
+			"6.2rem",
+			"pillHeight",
+			"radius",
+			"px",
+			"_magicResize",
+			"_getRemRate",
+			"pillHeight",
+			"rate",
+			"pillHeight",
+			"pillWidth",
+			"pillHeight",
+			"radius",
+			"desktop",
+			"rem",
+			"' + ",
+			"this.re",
+			"this.",
+			"radius",
+			"_getRemRate",
+			"size",
+			"+ 'px'",
+			"rate",
+			"/10 ",
+			"10",
+			"px",
+			"tabletportrait650",
+			"$(window).on(",
+			"150",
+			"deboun",
+			"70%",
+			"50",
+			"          ",
+			"         ",
+			".svg",
+			"hasPrevious",
+			"changeDate",
+			"'.date",
+			".type-sele",
+			"dateC",
+			"controls",
+			"radius",
+			"overflow: hidd",
+			"5rem",
+			"9rem",
+			"10rem",
+			"type-selector",
+			"date",
+			"pill",
+			"Modernizr.desk"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"showCancel"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/js/app/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1127,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								87,
+								87
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/packages/lavaca/src/LavacaReactMixin.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2499,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								69,
+								35
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/js/app/boot.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1046,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								950,
+								950
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/packages/lavaca/src/mvc/Application.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7356,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								358,
+								358
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/js/app/net/HomeController.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1105,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								995,
+								995
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/packages/lavaca/src/mvc/ViewManager.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9974,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6051,
+								6063
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3369.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/packages/lavaca/src/mvc/View.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 30101,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								29130,
+								29046
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 17076.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/js/app/components/DashboardView.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 576,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								152,
+								161
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/js/app/components/HomeView.jsx",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 401,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								100,
+								100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/css/app/DashboardView.less",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 26,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/LESS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1361,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1106,
+								1106
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 376.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "src/js/app/models/DashboardViewModel.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 251,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								208,
+								208
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "lavaca-react.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"viewman",
+				"src/packages/lavaca/src/mvc/ViewManager.jsx"
+			],
+			[
+				"inde",
+				"src/index.html"
+			],
+			[
+				"view",
+				"src/packages/lavaca/src/mvc/View.js"
+			],
+			[
+				"react",
+				"src/packages/lavaca/src/LavacaReactMixin.js"
+			],
+			[
+				"lavacami",
+				"src/packages/lavaca/src/LavacaReactMixin.js"
+			],
+			[
+				"homecon",
+				"src/js/app/net/HomeController.jsx"
+			],
+			[
+				"boot.j",
+				"src/js/app/boot.js"
+			],
+			[
+				"lavaca",
+				"src/packages/lavaca/src/LavacaReactMixin.js"
+			],
+			[
+				"boot.",
+				"src/js/app/boot.js"
+			],
+			[
+				"viewm",
+				"src/packages/lavaca/src/mvc/ViewManager.jsx"
+			],
+			[
+				"mixin",
+				"src/packages/lavaca/src/LavacaReactMixin.js"
+			],
+			[
+				"app.js",
+				"src/js/app/app.js"
+			],
+			[
+				"controller",
+				"src/packages/lavaca/src/mvc/Controller.js"
+			],
+			[
+				"basecon",
+				"src/js/app/net/BaseController.js"
+			],
+			[
+				"viewmana",
+				"src/packages/lavaca/src/mvc/ViewManager.jsx"
+			],
+			[
+				"application",
+				"src/packages/lavaca/src/mvc/Application.js"
+			],
+			[
+				"gul",
+				"gulpfile.js"
+			],
+			[
+				"app",
+				"src/js/app/app.js"
+			],
+			[
+				"dash",
+				"src/js/app/components/DashboardView.jsx"
+			],
+			[
+				"baseview",
+				"src/js/app/components/BaseView.js"
+			],
+			[
+				"dashboardview",
+				"src/css/app/DashboardView.less"
+			],
+			[
+				"a",
+				"src/css/app/app.less"
+			],
+			[
+				"package",
+				"package.json"
+			],
+			[
+				"collection",
+				"src/packages/lavaca/src/mvc/Collection.js"
+			],
+			[
+				"event",
+				"src/packages/lavaca/src/events/EventDispatcher.js"
+			],
+			[
+				"eventdi",
+				"src/packages/lavaca/src/events/EventDispatcher.js"
+			],
+			[
+				"model.",
+				"src/packages/lavaca/src/mvc/Model.js"
+			],
+			[
+				"dashboardviewmo",
+				"src/js/app/models/DashboardViewModel.js"
+			],
+			[
+				"applica",
+				"src/packages/lavaca/src/mvc/Application.js"
+			],
+			[
+				"boo",
+				"src/js/app/boot.js"
+			],
+			[
+				"boot.js",
+				"src/js/app/boot.js"
+			],
+			[
+				"dashboard",
+				"src/js/app/components/DashboardView.jsx"
+			],
+			[
+				"index",
+				"src/index.html"
+			],
+			[
+				"boot",
+				"src/js/app/boot.js"
+			],
+			[
+				"",
+				"package.json"
+			],
+			[
+				"bower",
+				"bower.json"
+			],
+			[
+				"package.json",
+				"package.json"
+			],
+			[
+				"index.h",
+				"src/www/index.html"
+			],
+			[
+				"main.le",
+				"src/www/css/app/main.less"
+			],
+			[
+				"dashboardmo",
+				"src/www/js/app/models/viewmodels/DashboardViewModel.js"
+			],
+			[
+				"tabbarviewmo",
+				"src/www/js/app/models/viewmodels/RootTabBarViewModel.js"
+			],
+			[
+				"roottabbar",
+				"src/www/js/app/ui/views/pageviews/RootTabBarView.js"
+			],
+			[
+				"tabbarview",
+				"src/www/js/app/ui/views/controlviews/TabBarView.js"
+			],
+			[
+				"familydail",
+				"src/www/js/app/ui/views/childviews/FamilyDailyView.js"
+			],
+			[
+				"family-",
+				"src/www/js/templates/childviews/family-daily.html"
+			],
+			[
+				"dashboardvi",
+				"src/www/js/app/ui/views/pageviews/DashboardView.js"
+			],
+			[
+				"dashboard.ht",
+				"src/www/js/templates/pageviews/dashboard.html"
+			],
+			[
+				"adultdail",
+				"src/www/js/app/ui/views/childviews/AdultDailyView.js"
+			],
+			[
+				"adulst",
+				"src/www/js/app/ui/views/childviews/AdultDailyView.js"
+			],
+			[
+				"adult",
+				"src/www/js/templates/childviews/adult-daily.html"
+			],
+			[
+				"dashboa",
+				"src/www/css/app/pageviews/DashboardView.less"
+			],
+			[
+				"pillchart",
+				"src/www/css/app/misc/PillChart.less"
+			],
+			[
+				"familydaily",
+				"src/www/js/templates/childviews/family-daily.html"
+			],
+			[
+				"sleepview",
+				"src/www/css/app/childviews/SleepView.less"
+			],
+			[
+				"r",
+				"src/www/js/app/ui/widgets/ResponsiveMagic.js"
+			],
+			[
+				"moderni",
+				"src/www/js/app/env/ModernizrTests.js"
+			],
+			[
+				"sleep.h",
+				"src/www/js/templates/childviews/sleep.html"
+			],
+			[
+				"tabbarvi",
+				"src/www/js/app/ui/views/controlviews/TabBarView.js"
+			],
+			[
+				"roottab",
+				"src/www/js/app/ui/views/pageviews/RootTabBarView.js"
+			],
+			[
+				"roottaba",
+				"src/www/js/app/ui/views/pageviews/RootTabBarView.js"
+			],
+			[
+				"sleep.ht",
+				"src/www/js/templates/childviews/sleep.html"
+			],
+			[
+				"userswi",
+				"src/www/css/app/controlviews/UserSwitchView.less"
+			],
+			[
+				"modernizrtest",
+				"src/www/js/app/env/ModernizrTests.js"
+			],
+			[
+				"sleephtml",
+				"src/www/js/templates/childviews/sleep.html"
+			],
+			[
+				"headerview",
+				"src/www/css/app/controlviews/HeaderView.less"
+			],
+			[
+				"respon",
+				"src/www/js/app/ui/widgets/ResponsiveMagic.js"
+			],
+			[
+				"pill",
+				"src/www/css/app/misc/PillChart.less"
+			],
+			[
+				"responsive",
+				"src/www/js/app/ui/widgets/ResponsiveMagic.js"
+			],
+			[
+				"useravat",
+				"src/www/css/app/subtemplates/UserAvatar.less"
+			],
+			[
+				"avatar",
+				"src/www/js/templates/childviews/AvatarView.html"
+			],
+			[
+				"family",
+				"src/www/js/app/models/FamilyModel.js"
+			],
+			[
+				"sleepda",
+				"src/www/assets/mock/sleepData.json"
+			],
+			[
+				"userava",
+				"src/www/js/templates/subtemplates/UserAvatar.html"
+			],
+			[
+				"dasbhoardview",
+				"src/www/js/app/ui/views/pageviews/DashboardView.js"
+			],
+			[
+				"userav",
+				"src/www/css/app/subtemplates/UserAvatar.less"
+			],
+			[
+				"app.les",
+				"src/www/css/app/app.less"
+			],
+			[
+				"theme",
+				"src/www/css/app/theme.less"
+			],
+			[
+				"auth",
+				"src/www/js/app/models/AuthModel.js"
+			],
+			[
+				"accountservice",
+				"src/www/js/app/service/AccountService.js"
+			],
+			[
+				"accountmodel",
+				"src/www/js/app/models/AccountModel.js"
+			],
+			[
+				"userswit",
+				"src/www/js/app/ui/views/controlviews/UserSwitchView.js"
+			],
+			[
+				"service",
+				"src/www/js/app/service/Service.js"
+			],
+			[
+				"accountser",
+				"src/www/js/app/service/AccountService.js"
+			],
+			[
+				"ap.js",
+				"src/www/js/app/app.js"
+			],
+			[
+				"autho",
+				"src/www/js/app/models/AuthModel.js"
+			],
+			[
+				"authmod",
+				"src/www/js/app/models/AuthModel.js"
+			],
+			[
+				"index.",
+				"src/www/index.html"
+			],
+			[
+				"authmo",
+				"src/www/js/app/models/AuthModel.js"
+			],
+			[
+				"controll",
+				"src/www/js/app/net/HomeController.js"
+			],
+			[
+				"header",
+				"src/www/css/app/controlviews/HeaderView.less"
+			],
+			[
+				"main.les",
+				"src/www/css/app/main.less"
+			],
+			[
+				"dashboardvie",
+				"src/www/css/app/pageviews/DashboardView.less"
+			],
+			[
+				"family-dail",
+				"src/www/js/templates/childviews/family-daily.html"
+			],
+			[
+				"gruntfile",
+				"Gruntfile.js"
+			],
+			[
+				"familyda",
+				"src/www/js/templates/childviews/family-daily.html"
+			],
+			[
+				"familymo",
+				"src/www/js/app/models/FamilyModel.js"
+			],
+			[
+				"sleepdata",
+				"src/www/assets/mock/sleepData.json"
+			],
+			[
+				"roottabbarviewmo",
+				"src/www/js/app/models/viewmodels/RootTabBarViewModel.js"
+			],
+			[
+				"roottabar",
+				"src/www/js/app/ui/views/pageviews/RootTabBarView.js"
+			],
+			[
+				"sleepviewmodel",
+				"src/www/js/app/models/viewmodels/SleepViewModel.js"
+			],
+			[
+				"dashboardviewmod",
+				"src/www/js/app/models/viewmodels/DashboardViewModel.js"
+			],
+			[
+				"adultdaily",
+				"src/www/js/app/ui/views/childviews/AdultDailyView.js"
+			],
+			[
+				"sleep.",
+				"src/www/js/templates/childviews/sleep.html"
+			],
+			[
+				"sleep",
+				"src/www/js/app/ui/views/childviews/SleepView.js"
+			],
+			[
+				"sleepviewmod",
+				"src/www/js/app/models/viewmodels/SleepViewModel.js"
+			],
+			[
+				"adultdailyvi",
+				"src/www/js/app/ui/views/childviews/AdultDailyView.js"
+			],
+			[
+				"dashboard.h",
+				"src/www/js/templates/pageviews/dashboard.html"
+			],
+			[
+				"dashboardview.",
+				"src/www/css/app/pageviews/DashboardView.less"
+			],
+			[
+				"famil",
+				"src/www/js/app/models/FamilyModel.js"
+			],
+			[
+				"sleepviewmo",
+				"src/www/js/app/models/viewmodels/SleepViewModel.js"
+			],
+			[
+				"dashboardmodel",
+				"src/www/js/app/models/viewmodels/DashboardViewModel.js"
+			],
+			[
+				"sleeview",
+				"src/www/js/app/ui/views/childviews/SleepView.js"
+			],
+			[
+				"root",
+				"src/www/js/templates/pageviews/root-tab-bar.html"
+			],
+			[
+				"dashboard-",
+				"src/www/js/templates/headers/dashboard-header.html"
+			],
+			[
+				"sleepdataserv",
+				"src/www/js/app/service/SleepDataService.js"
+			],
+			[
+				"familymod",
+				"src/www/js/app/models/FamilyModel.js"
+			],
+			[
+				"dashboar",
+				"src/www/js/templates/pageviews/dashboard.html"
+			],
+			[
+				"dashboardv",
+				"src/www/js/app/models/viewmodels/DashboardViewModel.js"
+			],
+			[
+				"sleepmodl",
+				"src/www/js/app/models/viewmodels/SleepViewModel.js"
+			],
+			[
+				"sleepviewmodl",
+				"src/www/js/app/models/viewmodels/SleepViewModel.js"
+			],
+			[
+				"roottabbarview",
+				"src/www/js/app/models/viewmodels/RootTabBarViewModel.js"
+			],
+			[
+				"dashboadv",
+				"src/www/css/app/pageviews/DashboardView.less"
+			],
+			[
+				"userswitc",
+				"src/www/js/app/ui/views/controlviews/UserSwitchView.js"
+			],
+			[
+				"modal",
+				"src/www/css/app/controlviews/ModalView.less"
+			],
+			[
+				"user-swi",
+				"src/www/js/templates/controlviews/user-switch.html"
+			],
+			[
+				"user-sw",
+				"src/www/js/templates/controlviews/user-switch.html"
+			],
+			[
+				"userswitchvi",
+				"src/www/js/app/ui/views/controlviews/UserSwitchView.js"
+			],
+			[
+				"userswitch",
+				"src/www/js/app/models/viewmodels/UserSwitchViewModel.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 332.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

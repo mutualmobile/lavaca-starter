@@ -1,0 +1,73 @@
+input{
+  appearance:none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+a,
+a:link,
+a:visited,
+a:active,
+a:hover {
+  color: #00a3de;
+}
+
+button{
+  outline:0;
+}
+
+input, input:before, input:after {
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
+
+html {
+  font-size: 12px;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  *{
+    -ms-overflow-style: none;
+  }
+}
+body {
+  .avenir-rm;
+  position: relative;
+}
+#view-root {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .backface-visibility(hidden);
+  .perspective(1200px);
+}
+.ios #view-root {padding-top: 20px;}
+
+.view.show,
+.view.current {
+  visibility: visible;
+  z-index: 1;
+}
+.view.page-ontop,
+.view.pt-page-ontop {
+  z-index: 999;
+}
+.view{
+  position: relative;
+  min-width: 100%;
+  min-height: 100%;
+  font-size:18px;
+}
+
+.ui-blocker {
+  background: rgba(107, 23, 59, 0.25);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

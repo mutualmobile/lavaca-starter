@@ -1,6 +1,6 @@
 {
-  "name": "lavaca-starter",
-  "version": "2.3.3",
+  "name": "SleepIQ",
+  "version": "2.0.0",
   "homepage": "http://getlavaca.com",
   "authors": [
     "Mutual Mobile <lavaca@mutualmobile.com>"
@@ -14,7 +14,12 @@
     "tests"
   ],
   "dependencies": {
-    "lavaca": "latest",
-    "less.js": "1.7.x"
+    "lavaca": "mutualmobile/lavaca#react-core",
+    "less.js": "1.7.x",
+    "i18n": "requirejs/i18n#2.0.4",
+    "modernizr": "2.8.3",
+    "react": "~0.12.2",
+    "requirejs-react-jsx": "~0.12.0",
+    "lodash": "~3.2.0"
   }
 }
