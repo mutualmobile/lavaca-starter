@@ -15,7 +15,9 @@ var AUTOPREFIXER_BROWSERS = [                 // https://github.com/ai/autoprefi
   'android >= 4.4',
   'bb >= 10'
 ];
-var src = {};
+var src = {
+  styles:'src/css/**/*.{css,less}'
+};
 
 var RELEASE = !!argv.production;   //Should it minimize for build?
 
@@ -40,7 +42,6 @@ gulp.task('connect', function() {
 
 // Generate CSS
 gulp.task('less', function() {
-  src.styles = 'src/styles/**/*.{css,less}';
   return gulp.src('src/css/app/app.less')
     .pipe(plugin.plumber())
     .pipe(plugin.less({
@@ -69,6 +70,7 @@ gulp.task('html', function () {
 
 // watch files for live reload
 gulp.task('watch', function() {
+    console.log(src.styles);
     gulp.watch(src.styles,['less']);
     gulp.watch('src/js/*.js', ['js']);
     gulp.watch('src/index.html', ['html']);
