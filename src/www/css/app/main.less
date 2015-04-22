@@ -24,6 +24,22 @@ body {
   .backface-visibility(hidden);
   .perspective(1200px);
   background: #888888;
+  >.view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 1.2rem;
+    &.show,
+    &.current {
+      z-index: 1;
+    }
+    &.page-ontop,
+    &.pt-page-ontop {
+      z-index: 999;
+    }
+  }
 }
 .ui-blocker {
   background: rgba(107, 23, 59, 0.25);

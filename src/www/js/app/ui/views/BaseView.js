@@ -31,10 +31,46 @@ define(function(require) {
 
      */
     pageTransition: {
-      'in': '',
-      'out': '',
-      'inReverse': '',
-      'outReverse': ''
+      'in': function(el){
+              return new Promise(function(resolve,reject){
+                var animationClass = 'pt-page-moveFromRight';
+                el.nextAnimationEnd(function(){
+                  if (el) { el.removeClass(animationClass); }
+                  return resolve();
+                })
+                .addClass(animationClass);
+              }.bind(this));
+            },
+      'out': function(el){
+              return new Promise(function(resolve,reject){
+                var animationClass = 'pt-page-moveToLeft';
+                el.nextAnimationEnd(function(){
+                  if (el) { el.removeClass(animationClass); }
+                  return resolve();
+                })
+                .addClass(animationClass);
+              }.bind(this));
+            },
+      'inReverse': function(el){
+              return new Promise(function(resolve,reject){
+                var animationClass = 'pt-page-moveFromLeft';
+                el.nextAnimationEnd(function(){
+                  if (el) { el.removeClass(animationClass); }
+                  return resolve();
+                })
+                .addClass(animationClass);
+              }.bind(this));
+            },
+      'outReverse': function(el){
+              return new Promise(function(resolve,reject){
+                var animationClass = 'pt-page-moveToRight';
+                el.nextAnimationEnd(function(){
+                  if (el) { el.removeClass(animationClass); }
+                  return resolve();
+                })
+                .addClass(animationClass);
+              }.bind(this));
+            }
     },
     /**
      * Executes when the template renders successfully. This implementation
@@ -84,56 +120,28 @@ define(function(require) {
               i = -1,
               exitingView;
 
-          var triggerEnterComplete = function() {
-            this.trigger('entercomplete');
-            this.el.removeClass(animationIn);
-
-            var cachedView = viewManager.pageViews.get(this.cacheKey);
-            if (cachedView) {
-              cachedView.el.removeClass(animationIn);
-            }
-          };
-
-          if (animationIn !== '') {
-
-            if (exitingViews.length) {
-              i = -1;
-              while (!!(exitingView = exitingViews[++i])) {
-                var cachedView = viewManager.pageViews.get(exitingView.cacheKey);
-                exitingView.el.addClass(animationOut);
-                exitingView.el.nextAnimationEnd(function() {
-                  if (cachedView) {
-                    cachedView.el.removeClass(animationOut + ' current');
-                  }
-                });
-                if (animationOut === '') {
-                  exitingView.exitPromise.resolve();
-                }
+          if (exitingViews.length) {
+            i = -1;
+            while (!!(exitingView = exitingViews[++i])) {
+              exitingView.el.removeClass('current');
+              animationOut.call(this, exitingView.el);
+              if (exitingView.exitPromise) {
+                exitingView.exitPromise.resolve();
               }
             }
+          }
 
-            if ((this.layer > 0 || exitingViews.length > 0)) {
-              this.el
-                  .nextAnimationEnd(triggerEnterComplete.bind(this))
-                  .addClass(animationIn + ' current');
-            } else {
-              this.el.addClass('current');
+          if ((this.layer > 0 || exitingViews.length > 0)) {
+            animationIn.call(this, this.el).then(function() {
               this.trigger('entercomplete');
-            }
+              this.el.addClass('current');
+            }.bind(this));
 
           } else {
             this.el.addClass('current');
-            if (exitingViews.length > 0) {
-              i = -1;
-              while (!!(exitingView = exitingViews[++i])) {
-                exitingView.el.removeClass('current');
-                if (exitingView.exitPromise) {
-                  exitingView.exitPromise.resolve();
-                }
-              }
-            }
             this.trigger('entercomplete');
           }
+
         }.bind(this));
     },
     /**
@@ -154,30 +162,21 @@ define(function(require) {
         animation = this.pageTransition['outReverse'];
       }
 
-      if (animation) {
-        this.exitPromise = new Promise(this);
+      this.exitPromise = new $.Deferred();
 
-        this.el
-          .nextAnimationEnd(function() {
-            View.prototype.exit.apply(this, arguments).then(function() {
-              this.exitPromise.resolve();
-            });
-            this.el.removeClass(animation + ' current');
-            var cachedView = viewManager.pageViews.get(this.cacheKey);
-            if (cachedView) {
-              cachedView.el.removeClass(animation + ' current');
-            }
-          }.bind(this));
-
-        if (!enteringViews.length) {
-          this.el.addClass(animation);
-        }
-
-        return this.exitPromise;
+      if (enteringViews.length) {
+        animation.call(this, this.el).then(function(){
+          View.prototype.exit.apply(this, arguments).then(function() {
+            this.exitPromise.resolve();
+          });
+          this.el.removeClass('current');
+        }.bind(this));
       } else {
-        this.el.removeClass('current');
-        return View.prototype.exit.apply(this, arguments);
+        animation.call(this, this.el);
       }
+
+      return this.exitPromise;
+
     }
   });
 
