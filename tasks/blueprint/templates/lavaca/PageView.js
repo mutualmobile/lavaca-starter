@@ -1,7 +1,7 @@
 define(function(require) {
 
-  var BaseView = require('app/ui/views/BaseView');
-  require('rdust!templates/<%=templateFolder%><%= className %><%=postfix%>');
+  var BaseView = require('app/ui/views/BaseView'),
+      template = require('rdust!templates/<%=templateFolder%><%= className %><%=postfix%>');
 
 /**
  * @class <%= classDotNotation %>
@@ -11,12 +11,6 @@ define(function(require) {
   var <%= className %><%=postfix%> = BaseView.extend(function <%= className %><%=postfix%>(){
     BaseView.apply(this, arguments);
   },{
-    /**
-     * @field {String} template
-    * @default '<%=classNameLowerCase %>'
-    * The name of the template used by the view
-    */
-    template: 'templates/<%=templateFolder%><%= className %><%=postfix%>',
     /**
     * @field {String} className
     * @default '<%=classNameLowerCase %>'

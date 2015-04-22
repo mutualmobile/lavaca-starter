@@ -1,7 +1,7 @@
 define(function(require) {
 
-  var View = require('lavaca/mvc/View');
-  var template = require('rdust!templates/<%=templateFolder%><%= className %><%=postfix%>');
+  var View = require('lavaca/mvc/View'),
+      template = require('rdust!templates/<%=templateFolder%><%= className %><%=postfix%>');
 
 /**
  * @class <%= classDotNotation %>
@@ -11,12 +11,6 @@ define(function(require) {
   var <%= className %><%=postfix%> = View.extend(function <%= className %><%=postfix%>(){
     View.apply(this, arguments);
   },{
-    /**
-     * @field {String} template
-    * @default '<%=classNameLowerCase %>'
-    * The name of the template used by the view
-    */
-    template: 'templates/<%=templateFolder%><%= className %><%=postfix%>',
     /**
     * @field {String} className
     * @default '<%=classNameLowerCase %>'
