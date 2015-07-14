@@ -19,11 +19,6 @@ module.exports = function(grunt) {
     if (isCordova) {
       platformTasks.push('clean:cordova');
       platformTasks.push('copy:cordova');
-      if (platform) {
-        platformTasks.push('cordovaBuild:' + platform);
-      } else {
-        platformTasks.push('cordovaBuild');
-      }
     }
 
     if (preProcessIndex > 0){
@@ -42,6 +37,13 @@ module.exports = function(grunt) {
       tasks = tasks.concat(platformTasks);
     }
 
+    if (isCordova) {
+      if (platform) {
+        tasks.push('cordovaBuild:' + platform);
+      } else {
+        tasks.push('cordovaBuild');
+      }
+    }
 
     tasks.push('clean:tmp');
     grunt.verbose.writeln('Options:', options);

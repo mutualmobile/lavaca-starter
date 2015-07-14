@@ -49,7 +49,7 @@ module.exports = function( grunt ) {
       build: {
         root: 'build',
         www: '<%= paths.build.root %>/www',
-        ios: '<%= paths.cordovaInit.root %>/platforms/ios',
+        cordova: '<%= paths.cordovaInit.root %>/www',
         android: '<%= paths.cordovaInit.root %>/platforms/android',
         androidLocalProperties: '<%= paths.build.android %>local.properties'
       },
@@ -139,7 +139,7 @@ module.exports = function( grunt ) {
         },
         files: [{
           src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
-          dest: '<%= paths.asset.ios %>/<%= paths.out.index %>'
+          dest: '<%= paths.build.cordova %>/<%= paths.out.index %>'
         }]
       },
       android: {
@@ -151,7 +151,7 @@ module.exports = function( grunt ) {
         },
         files: [{
           src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
-          dest: '<%= paths.asset.android %>/<%= paths.out.index %>'
+          dest: '<%= paths.build.cordova %>/<%= paths.out.index %>'
         }]
       }
     },
@@ -374,7 +374,7 @@ module.exports = function( grunt ) {
             location: 'ui/widgets',
             postfix: 'Widget',
             filetype: '.js'
-          }  
+          }
         }
       }
     },
