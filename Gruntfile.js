@@ -437,8 +437,8 @@ module.exports = function( grunt ) {
     initCordova: {
       init: {
         options: {
-          appName: 'App',
-          id: 'com.mm.App'
+          appName: 'app',
+          id: 'com.mm.app'
         }
       }
     },
