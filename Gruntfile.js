@@ -2,6 +2,8 @@ module.exports = function( grunt ) {
 
   'use strict';
 
+  var timeStampVersionCode = String(Math.floor(new Date().getTime() / 1000));
+
   grunt.loadTasks('tasks/server');
   grunt.loadTasks('tasks/pkg');
   grunt.loadTasks('tasks/preprocess');
@@ -24,6 +26,7 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-yuidoc');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-xmlpoke');
 
   grunt.initConfig({
     paths: {
@@ -83,6 +86,7 @@ module.exports = function( grunt ) {
     },
 
     'package': grunt.file.readJSON('package.json'),
+    'bower': grunt.file.readJSON('bower.json'),
 
     clean: {
       tmp: ['<%= paths.tmp.root %>'],
@@ -91,6 +95,36 @@ module.exports = function( grunt ) {
       'package': ['<%= paths.package.root %>'],
       cordova: ['<%= paths.cordovaInit.www %>'],
       init: ['<%= paths.cordovaInit.root %>']
+    },
+
+    xmlpoke: {
+      updateVersion: {
+        options: {
+          xpath: '/widget/@version',
+          value: '<%= bower.version %>'
+        },
+        files: {
+          '<%= paths.cordovaInit.root %>/config.xml': '<%= paths.cordovaInit.root %>/config.xml'
+        }
+      },
+      updateIOSVersion: {
+        options: {
+          xpath: '/widget/@ios-CFBundleVersion',
+          value: timeStampVersionCode
+        },
+        files: {
+          '<%= paths.cordovaInit.root %>/config.xml': '<%= paths.cordovaInit.root %>/config.xml'
+        }
+      },
+      updateAndroidVersion: {
+        options: {
+          xpath: '/widget/@android-versionCode',
+          value: timeStampVersionCode
+        },
+        files: {
+          '<%= paths.cordovaInit.root %>/config.xml': '<%= paths.cordovaInit.root %>/config.xml'
+        }
+      }
     },
 
     uglify: {
@@ -419,17 +453,17 @@ module.exports = function( grunt ) {
     buildProject: {
       local: {
         options: {
-          tasks: ['less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['xmlpoke', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       },
       staging: {
         options: {
-          tasks: ['less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['xmlpoke', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       },
       production: {
         options: {
-          tasks: ['yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['xmlpoke', 'yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       }
     },
@@ -437,8 +471,8 @@ module.exports = function( grunt ) {
     initCordova: {
       init: {
         options: {
-          appName: 'app',
-          id: 'com.mm.app'
+          appName: 'lavacabamboo',
+          id: 'com.mm.lavacabamboo'
         }
       }
     },

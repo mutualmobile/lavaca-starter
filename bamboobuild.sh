@@ -160,10 +160,7 @@ then
   #(cd cordova/platforms/android/com.urbanairship.phonegap.PushNotification/SleepIQ-urbanairship-lib/ &&  android update project -p ./ -t "android-21" -s)
 
   cordova --version
-  if [ ! -d "cordova/platforms/android/assets" ]
-  then
-    mkdir cordova/platforms/android/assets
-  fi
+  mkdir -p cordova/platforms/android/assets
   grunt build:$env:android
   (cd cordova && cordova build android --release)
 
