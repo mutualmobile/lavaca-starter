@@ -27,7 +27,8 @@ set -e
 #***************************
 #---------------------------
 appName="app"
-hockeyAppId="###"
+hockeyAppIdiOS="###"
+hockeyAppIdAndroid="###"
 hockeyApiToken="###"
 hockeyAppTeams="###"
 serverAddress="###"
@@ -105,7 +106,7 @@ if [ $shouldGenerateIcons == true ]
 then
   ./icongen.sh ${appName} ${platform} ${env} ${buildString}
 else
-  echo "Bypassing Icon Generation"
+  echo "Bypassing Icon Gen"
 fi
 
 
@@ -131,6 +132,7 @@ if [ "$platform" == "ios" ]
 then
 
   binaryFileName="${ipaFile}"
+  hockeyAppId="${hockeyAppIdiOS}"
 
   find . -name "*.mobileprovision" | xargs -I{} cp "{}" "/var/mutualmobile/Library/MobileDevice/Provisioning Profiles"
   grunt build:$env:ios
@@ -147,6 +149,7 @@ if [ "$platform" == "android" ]
 then
 
   binaryFileName="${apkFile}"
+  hockeyAppId="${hockeyAppIdAndroid}"
 
   (cd cordova/platforms/android/ &&  android update project -p ./ -t "android-19" -s)
   (cd cordova/platforms/android/CordovaLib/ &&  android update project -p ./ -t "android-19" -s)
@@ -190,7 +193,7 @@ fi
 if [ "$platform" == "web" ]
 then
 
-  scp -r ./build/www ${userName}@${serverAddress}:${remoteFolder}/${buildFolder}
+  scp -r ./build/www ${serverUserName}@${serverAddress}:${remoteFolder}/${buildFolder}
 
 fi
 

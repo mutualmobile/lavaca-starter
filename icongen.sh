@@ -67,15 +67,15 @@ fi
 #format
 if [ "$env" == "prod" -o "$env" == "production" ]
 then
-env="PROD"
+  env="PROD"
 fi
 if [ "$env" == "stage" -o "$env" == "staging" ]
 then
-env="STAGE"
+  env="STAGE"
 fi
 if [ "$env" == "local" ]
 then
-env="LOCAL"
+  env="LOCAL"
 fi
 
 
@@ -97,6 +97,32 @@ splashFillColor=$(convert $splashPath -format "%[pixel: u.p{0,0}]" info:)
 set -x
 set -e
 
+
+
+#---------------------------
+# Build Platform Specific
+#---------------------------
+font1="Helvetica"
+font2="Helvetica-Bold"
+buildOS="unknown"
+unamestr=`uname`
+
+if [[ "$unamestr" == "Linux" ]] 
+then
+
+  buildOS="linux"
+  font1="DejaVu-Sans"
+  font2="DejaVu-Sans-Bold"
+
+elif [[ "$unamestr" == "Darwin" ]] 
+then
+
+  buildOS="osx"
+
+fi
+
+
+
 #---------------------------
 # Create labeled icon
 #---------------------------
@@ -107,7 +133,7 @@ then
     
   convert ${tmp} \
     -fill ${buildNumberTextColor} \
-    -font Helvetica \
+    -font ${font1} \
     -gravity north \
     -pointsize 100 \
     -annotate +0+50 ${buildString} \
@@ -120,7 +146,7 @@ then
 
   convert ${tmp} \
     -fill ${environmentTextColor} \
-    -font Helvetica-Bold \
+    -font ${font2} \
     -pointsize 130 \
     -gravity south \
     -annotate -220+10 ${env} \
@@ -139,7 +165,8 @@ fi
 
 
 
-# This function takes in the dimension of the icon (it assumes the icon is a square) and the name of the file to save the icon to.
+# This function takes in the dimension of the icon 
+# (it assumes the icon is a square) and the name of the file to save the icon to.
 function createIconImage()
 {
   iconDimension=$1
@@ -153,6 +180,9 @@ function createIconImage()
     ${fileName}
 }
 
+
+# This function takes in the dimension of the splash screen 
+# and scales the source image to fit well in the layout
 function createSplashImage()
 {
   width=$1
@@ -290,5 +320,11 @@ then
 
 fi
 
-rm ${tmp}
 
+#---------------------------
+# Remove temp file
+#---------------------------
+if [ -e "${tmp}" ]
+then
+  rm ${tmp}
+fi
