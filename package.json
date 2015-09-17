@@ -23,7 +23,7 @@
     "grunt-amd-dist": "0.4.x",
     "grunt-amd-test": "0.4.x",
     "grunt-amd-check": "0.5.x",
-    "grunt-xmlpoke": "0.8.0",
+    "grunt-xmlstoke": "0.7.0",
     "xml2js": "0.2.x",
     "promisemonkey": "0.1.x",
     "grunt-contrib-yuidoc": "0.4.0",

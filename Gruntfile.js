@@ -26,7 +26,7 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-yuidoc');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-xmlpoke');
+  grunt.loadNpmTasks('grunt-xmlstoke');
 
   grunt.initConfig({
     paths: {
@@ -97,29 +97,14 @@ module.exports = function( grunt ) {
       init: ['<%= paths.cordovaInit.root %>']
     },
 
-    xmlpoke: {
+    xmlstoke: {
       updateVersion: {
         options: {
-          xpath: '/widget/@version',
-          value: '<%= bower.version %>'
-        },
-        files: {
-          '<%= paths.cordovaInit.root %>/config.xml': '<%= paths.cordovaInit.root %>/config.xml'
-        }
-      },
-      updateIOSVersion: {
-        options: {
-          xpath: '/widget/@ios-CFBundleVersion',
-          value: timeStampVersionCode
-        },
-        files: {
-          '<%= paths.cordovaInit.root %>/config.xml': '<%= paths.cordovaInit.root %>/config.xml'
-        }
-      },
-      updateAndroidVersion: {
-        options: {
-          xpath: '/widget/@android-versionCode',
-          value: timeStampVersionCode
+          actions: [
+            { xpath: '/widget/@version', value: '<%= bower.version %>' },
+            { type: 'I', xpath: '/widget', node: '@ios-CFBundleVersion', value: timeStampVersionCode },
+            { type: 'I', xpath: '/widget', node: '@android-versionCode', value: timeStampVersionCode }
+          ]
         },
         files: {
           '<%= paths.cordovaInit.root %>/config.xml': '<%= paths.cordovaInit.root %>/config.xml'
@@ -453,17 +438,17 @@ module.exports = function( grunt ) {
     buildProject: {
       local: {
         options: {
-          tasks: ['xmlpoke', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['xmlstoke', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       },
       staging: {
         options: {
-          tasks: ['xmlpoke', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['xmlstoke', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       },
       production: {
         options: {
-          tasks: ['xmlpoke', 'yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['xmlstoke', 'yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       }
     },
