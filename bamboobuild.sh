@@ -11,7 +11,7 @@ EXPECTED_ARGS=2
 if [ $# -lt $EXPECTED_ARGS ]
 then
   echo "Usage: ./bamboobuild.sh [platform (optional)] [environment (optional)]"
-  echo "ex: ./bamboobuild.sh app ios production \"1.2.4\""
+  echo "ex: ./bamboobuild.sh ios production"
   exit 1
 fi
 
@@ -66,7 +66,10 @@ fi
 # Set PATH
 #---------------------------
 node_mods=$(pwd)/node_modules
+export ANDROID_HOME=/usr/local/android
 export PATH=/usr/local/bin/:$node_mods/grunt-cli/bin:$node_mods/bower/bin:$node_mods/cordova/bin:$PATH
+export PATH=$ANDROID_HOME/tools:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
 
 
 #---------------------------
@@ -134,7 +137,7 @@ then
   binaryFileName="${ipaFile}"
   hockeyAppId="${hockeyAppIdiOS}"
 
-  find . -name "*.mobileprovision" | xargs -I{} cp "{}" "/var/mutualmobile/Library/MobileDevice/Provisioning Profiles"
+  cordova --version
   grunt build:$env:ios
   (cd cordova/platforms/ios/ && xcodebuild -scheme "$buildScheme" -sdk iphoneos archive -archivePath "$archiveFile" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
   (cd cordova/platforms/ios/ && xcrun -sdk iphoneos PackageApplication -v "${archiveFile}/Products/Applications/${appFile}" -o "${workingDirectory}/${ipaFile}" --sign "$codesignIdentity")
@@ -151,13 +154,18 @@ then
   binaryFileName="${apkFile}"
   hockeyAppId="${hockeyAppIdAndroid}"
 
-  (cd cordova/platforms/android/ &&  android update project -p ./ -t "android-19" -s)
-  (cd cordova/platforms/android/CordovaLib/ &&  android update project -p ./ -t "android-19" -s)
-  #(cd cordova/platforms/android/com.urbanairship.phonegap.PushNotification/SleepIQ-google-play-services/ &&  android update project -p ./ -t "android-19" -s)
-  #(cd cordova/platforms/android/com.urbanairship.phonegap.PushNotification/SleepIQ-urbanairship-lib/ &&  android update project -p ./ -t "android-19" -s)
+  (cd cordova/platforms/android/ &&  android update project -p ./ -t "android-21" -s)
+  (cd cordova/platforms/android/CordovaLib/ &&  android update project -p ./ -t "android-21" -s)
+  #(cd cordova/platforms/android/com.urbanairship.phonegap.PushNotification/SleepIQ-google-play-services/ &&  android update project -p ./ -t "android-21" -s)
+  #(cd cordova/platforms/android/com.urbanairship.phonegap.PushNotification/SleepIQ-urbanairship-lib/ &&  android update project -p ./ -t "android-21" -s)
 
+  cordova --version
+  if [ ! -d "cordova/platforms/android/assets" ]
+  then
+    mkdir cordova/platforms/android/assets
+  fi
   grunt build:$env:android
-  (cd cordova/platforms/android/ && cordova build android --release)
+  (cd cordova && cordova build android --release)
 
 fi
 
@@ -196,5 +204,3 @@ then
   scp -r ./build/www ${serverUserName}@${serverAddress}:${remoteFolder}/${buildFolder}
 
 fi
-
-
