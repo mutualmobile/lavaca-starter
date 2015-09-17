@@ -3,6 +3,8 @@ module.exports = function( grunt ) {
   'use strict';
 
   var timeStampVersionCode = String(Math.floor(new Date().getTime() / 1000));
+  //Android limits the interger value
+  var timeStampVersionCodeAndroid = timeStampVersionCode.substring(2);
 
   grunt.loadTasks('tasks/server');
   grunt.loadTasks('tasks/pkg');
@@ -103,7 +105,7 @@ module.exports = function( grunt ) {
           actions: [
             { xpath: '/widget/@version', value: '<%= bower.version %>' },
             { type: 'I', xpath: '/widget', node: '@ios-CFBundleVersion', value: timeStampVersionCode },
-            { type: 'I', xpath: '/widget', node: '@android-versionCode', value: timeStampVersionCode }
+            { type: 'I', xpath: '/widget', node: '@android-versionCode', value: timeStampVersionCodeAndroid }
           ]
         },
         files: {
