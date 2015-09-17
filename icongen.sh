@@ -19,6 +19,7 @@
 #---------------------------
 buildNumberTextColor="black"
 environmentTextColor="white"
+splashSizePercentageAsDecimal=0.7
 #---------------------------
 #***************************
 # End App Specific Configuration
@@ -82,11 +83,16 @@ fi
 # Set Variables
 #---------------------------
 path="_icon_source.png"
-banner='_banner_source.png'
-tmp='tmp.png'
-webPath="src/www/assets/img/"
+splashPath="_splash_source.png"
+banner="_banner_source.png"
+tmp="tmp.png"
+rootWebPath="src/www"
+webPath="${rootWebPath}/assets/img"
 iosPath="cordova/platforms/ios/${appName}/Resources/icons"
+iosSplashPath="cordova/platforms/ios/${appName}/Resources/splash"
 androidPath="cordova/platforms/android/res"
+iconFillColor=$(convert $path -format "%[pixel: u.p{0,0}]" info:)
+splashFillColor=$(convert $splashPath -format "%[pixel: u.p{0,0}]" info:)
 
 set -x
 set -e
@@ -137,14 +143,35 @@ fi
 function createIconImage()
 {
   iconDimension=$1
-  iconName=$2
+  fileName=$2
 
   convert ${path} \
     -resize ${iconDimension}x${iconDimension}^ \
     -gravity center \
     -extent ${iconDimension}x${iconDimension} \
     -unsharp 0x1 \
-    ${iconName}
+    ${fileName}
+}
+
+function createSplashImage()
+{
+  width=$1
+  height=$2
+  fileName=$3
+  innerDimension=$(echo "$splashSizePercentageAsDecimal*$width" | bc)
+
+  if [ "$width" -gt "$height" ]
+  then
+    innerDimension=$(echo "$splashSizePercentageAsDecimal*$height" | bc)
+  fi
+
+  convert ${splashPath} \
+    -background ${splashFillColor} \
+    -resize ${innerDimension}x${innerDimension}^ \
+    -gravity center \
+    -extent ${width}x${height} \
+    -unsharp 0x1 \
+    ${fileName}
 }
 
 
@@ -176,7 +203,12 @@ then
   createIconImage 558 ${webPath}/tile.png
 
   # Create Tile Wide
-  convert "$path" -resize 558x270^ -gravity center -extent 558x270 src/www/assets/img/tile-wide.png
+  convert "$path" \
+    -background ${iconFillColor} \
+    -resize 270x270^ \
+    -gravity center \
+    -extent 558x270 \
+    ${webPath}/tile-wide.png
 
   # Create favicon.ico
   convert "$path"  -bordercolor white -border 0 \
@@ -184,7 +216,19 @@ then
         \( -clone 0 -resize 32x32 \) \
         \( -clone 0 -resize 48x48 \) \
         \( -clone 0 -resize 64x64 \) \
-        -delete 0 -alpha off -colors 256 src/www/favicon.ico
+        -delete 0 -alpha off -colors 256 ${rootWebPath}/favicon.ico
+
+  createSplashImage 320 460 ${webPath}/splash-320x460.png
+  createSplashImage 320 480 ${webPath}/splash-320x480.png
+  createSplashImage 640 920 ${webPath}/splash-640x920.png
+  createSplashImage 640 960 ${webPath}/splash-640x960.png
+  createSplashImage 640 1096 ${webPath}/splash-640x1096.png
+  createSplashImage 640 1136 ${webPath}/splash-640x1136.png
+  createSplashImage 768 1004 ${webPath}/splash-768x1004.png
+  createSplashImage 1024 748 ${webPath}/splash-1024x748.png
+  createSplashImage 1536 2008 ${webPath}/splash-1536x2008.png
+  createSplashImage 2048 1496 ${webPath}/splash-2048x1496.png
+
 fi
 
 
@@ -210,6 +254,17 @@ then
   createIconImage 57   ${iosPath}/icon.png
   createIconImage 114  ${iosPath}/icon@2x.png
 
+  createSplashImage 640 1136 ${iosSplashPath}/Default-568h@2x~iphone.png
+  createSplashImage 750 1334 ${iosSplashPath}/Default-667h.png
+  createSplashImage 1242 2208 ${iosSplashPath}/Default-736h.png
+  createSplashImage 2208 1242 ${iosSplashPath}/Default-Landscape-736h.png
+  createSplashImage 2048 1536 ${iosSplashPath}/Default-Landscape@2x~ipad.png
+  createSplashImage 1024 768 ${iosSplashPath}/Default-Landscape~ipad.png
+  createSplashImage 1536 2048 ${iosSplashPath}/Default-Portrait@2x~ipad.png
+  createSplashImage 768 1024 ${iosSplashPath}/Default-Portrait~ipad.png
+  createSplashImage 640 960 ${iosSplashPath}/Default@2x~iphone.png
+  createSplashImage 320 480 ${iosSplashPath}/Default~iphone.png
+
 fi
 
 
@@ -223,6 +278,15 @@ then
   createIconImage 36  ${androidPath}/drawable-ldpi/icon.png
   createIconImage 48  ${androidPath}/drawable-mdpi/icon.png
   createIconImage 96  ${androidPath}/drawable-xhdpi/icon.png
+
+  createSplashImage 800 480 ${androidPath}/drawable-land-hdpi/screen.png
+  createSplashImage 320 200 ${androidPath}/drawable-land-ldpi/screen.png
+  createSplashImage 480 320 ${androidPath}/drawable-land-mdpi/screen.png
+  createSplashImage 1280 720 ${androidPath}/drawable-land-xhdpi/screen.png
+  createSplashImage 480 800 ${androidPath}/drawable-port-hdpi/screen.png
+  createSplashImage 200 320 ${androidPath}/drawable-port-ldpi/screen.png
+  createSplashImage 320 480 ${androidPath}/drawable-port-mdpi/screen.png
+  createSplashImage 720 1280 ${androidPath}/drawable-port-xhdpi/screen.png
 
 fi
 
