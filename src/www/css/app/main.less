@@ -24,13 +24,8 @@ body {
   .backface-visibility(hidden);
   .perspective(1200px);
   background: #888888;
-  >.view {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-    font-size: 1.2rem;
+  >.view, .cvm >.view  {
+    .absolute();
     &.show,
     &.current {
       z-index: 1;

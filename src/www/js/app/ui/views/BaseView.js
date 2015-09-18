@@ -2,7 +2,8 @@ define(function(require) {
 
   var View = require('lavaca/mvc/View'),
       viewManager = require('lavaca/mvc/ViewManager'),
-      History = require('lavaca/net/History');
+      History = require('lavaca/net/History'),
+      ViewTransitionAnimations = require('app/animations/ViewTransitionAnimations');
   require('lavaca/fx/Animation'); //jquery plugins
 
   /**
@@ -30,48 +31,7 @@ define(function(require) {
      * @default 'default'
 
      */
-    pageTransition: {
-      'in': function(el){
-              return new Promise(function(resolve,reject){
-                var animationClass = 'pt-page-moveFromRight';
-                el.nextAnimationEnd(function(){
-                  if (el) { el.removeClass(animationClass); }
-                  return resolve();
-                })
-                .addClass(animationClass);
-              }.bind(this));
-            },
-      'out': function(el){
-              return new Promise(function(resolve,reject){
-                var animationClass = 'pt-page-moveToLeft';
-                el.nextAnimationEnd(function(){
-                  if (el) { el.removeClass(animationClass); }
-                  return resolve();
-                })
-                .addClass(animationClass);
-              }.bind(this));
-            },
-      'inReverse': function(el){
-              return new Promise(function(resolve,reject){
-                var animationClass = 'pt-page-moveFromLeft';
-                el.nextAnimationEnd(function(){
-                  if (el) { el.removeClass(animationClass); }
-                  return resolve();
-                })
-                .addClass(animationClass);
-              }.bind(this));
-            },
-      'outReverse': function(el){
-              return new Promise(function(resolve,reject){
-                var animationClass = 'pt-page-moveToRight';
-                el.nextAnimationEnd(function(){
-                  if (el) { el.removeClass(animationClass); }
-                  return resolve();
-                })
-                .addClass(animationClass);
-              }.bind(this));
-            }
-    },
+    pageTransition: ViewTransitionAnimations.FADE,
     /**
      * Executes when the template renders successfully. This implementation
      * adds support for animations between views, based off of the animation
