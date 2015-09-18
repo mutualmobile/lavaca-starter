@@ -25,7 +25,7 @@ $ npm install -g bower
 
 4. __Install dev dependencies__
 ```bash
-$ npm install && bower install
+$ npm install
 ```
 
 4. __Start Development Server__

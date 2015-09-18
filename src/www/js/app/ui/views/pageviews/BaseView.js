@@ -21,12 +21,6 @@ define(function(require) {
 
     /**
      * The name of the template used by the view
-     * @property {String} template
-     * @default 'default'
-     */
-    template: 'default',
-    /**
-     * The name of the template used by the view
      * @property {Object} pageTransition
      * @default 'default'
 
@@ -53,6 +47,19 @@ define(function(require) {
     onTapCancel: function(e) {
       e.preventDefault();
       viewManager.dismiss(e.currentTarget);
+    },
+    /**
+     * Handler for when a view has completed its animation into view
+     * and hides the cordova splashscreen if it is included
+     * @method enterHasCompleted
+     */
+    enterHasCompleted: function() {
+      this.trigger('entercomplete');
+      setTimeout(function() {
+        if (navigator && navigator.splashscreen) {
+          navigator.splashscreen.hide();
+        }
+      }, 200);
     },
     /**
      * Executes when the user navigates to this view. This implementation
@@ -93,13 +100,13 @@ define(function(require) {
 
           if ((this.layer > 0 || exitingViews.length > 0)) {
             animationIn.call(this, this.el).then(function() {
-              this.trigger('entercomplete');
+              this.enterHasCompleted();
               this.el.addClass('current');
             }.bind(this));
 
           } else {
             this.el.addClass('current');
-            this.trigger('entercomplete');
+            this.enterHasCompleted();
           }
 
         }.bind(this));

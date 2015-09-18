@@ -38,6 +38,7 @@ module.exports = function(grunt) {
     }
 
     if (isCordova) {
+      tasks.push('xmlstoke');
       if (platform) {
         tasks.push('cordovaBuild:' + platform);
       } else {

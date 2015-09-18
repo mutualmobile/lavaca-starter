@@ -27,8 +27,11 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-amd-check');
   grunt.loadNpmTasks('grunt-contrib-yuidoc');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-xmlstoke');
+  grunt.loadNpmTasks('connect-livereload');
+  grunt.loadNpmTasks('grunt-modernizr');
 
   grunt.initConfig({
     paths: {
@@ -77,8 +80,12 @@ module.exports = function( grunt ) {
       copy: {
         www: [
           '<%= paths.out.index %>',
+          'manifest.json',
+          'favicon.ico',
+          'browserconfig.xml',
           '<%= paths.out.css %>/<%= package.name %>.css ',
           '<%= paths.out.js %>/<%= package.name %>.min.js',
+          '<%= paths.out.js %>/modernizr.js',
           'configs/**/*',
           'assets/**/*',
           'messages/**/*',
@@ -186,6 +193,17 @@ module.exports = function( grunt ) {
           {
             src: '<%= paths.tmp.www %>/css/app/app.less',
             dest: '<%= paths.tmp.www %>/<%= paths.out.css %>/<%= package.name %>.css'
+          }
+        ]
+      },
+      dev: {
+        options: {
+          compress: true
+        },
+        files: [
+          {
+            src: '<%= paths.src.www %>/css/app/app.less',
+            dest: '<%= paths.src.www %>/css/app/app.css'
           }
         ]
       }
@@ -338,7 +356,8 @@ module.exports = function( grunt ) {
     'amd-dist': {
       all: {
         options: {
-          standalone: true
+          standalone: true,
+          exports: '<%= package.name %>'
         },
         files: [
           {
@@ -431,26 +450,37 @@ module.exports = function( grunt ) {
     },
 
     watch: {
-      scripts: {
-        files: ['src/www/**/*.js'],
-        tasks: ['yuidoc']
+      less: {
+        files: ['src/www/css/**/*.less'],
+        tasks: ['less:dev'],
+        options: {
+          spawn: false,
+          livereload: true
+        }
+      },
+      js: {
+        files: ['src/www/**/*.js','src/www/**/*.html'],
+        options: {
+          spawn: false,
+          livereload: true
+        }
       }
     },
 
     buildProject: {
       local: {
         options: {
-          tasks: ['xmlstoke', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       },
       staging: {
         options: {
-          tasks: ['xmlstoke', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       },
       production: {
         options: {
-          tasks: ['xmlstoke', 'yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       }
     },
@@ -458,8 +488,8 @@ module.exports = function( grunt ) {
     initCordova: {
       init: {
         options: {
-          appName: 'lavacabamboo',
-          id: 'com.mm.lavacabamboo'
+          appName: 'lavaca',
+          id: 'com.mm.lavaca'
         }
       }
     },
@@ -479,6 +509,44 @@ module.exports = function( grunt ) {
           stdout: true
         }
       }
+    },
+
+
+    modernizr: {
+      devFile: 'src/www/js/modernizr.js',
+      outputFile: '<%= paths.tmp.www %>/<%= paths.out.js %>/modernizr.js',
+      files: [
+        'src/www/css/**/*.less',
+        'src/www/js/**/*.js',
+        'src/www/js/templates/**/*.html'
+      ],
+      extra: {
+        "shiv" : true,
+        "printshiv" : false,
+        "load" : true,
+        "mq" : false,
+        "cssclasses" : true
+      }
+    },
+
+
+    connect: {
+      options: {
+        base: 'src/www'
+      },
+      dev: {
+        options: {
+          port: 8080,
+          open: false,
+          base: 'src/www',
+          middleware: function(connect, opts) {
+            return [
+              require('connect-livereload')(),
+              connect.static(require('path').resolve(opts.base))
+            ];
+          }
+        }
+      }
     }
 
 
@@ -486,8 +554,9 @@ module.exports = function( grunt ) {
 
   grunt.registerTask('default', 'runs the tests and starts local server', [
     'amd-test',
-    'jasmine',
-    'server'
+    'less:dev', 
+    'connect', 
+    'watch'
   ]);
 
   grunt.registerTask('test', 'generates runner and runs the tests', [

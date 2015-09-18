@@ -2,7 +2,7 @@ define(function(require) {
 
   var BaseView = require('./BaseView'),
       messages = require('i18n!app/nls/messages'),
-      template = require('rdust!templates/home');
+      template = require('rdust!templates/pageviews/home');
 
   /**
    * Example view type

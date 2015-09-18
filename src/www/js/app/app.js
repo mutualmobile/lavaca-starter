@@ -1,10 +1,8 @@
 define(function(require) {
   var History = require('lavaca/net/History');
-  var HomeController = require('./net/HomeController');
+  var HomeController = require('app/net/HomeController');
   var Connectivity = require('lavaca/net/Connectivity');
   var Application = require('lavaca/mvc/Application');
-  var headerView = require('app/ui/views/controls/HeaderView');
-  var messages = require('i18n!app/nls/messages');
   require('hammer');
 
 
@@ -22,13 +20,11 @@ define(function(require) {
     this.router.add({
       '/': [HomeController, 'index']
     });
-    //render header
-    headerView.render();
   });
 
   // Setup offline AJAX handler
   Connectivity.registerOfflineAjaxHandler(function() {
-    alert(messages.error_offline);
+    alert("Offline");
   });
 
   return app;
