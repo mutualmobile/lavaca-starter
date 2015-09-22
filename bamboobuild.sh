@@ -26,14 +26,14 @@ set -e
 # App Specific Configuration
 #***************************
 #---------------------------
-appName="app"
-hockeyAppIdiOS="###"
-hockeyAppIdAndroid="###"
-hockeyApiToken="###"
-hockeyAppTeams="###"
-serverAddress="###"
-remoteFolder="##"
-userName="##"
+grunt shell:setShellVariables
+if [ -e ".build-config" ]
+then
+  source ".build-config"
+else
+  echo "variable retrieval failed"
+  exit 1
+fi
 shouldUpload=false
 shouldGenerateIcons=false
 #---------------------------
@@ -198,6 +198,6 @@ fi
 if [ "$platform" == "web" ]
 then
 
-  scp -r ./build/www ${serverUserName}@${serverAddress}:${remoteFolder}/${buildFolder}
+  scp -r ./build/www ${serverUserName}@${serverAddress}:${serverRemoteFolder}/${buildFolder}
 
 fi
