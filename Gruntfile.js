@@ -2,6 +2,10 @@ module.exports = function( grunt ) {
 
   'use strict';
 
+  var timeStampVersionCode = String(Math.floor(new Date().getTime() / 1000));
+  //Android limits the interger value
+  var timeStampVersionCodeAndroid = timeStampVersionCode.substring(2);
+
   grunt.loadTasks('tasks/server');
   grunt.loadTasks('tasks/pkg');
   grunt.loadTasks('tasks/preprocess');
@@ -23,9 +27,26 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-amd-check');
   grunt.loadNpmTasks('grunt-contrib-yuidoc');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-xmlstoke');
+  grunt.loadNpmTasks('connect-livereload');
+  grunt.loadNpmTasks('grunt-modernizr');
+
+
+  var variablesObj = grunt.file.readJSON('build-config.json');
+  var variables = '';
+  for (var key in variablesObj) {
+    variables += key + '="' + variablesObj[key] + '"\n';
+  }
+  variables += 'timeStampVersionCode="' + timeStampVersionCode + '"\n';
+  variables += 'timeStampVersionCodeAndroid="' + timeStampVersionCodeAndroid + '"\n';
 
   grunt.initConfig({
+    timeStampVersionCode: timeStampVersionCode,
+    timeStampVersionCodeAndroid: timeStampVersionCodeAndroid,
+    buildConfigVariables: variablesObj,
+    buildConfigVariablesFlat: variables,
     paths: {
       src: {
         root: 'src',
@@ -49,7 +70,7 @@ module.exports = function( grunt ) {
       build: {
         root: 'build',
         www: '<%= paths.build.root %>/www',
-        ios: '<%= paths.cordovaInit.root %>/platforms/ios',
+        cordova: '<%= paths.cordovaInit.root %>/www',
         android: '<%= paths.cordovaInit.root %>/platforms/android',
         androidLocalProperties: '<%= paths.build.android %>local.properties'
       },
@@ -72,8 +93,12 @@ module.exports = function( grunt ) {
       copy: {
         www: [
           '<%= paths.out.index %>',
+          'manifest.json',
+          'favicon.ico',
+          'browserconfig.xml',
           '<%= paths.out.css %>/<%= package.name %>.css ',
           '<%= paths.out.js %>/<%= package.name %>.min.js',
+          '<%= paths.out.js %>/modernizr.js',
           'configs/**/*',
           'assets/**/*',
           'messages/**/*',
@@ -93,6 +118,22 @@ module.exports = function( grunt ) {
       init: ['<%= paths.cordovaInit.root %>']
     },
 
+    xmlstoke: {
+      updateVersion: {
+        options: {
+          actions: [
+            { xpath: '/widget/@id', value: '<%= buildConfigVariables.bundleId %>' },
+            { xpath: '/widget/@version', value: '<%= buildConfigVariables.version %>' },
+            { type: 'I', xpath: '/widget', node: '@ios-CFBundleVersion', value: '<%= timeStampVersionCode %>'},
+            { type: 'I', xpath: '/widget', node: '@android-versionCode', value: '<%= timeStampVersionCodeAndroid %>' }
+          ]
+        },
+        files: {
+          '<%= paths.cordovaInit.root %>/config.xml': '<%= paths.cordovaInit.root %>/config.xml'
+        }
+      }
+    },
+
     uglify: {
       all: {
         options: {
@@ -101,8 +142,8 @@ module.exports = function( grunt ) {
         },
         files: [
           {
-            src: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= package.name %>.min.js',
-            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= package.name %>.min.js'
+            src: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js',
+            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js'
           }
         ]
       }
@@ -112,8 +153,8 @@ module.exports = function( grunt ) {
       www: {
         options: {
           locals: {
-            css: '<link rel="stylesheet" type="text/css" href="<%= paths.out.css %>/<%= package.name %>.css" />\n',
-            js: '<script src="<%= paths.out.js %>/<%= package.name %>.min.js"></script>\n'
+            css: '<link rel="stylesheet" type="text/css" href="<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css" />\n',
+            js: '<script src="<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js"></script>\n'
           }
         },
         files: [{
@@ -128,7 +169,7 @@ module.exports = function( grunt ) {
             js: (function() {
               return [
                 '<%= paths.out.cordova %>',
-                '<%= paths.out.js %>/<%= package.name %>.min.js'
+                '<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js'
               ]
                 .map(function(file) {
                   return '<script src="' + file + '"></script>';
@@ -139,7 +180,7 @@ module.exports = function( grunt ) {
         },
         files: [{
           src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
-          dest: '<%= paths.asset.ios %>/<%= paths.out.index %>'
+          dest: '<%= paths.build.cordova %>/<%= paths.out.index %>'
         }]
       },
       android: {
@@ -151,7 +192,7 @@ module.exports = function( grunt ) {
         },
         files: [{
           src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
-          dest: '<%= paths.asset.android %>/<%= paths.out.index %>'
+          dest: '<%= paths.build.cordova %>/<%= paths.out.index %>'
         }]
       }
     },
@@ -164,7 +205,18 @@ module.exports = function( grunt ) {
         files: [
           {
             src: '<%= paths.tmp.www %>/css/app/app.less',
-            dest: '<%= paths.tmp.www %>/<%= paths.out.css %>/<%= package.name %>.css'
+            dest: '<%= paths.tmp.www %>/<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css'
+          }
+        ]
+      },
+      dev: {
+        options: {
+          compress: true
+        },
+        files: [
+          {
+            src: '<%= paths.src.www %>/css/app/app.less',
+            dest: '<%= paths.src.www %>/css/app/app.css'
           }
         ]
       }
@@ -319,7 +371,8 @@ module.exports = function( grunt ) {
     'amd-dist': {
       all: {
         options: {
-          standalone: true
+          standalone: true,
+          exports: '<%= buildConfigVariables.appName %>'
         },
         files: [
           {
@@ -328,7 +381,7 @@ module.exports = function( grunt ) {
               '<%= paths.tmp.www %>/js/app/boot.js',
               '<%= paths.tmp.www %>/js/templates.js'
             ],
-            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= package.name %>.min.js'
+            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js'
           }
         ]
       }
@@ -336,18 +389,46 @@ module.exports = function( grunt ) {
 
     blueprint: {
       options: {
-        dest: '<%= paths.src.www %>/js/app',
-        appName: 'app'
-      },
-      lavaca:{
-        options:{
-          map:{
-            View: 'ui/views/View',
-            PageView: 'ui/views/pageviews/PageView',
-            Model: 'models/Model',
-            Collection: 'collections/Collection',
-            Controller: 'net/Controller',
-            Control: 'ui/views/controls/Control'
+        appName: 'app',
+        cssRoot: '<%= paths.src.www %>/css/<%= blueprint.options.appName %>',
+        jsRoot: '<%= paths.src.www %>/js/<%= blueprint.options.appName %>',
+        templateRoot: '<%= paths.src.www %>/js/templates',
+        pageviewTemplateFolder: 'pageviews',
+        pageviewCssFolder: 'pageviews',
+        viewTemplateFolder: 'childviews',
+        viewCssFolder: 'childviews',
+        templateFileType: '.html',
+        cssFileType: '.less',
+        map:{
+          view: {
+            location: 'ui/views/childviews',
+            postfix: 'View',
+            filetype: '.js'
+          },
+          pageview: {
+            location: 'ui/views/pageviews',
+            postfix: 'View',
+            filetype: '.js'
+          },
+          model: {
+            location: 'models',
+            postfix: 'Model',
+            filetype: '.js'
+          },
+          collection: {
+            location: 'collections',
+            postfix: 'Collection',
+            filetype: '.js'
+          },
+          controller: {
+            location: 'net',
+            postfix: 'Controller',
+            filetype: '.js'
+          },
+          widget: {
+            location: 'ui/widgets',
+            postfix: 'Widget',
+            filetype: '.js'
           }
         }
       }
@@ -384,26 +465,37 @@ module.exports = function( grunt ) {
     },
 
     watch: {
-      scripts: {
-        files: ['src/www/**/*.js'],
-        tasks: ['yuidoc']
+      less: {
+        files: ['src/www/css/**/*.less'],
+        tasks: ['less:dev'],
+        options: {
+          spawn: false,
+          livereload: true
+        }
+      },
+      js: {
+        files: ['src/www/**/*.js','src/www/**/*.html'],
+        options: {
+          spawn: false,
+          livereload: true
+        }
       }
     },
 
     buildProject: {
       local: {
         options: {
-          tasks: ['less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       },
       staging: {
         options: {
-          tasks: ['less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       },
       production: {
         options: {
-          tasks: ['yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
         }
       }
     },
@@ -411,8 +503,8 @@ module.exports = function( grunt ) {
     initCordova: {
       init: {
         options: {
-          appName: 'App',
-          id: 'com.mm.App'
+          appName: '<%= buildConfigVariables.appName %>',
+          id: '<%= buildConfigVariables.bundleId %>'
         }
       }
     },
@@ -431,6 +523,47 @@ module.exports = function( grunt ) {
         options: {
           stdout: true
         }
+      },
+      setShellVariables: {
+        command: 'echo "<%= buildConfigVariablesFlat %>" > .build-config'
+      }
+    },
+
+
+    modernizr: {
+      devFile: 'src/www/js/modernizr.js',
+      outputFile: '<%= paths.tmp.www %>/<%= paths.out.js %>/modernizr.js',
+      files: [
+        'src/www/css/**/*.less',
+        'src/www/js/**/*.js',
+        'src/www/js/templates/**/*.html'
+      ],
+      extra: {
+        "shiv" : true,
+        "printshiv" : false,
+        "load" : true,
+        "mq" : false,
+        "cssclasses" : true
+      }
+    },
+
+
+    connect: {
+      options: {
+        base: 'src/www'
+      },
+      dev: {
+        options: {
+          port: 8080,
+          open: false,
+          base: 'src/www',
+          middleware: function(connect, opts) {
+            return [
+              require('connect-livereload')(),
+              connect.static(require('path').resolve(opts.base))
+            ];
+          }
+        }
       }
     }
 
@@ -439,8 +572,9 @@ module.exports = function( grunt ) {
 
   grunt.registerTask('default', 'runs the tests and starts local server', [
     'amd-test',
-    'jasmine',
-    'server'
+    'less:dev', 
+    'connect', 
+    'watch'
   ]);
 
   grunt.registerTask('test', 'generates runner and runs the tests', [

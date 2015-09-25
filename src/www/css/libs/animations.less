@@ -209,56 +209,60 @@ var animationArray = [{
 */
 
 
+.faded-out {
+  opacity: 0;
+} 
+
 
 
 /* move from / to  */
 
 .pt-page-moveToLeft {
-  -webkit-animation: moveToLeft .6s ease both;
-  -moz-animation: moveToLeft .6s ease both;
-  animation: moveToLeft .6s ease both;
+  -webkit-animation: moveToLeft .3s ease both;
+  -moz-animation: moveToLeft .3s ease both;
+  animation: moveToLeft .3s ease both;
 }
 
 .pt-page-moveFromLeft {
-  -webkit-animation: moveFromLeft .6s ease both;
-  -moz-animation: moveFromLeft .6s ease both;
-  animation: moveFromLeft .6s ease both;
+  -webkit-animation: moveFromLeft .3s ease both;
+  -moz-animation: moveFromLeft .3s ease both;
+  animation: moveFromLeft .3s ease both;
 }
 
 .pt-page-moveToRight {
-  -webkit-animation: moveToRight .6s ease both;
-  -moz-animation: moveToRight .6s ease both;
-  animation: moveToRight .6s ease both;
+  -webkit-animation: moveToRight .3s ease both;
+  -moz-animation: moveToRight .3s ease both;
+  animation: moveToRight .3s ease both;
 }
 
 .pt-page-moveFromRight {
-  -webkit-animation: moveFromRight .6s ease both;
-  -moz-animation: moveFromRight .6s ease both;
-  animation: moveFromRight .6s ease both;
+  -webkit-animation: moveFromRight .3s ease both;
+  -moz-animation: moveFromRight .3s ease both;
+  animation: moveFromRight .3s ease both;
 }
 
 .pt-page-moveToTop {
-  -webkit-animation: moveToTop .6s ease both;
-  -moz-animation: moveToTop .6s ease both;
-  animation: moveToTop .6s ease both;
+  -webkit-animation: moveToTop .3s ease both;
+  -moz-animation: moveToTop .3s ease both;
+  animation: moveToTop .3s ease both;
 }
 
 .pt-page-moveFromTop {
-  -webkit-animation: moveFromTop .6s ease both;
-  -moz-animation: moveFromTop .6s ease both;
-  animation: moveFromTop .6s ease both;
+  -webkit-animation: moveFromTop .3s ease both;
+  -moz-animation: moveFromTop .3s ease both;
+  animation: moveFromTop .3s ease both;
 }
 
 .pt-page-moveToBottom {
-  -webkit-animation: moveToBottom .6s ease both;
-  -moz-animation: moveToBottom .6s ease both;
-  animation: moveToBottom .6s ease both;
+  -webkit-animation: moveToBottom .3s ease both;
+  -moz-animation: moveToBottom .3s ease both;
+  animation: moveToBottom .3s ease both;
 }
 
 .pt-page-moveFromBottom {
-  -webkit-animation: moveFromBottom .6s ease both;
-  -moz-animation: moveFromBottom .6s ease both;
-  animation: moveFromBottom .6s ease both;
+  -webkit-animation: moveFromBottom .3s ease both;
+  -moz-animation: moveFromBottom .3s ease both;
+  animation: moveFromBottom .3s ease both;
 }
 
 /* fade */
@@ -272,17 +276,20 @@ var animationArray = [{
 /* fade-in */
 
 .pt-page-fade-in {
-  -webkit-animation: fadeIn .3s ease both;
-  -moz-animation: fadeIn .3s ease both;
-  animation: fadeIn .3s ease both;
+  -webkit-animation: fadeIn .2s ease both;
+  -moz-animation: fadeIn .2s ease both;
+  animation: fadeIn .2s ease both;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 /* fade-out */
 
 .pt-page-fade-out {
-  -webkit-animation: fadeOut .3s ease both;
-  -moz-animation: fadeOut .3s ease both;
-  animation: fadeOut .3s ease both;
+  -webkit-animation: fadeOut .2s ease both;
+  -moz-animation: fadeOut .2s ease both;
+  animation: fadeOut .2s ease both;
 }
 
 /* move from / to and fade */
@@ -457,13 +464,16 @@ var animationArray = [{
 /* fadeIn */
 
 @-webkit-keyframes fadeIn {
-  to { opacity: 0.1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 @-moz-keyframes fadeIn {
-  to { opacity: 0.1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 @keyframes fadeIn {
-  to { opacity: 0.1; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 /* fadeOut */
@@ -563,15 +573,15 @@ var animationArray = [{
 /* scale and fade */
 
 .pt-page-scaleDown {
-  -webkit-animation: scaleDown .7s ease both;
-  -moz-animation: scaleDown .7s ease both;
-  animation: scaleDown .7s ease both;
+  -webkit-animation: scaleDown .3s ease both;
+  -moz-animation: scaleDown .3s ease both;
+  animation: scaleDown .3s ease both;
 }
 
 .pt-page-scaleUp {
-  -webkit-animation: scaleUp .7s ease both;
-  -moz-animation: scaleUp .7s ease both;
-  animation: scaleUp .7s ease both;
+  -webkit-animation: scaleUp .3s ease both;
+  -moz-animation: scaleUp .3s ease both;
+  animation: scaleUp .3s ease both;
 }
 
 .pt-page-scaleUpDown {

@@ -21,7 +21,10 @@ __Set Your Path__
 $ source ./set_path.sh
 ```
 
-__Start Development Server__
+4. __Install dev dependencies__
+```bash
+$ npm install
+```
 
 ```bash
 $ grunt server

@@ -1,6 +1,6 @@
 define(function(require) {
 
-  var HomeView = require('app/ui/views/HomeView'),
+  var HomeView = require('app/ui/views/pageviews/HomeView'),
       BaseController = require('app/net/BaseController'),
       Model = require('lavaca/mvc/Model');
 

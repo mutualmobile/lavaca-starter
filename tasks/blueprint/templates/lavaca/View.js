@@ -1,33 +1,33 @@
 define(function(require) {
 
-  var View = require('lavaca/mvc/View');
-  require('rdust!templates/<%=objectName %>');
-  var Config = require('lavaca/util/Config');
-  var Translation = require('lavaca/util/Translation');
+  var View = require('lavaca/mvc/View'),
+      template = require('rdust!templates/<%=templateFolder%><%= className %><%=postfix%>');
 
 /**
- * @class <%= fqn %>
+ * @class <%= classDotNotation %>
  * @super lavaca.mvc.View
- * <%= className %> view type
+ * <%= className %><%=postfix%> view type
  */
-  var <%= className %> = BaseView.extend(function(){
+  var <%= className %><%=postfix%> = View.extend(function <%= className %><%=postfix%>(){
     View.apply(this, arguments);
   },{
-  /**
-   * @field {String} template
-  * @default '<%=objectName %>'
-  * The name of the template used by the view
-  */
-  template: 'templates/<%=objectName %>',
-  /**
-  * @field {String} className
-  * @default '<%=objectName %>'
-  * A class name added to the view container
-  */
-  className: '<%=objectName %>'
+    /**
+    * @field {String} className
+    * @default '<%=classNameLowerCase %>'
+    * A class name added to the view container
+    */
+    className: '<%=classNameLowerCase %>',
+    generateHtml: function(model) {
+      return new Promise(function(resolve) {
+        template.render(model, function(err, html) {
+          resolve(html);
+        });
+      });
+    }
+
 
   });
 
-  return <%= className %>;
+  return <%= className %><%=postfix%>;
 
 });

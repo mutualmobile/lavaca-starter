@@ -1,11 +1,8 @@
 define(function(require) {
   var History = require('lavaca/net/History');
-  var HomeController = require('./net/HomeController');
+  var HomeController = require('app/net/HomeController');
   var Connectivity = require('lavaca/net/Connectivity');
   var Application = require('lavaca/mvc/Application');
-  var Translation = require('lavaca/util/Translation');
-  var headerView = require('app/ui/views/controls/HeaderView');
-  require('lavaca/ui/DustTemplate');
   require('hammer');
 
 
@@ -23,16 +20,11 @@ define(function(require) {
     this.router.add({
       '/': [HomeController, 'index']
     });
-    // Initialize messages
-    Translation.init('en_US');
-    //render header
-    headerView.render();
   });
 
   // Setup offline AJAX handler
   Connectivity.registerOfflineAjaxHandler(function() {
-    var hasLoaded = Translation.hasLoaded;
-    alert(hasLoaded ? Translation.get('error_offline') : 'No internet connection available. Please check your settings and connection and try again.');
+    alert("Offline");
   });
 
   return app;

@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "appName":"lavaca",
+  "bundleId":"com.mm.lavaca",
+  "codesignIdentity":"###",
+  "appleProvisionId":"###",
+  "s3Bucket":"###",
+  "s3Key":"###",
+  "s3Secret":"###",
+  "hockeyAppIdiOS":"###",
+  "hockeyAppIdAndroid":"###",
+  "hockeyApiToken":"###",
+  "hockeyAppTeams":"###",
+  "serverAddress":"###",
+  "serverRemoteFolder":"##",
+  "serverUserName":"##"
+}

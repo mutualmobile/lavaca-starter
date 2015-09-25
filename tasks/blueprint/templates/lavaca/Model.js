@@ -1,19 +1,18 @@
 define(function(require) {
 
   var Model = require('lavaca/mvc/Model');
-  var Config = require('lavaca/util/Config');
 
   /**
-   * @class <%= fqn %>
+   * @class <%= classDotNotation %>
    * @super lavaca.mvc.Model
-   * <%= className %> model type
+   * <%= className %><%=postfix%> model type
    */
-  var <%= className %> = Model.extend(function(){
+  var <%= className %><%=postfix%> = Model.extend(function <%= className %><%=postfix%>(){
     Model.apply(this, arguments);
   },{
 
   });
 
-  return <%= className %>;
+  return <%= className %><%=postfix%>;
 
 });
