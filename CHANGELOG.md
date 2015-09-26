@@ -1,3 +1,7 @@
+Changed in 3.0.0
+======
+* Major overhaul
+
 Changed in 2.3.2
 ======
 * Switched bower.json to link to latest of lavaca

@@ -1,6 +1,6 @@
 define(function(require) {
 
-  var BaseView = require('app/ui/views/BaseView'),
+  var BaseView = require('app/ui/views/pageviews/BaseView'),
       template = require('rdust!templates/<%=templateFolder%><%= className %><%=postfix%>');
 
 /**

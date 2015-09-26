@@ -4,6 +4,9 @@
 module.exports = function(grunt) {
   grunt.registerTask('blueprint', 'Generator for user-defined templates', function(type, className) {
 
+      grunt.log.writeln('');
+      grunt.log.writeln('-------Generating-------'['yellow']);
+
       //Get options
       var options = this.options({
           key:'value'
@@ -67,6 +70,56 @@ module.exports = function(grunt) {
 
       //Done
       grunt.log.writeln('Generated:', destinationPath);
+
+      if (type === 'pageview') {
+        grunt.log.writeln('');
+        grunt.log.writeln('----------------------'['yellow']);
+        grunt.log.writeln('Awesome! To finish hooking up your PageView,\nhere are the references you need to add:'['yellow']);
+        grunt.log.writeln('----------------------'['yellow']);
+        
+        //less
+        var importCss = '@import \'pageviews/'+options.className+'View.less\';';
+        grunt.log.writeln('Add an import to app.less:', importCss['cyan']);
+        
+        //route
+        var routeRef = '\'/'+options.classNameLowerCase+'\': [HomeController, \''+options.classNameLowerCase+'\']';
+        grunt.log.writeln('Add a route to app.js:', routeRef['cyan']);
+
+        //print controller reference
+        var templateFilePathControllerRef = __dirname + '/templates/lavaca/ControllerReference.js';
+        grunt.verbose.writeln('templatePathControllerRef:', templateFilePathControllerRef);
+        var templateFileControllerRef = grunt.file.read(templateFilePathControllerRef);
+        var controllerRefFileContent = grunt.template.process(templateFileControllerRef,{data:options});
+        grunt.log.writeln('');
+        grunt.log.writeln('Finally, add a reference in your controller:');
+        grunt.log.writeln('');
+        grunt.log.writeln(controllerRefFileContent['cyan']);
+      }
+
+      if (type === 'view') {
+        grunt.log.writeln('');
+        grunt.log.writeln('----------------------'['yellow']);
+        grunt.log.writeln('Awesome! To finish hooking up your View,\nhere are the references you need to add:'['yellow']);
+        grunt.log.writeln('----------------------'['yellow']);
+        
+        //less
+        var importViewCss = '@import \'childviews/'+options.className+'View.less\';';
+        grunt.log.writeln('Add an import to app.less:', importViewCss['cyan']);
+        
+        //map childview
+        grunt.log.writeln('Map the childview:');
+        var tmpString = '';
+        grunt.log.writeln(tmpString);
+        tmpString = 'var '+options.className+'View = require(\'app/ui/views/childviews/'+options.className+'View\')';
+        grunt.log.writeln(tmpString['cyan']);
+        grunt.log.writeln('');
+        tmpString = 'this.mapChildView({';
+        grunt.log.writeln(tmpString['cyan']);
+        tmpString = '  \'.'+options.classNameLowerCase+'-view\': { TView: '+options.className+'View, model: {} }';
+        grunt.log.writeln(tmpString['cyan']);
+        tmpString = '});';
+        grunt.log.writeln(tmpString['cyan']);
+      }
 
   });
 
