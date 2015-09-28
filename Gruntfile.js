@@ -86,8 +86,8 @@ module.exports = function( grunt ) {
       },
       'package': {
         root: 'pkg',
-        android: '<%= paths.package.root %>/<%= package.name %>.apk',
-        ios: '<%= paths.package.root %>/<%= package.name %>.ipa'
+        android: '<%= paths.package.root %>/<%= buildConfigVariables.appName %>.apk',
+        ios: '<%= paths.package.root %>/<%= buildConfigVariables.appName %>.ipa'
       },
       doc: 'doc',
       copy: {
@@ -96,8 +96,8 @@ module.exports = function( grunt ) {
           'manifest.json',
           'favicon.ico',
           'browserconfig.xml',
-          '<%= paths.out.css %>/<%= package.name %>.css ',
-          '<%= paths.out.js %>/<%= package.name %>.min.js',
+          '<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css ',
+          '<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js',
           '<%= paths.out.js %>/modernizr.js',
           'configs/**/*',
           'assets/**/*',
