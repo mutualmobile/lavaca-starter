@@ -17,12 +17,12 @@ var HomeView = BaseView.extend({
 
   generateHtml: function(model) {
     model.messages = {headline:'abc'};
-    return Promise.resolve('<h1>test</h1>');
-    // return new Promise(function(resolve) {
-    //   template(model, function(err, html) {
-    //     resolve(html);
-    //   });
-    // });
+    // return Promise.resolve('<h1>test</h1>');
+    return new Promise(function(resolve) {
+      template(model, function(err, html) {
+        resolve(html);
+      });
+    });
   }
 
 });
