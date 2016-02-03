@@ -1,6 +1,4 @@
-define(function(require) {
-
-  var Config = {};
+var Config = {};
 
   switch(window.env) {
     case 'production':
@@ -12,7 +10,4 @@ define(function(require) {
     default:
         Config = {};
   }
-
-  return Config;
-
-});
+module.exports = Config;

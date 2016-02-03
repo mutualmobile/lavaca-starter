@@ -1,33 +1,30 @@
-define(function(require) {
+var BaseView = require('./BaseView'),
+    dust = require('dustjs-linkedin'),
+    template = require('templates/pageviews/home');
 
-  var BaseView = require('./BaseView'),
-      messages = require('i18n!app/nls/messages'),
-      template = require('rdust!templates/pageviews/home');
-
+/**
+ * Example view type
+ * @class app.ui.views.HomeView
+ * @extends app.ui.views.BaseView
+ */
+var HomeView = BaseView.extend({
   /**
-   * Example view type
-   * @class app.ui.views.HomeView
-   * @extends app.ui.views.BaseView
+   * A class name added to the view container
+   * @property {String} className
+   * @default 'home'
    */
-  var HomeView = BaseView.extend({
-    /**
-     * A class name added to the view container
-     * @property {String} className
-     * @default 'home'
-     */
-    className: 'home',
+  className: 'home',
 
-    generateHtml: function(model) {
-      model.messages = messages;
-      return new Promise(function(resolve) {
-        template.render(model, function(err, html) {
-          resolve(html);
-        });
-      });
-    }
-
-  });
-
-  return HomeView;
+  generateHtml: function(model) {
+    model.messages = {headline:'abc'};
+    return Promise.resolve('<h1>test</h1>');
+    // return new Promise(function(resolve) {
+    //   template(model, function(err, html) {
+    //     resolve(html);
+    //   });
+    // });
+  }
 
 });
+
+module.exports = HomeView;
