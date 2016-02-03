@@ -30,11 +30,14 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-xmlstoke');
-  grunt.loadNpmTasks('connect-livereload');
+  // grunt.loadNpmTasks('connect-livereload');
   grunt.loadNpmTasks('grunt-modernizr');
+  grunt.loadNpmTasks('grunt-webpack');
 
 
-  var variablesObj = grunt.file.readJSON('build-config.json');
+  var webpackConfig = require('./webpack.config.js'),
+      webpack = require("webpack");
+  var variablesObj = grunt.file.readJSON('./build-config.json');
   var variables = '';
   for (var key in variablesObj) {
     variables += key + '="' + variablesObj[key] + '"\n';
@@ -131,21 +134,6 @@ module.exports = function( grunt ) {
         files: {
           '<%= paths.cordovaInit.root %>/config.xml': '<%= paths.cordovaInit.root %>/config.xml'
         }
-      }
-    },
-
-    uglify: {
-      all: {
-        options: {
-          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-             '<%= grunt.template.today("yyyy-mm-dd") %> |  License: <%= package.license %> */'
-        },
-        files: [
-          {
-            src: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js',
-            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js'
-          }
-        ]
       }
     },
 
@@ -565,16 +553,40 @@ module.exports = function( grunt ) {
           }
         }
       }
-    }
+    },
 
+    webpack: {
+      options: webpackConfig.prod,
+      build: {
+        plugins: [
+          new webpack.optimize.UglifyJsPlugin()
+        ]
+      }
+    },
 
+    'webpack-dev-server': {
+      options: {
+        webpack: webpackConfig.dev,
+        port: 3000
+      },
+      start: {
+        contentBase: '<%= paths.src.www %>',
+        webpack: {
+          devtool: 'eval',
+          debug: false
+        },
+        keepAlive: true,
+        watch: true
+      }
+    },
   });
 
   grunt.registerTask('default', 'runs the tests and starts local server', [
     'amd-test',
     'less:dev', 
-    'connect', 
-    'watch'
+    'webpack-dev-server'
+    // 'connect', 
+    // 'watch'
   ]);
 
   grunt.registerTask('test', 'generates runner and runs the tests', [
