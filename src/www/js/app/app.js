@@ -2,6 +2,7 @@ var History = require('lavaca/net/History');
 var HomeController = require('app/net/HomeController');
 var Connectivity = require('lavaca/net/Connectivity');
 var Application = require('lavaca/mvc/Application');
+require('css/app/app.less');
 // require('hammer');
 
 

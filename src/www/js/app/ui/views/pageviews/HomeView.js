@@ -1,5 +1,4 @@
 var BaseView = require('./BaseView'),
-    dust = require('dustjs-linkedin'),
     template = require('templates/pageviews/home');
 
 /**
@@ -16,8 +15,7 @@ var HomeView = BaseView.extend({
   className: 'home',
 
   generateHtml: function(model) {
-    model.messages = {headline:'abc'};
-    // return Promise.resolve('<h1>test</h1>');
+    model.messages = {headline:'Hello World'};
     return new Promise(function(resolve) {
       template(model, function(err, html) {
         resolve(html);

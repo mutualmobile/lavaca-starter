@@ -27,7 +27,6 @@
     "grunt-contrib-yuidoc": "0.4.0",
     "grunt-modernizr": "~0.4.1",
     "grunt-shell": "0.3.x",
-    "grunt-webpack": "^1.0.11",
     "grunt-xmlstoke": "0.7.0",
     "mout": "0.x",
     "preprocess": "1.0.x",
@@ -36,9 +35,20 @@
     "xml2js": "0.2.x"
   },
   "devDependencies": {
-    "webpack-dev-server": "^1.14.1",
-    "webpack": "^1.12.12",
-    "dust-loader-complete": "^1.4.0"
+    "css-loader": "^0.23.1",
+    "dust-loader": "^1.0.1",
+    "dust-loader-complete": "^1.4.0",
+    "dustjs-linkedin-loader": "0.0.4",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "grunt-webpack": "^1.0.11",
+    "less": "^2.3.1",
+    "less-loader": "^2.2.2",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install --force-latest --allow-root"

@@ -17,10 +17,8 @@ module.exports = function( grunt ) {
   grunt.loadTasks('tasks/cordovaBuild');
   grunt.loadTasks('tasks/cordovaInit');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-amd-dist');
   grunt.loadNpmTasks('grunt-amd-test');
@@ -30,13 +28,14 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-xmlstoke');
-  // grunt.loadNpmTasks('connect-livereload');
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-webpack');
 
 
+  var ExtractTextPlugin = require('extract-text-webpack-plugin');
   var webpackConfig = require('./webpack.config.js'),
       webpack = require("webpack");
+
   var variablesObj = grunt.file.readJSON('./build-config.json');
   var variables = '';
   for (var key in variablesObj) {
@@ -83,7 +82,7 @@ module.exports = function( grunt ) {
       },
       out: {
         index: 'index.html',
-        css: 'css/app',
+        css: 'css',
         js: 'js',
         cordova: 'cordova.js'
       },
@@ -201,6 +200,10 @@ module.exports = function( grunt ) {
         options: {
           compress: true
         },
+        plugins: [
+            new (require('less-plugin-autoprefix'))({browsers: ['last 2 versions']}),
+            new (require('less-plugin-clean-css'))()
+        ],
         files: [
           {
             src: '<%= paths.src.www %>/css/app/app.less',
@@ -227,37 +230,7 @@ module.exports = function( grunt ) {
       files: 'test/unit/**/*.js'
     },
 
-    jshint: {
-      src: {
-        options: {
-          jshintrc: '<%= paths.src.www %>/js/.jshintrc'
-        },
-        files: {
-          src: '<%= paths.src.www %>/js/**/*.js'
-        }
-      },
-      test: {
-        options: {
-          jshintrc: 'test/unit/.jshintrc'
-        },
-        files: {
-          src: 'test/unit/**/*.js'
-        }
-      }
-    },
-
     server: {
-      local: {
-        options: {
-          port: 8080,
-          vhost: 'localhost',
-          base: 'src/www',
-          apiPrefix: '/api',
-          apiBaseUrl: 'configure-to-specific-api',
-          proxyPort: '80',// change to 443 for https
-          proxyProtocol: 'http'//change to https if ssl is required
-        }
-      },
       prod: {
         options: {
           port: process.env.PORT || 8080,
@@ -265,7 +238,9 @@ module.exports = function( grunt ) {
           base: 'build/www',
           apiPrefix: '/api*',
           authUser: 'username',
-          authPassword: 'password'
+          authPassword: 'password',
+          proxyPort: '80',// change to 443 for https
+          proxyProtocol: 'http'//change to https if ssl is required
         }
       },
       doc: {
@@ -460,20 +435,13 @@ module.exports = function( grunt ) {
           spawn: false,
           livereload: true
         }
-      },
-      js: {
-        files: ['src/www/**/*.js','src/www/**/*.html'],
-        options: {
-          spawn: false,
-          livereload: true
-        }
       }
     },
 
     buildProject: {
       local: {
         options: {
-          tasks: ['shell:setShellVariables', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'webpack', 'preprocess']
         }
       },
       staging: {
@@ -556,18 +524,27 @@ module.exports = function( grunt ) {
     },
 
     webpack: {
-      options: webpackConfig.prod,
+      options: webpackConfig,
       build: {
+        output: {
+          path: './<%= paths.tmp.www %>/<%= paths.out.js %>',
+          filename: '<%= buildConfigVariables.appName %>.min.js',
+        },
+        failOnError: true, 
+        keepalive: false,
         plugins: [
-          new webpack.optimize.UglifyJsPlugin()
+          new webpack.optimize.UglifyJsPlugin(),
+          new ExtractTextPlugin('../<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css', {
+            allChunks: true
+          })
         ]
       }
     },
 
     'webpack-dev-server': {
       options: {
-        webpack: webpackConfig.dev,
-        port: 3000
+        webpack: webpackConfig,
+        port: 8080
       },
       start: {
         contentBase: '<%= paths.src.www %>',
@@ -575,18 +552,23 @@ module.exports = function( grunt ) {
           devtool: 'eval',
           debug: false
         },
-        keepAlive: true,
-        watch: true
+        watch: true,
+        keepalive: true,
+        plugins: [
+          new ExtractTextPlugin('css/app/app.css', {
+            allChunks: true
+          })
+        ]
       }
     },
   });
 
   grunt.registerTask('default', 'runs the tests and starts local server', [
-    'amd-test',
-    'less:dev', 
     'webpack-dev-server'
-    // 'connect', 
-    // 'watch'
+  ]);
+
+  grunt.registerTask('compile', 'runs the tests and starts local server', [
+    'webpack'
   ]);
 
   grunt.registerTask('test', 'generates runner and runs the tests', [
