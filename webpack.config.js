@@ -3,6 +3,8 @@ var path = require('path');
 var webpack = require('webpack');
 var LessPluginCleanCSS = require('less-plugin-clean-css');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer = require('autoprefixer');
+
 module.exports = {
   entry: path.resolve(__dirname,'./<%= paths.src.www %>/js/app/app.js'),
   output: {
@@ -17,6 +19,7 @@ module.exports = {
   progress: true, 
   failOnError:false, 
   watch: true,
+  hot: false,
   keepalive: true,
   inline: true,
   resolve: {
@@ -38,19 +41,36 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      Hammer: 'hammer',
+      'jquery': path.join(__dirname, 'jquery/jquery.min'),
+      hammer: 'hammer',
       dust: 'dustjs-linkedin',
+    }),
+    new ExtractTextPlugin('css/app/app.css', {
+      allChunks: true
     })
   ],
   module: {
     loaders: [
-      { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')},
-          
-      { test: /\.html$/, loader: 'dust-loader-complete', exclude: /node_modules/, query: { verbose: true } }
+      { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!less-loader')},
+      { test: /\.html$/, loader: 'dust-loader-complete', exclude: /node_modules/, query: { verbose: true } },
+      {
+        loader: 'babel-loader',
+        include: [
+          path.resolve(__dirname, 'src'),
+        ],
+        exclude: /(node_modules|components)/,
+        test: /\.js?$/,
+        query: {
+          plugins: ['transform-runtime'],
+          presets: ['es2015'],
+        }
+      }
     ]
+  },
+  postcss: function () {
+      return [autoprefixer({ browsers: ['last 2 versions'] })];
   }
 };

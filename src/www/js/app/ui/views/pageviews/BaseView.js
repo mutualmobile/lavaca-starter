@@ -1,4 +1,4 @@
-var View = require('lavaca/mvc/View'),
+let View = require('lavaca/mvc/View'),
     viewManager = require('lavaca/mvc/ViewManager'),
     History = require('lavaca/net/History'),
     ViewTransitionAnimations = require('app/animations/ViewTransitionAnimations');
@@ -33,7 +33,7 @@ var BaseView = View.extend(function() {
    * @param {Event} e  The render event. This object should have a string property named "html"
    *   that contains the template's rendered HTML output.
    */
-  onRenderSuccess: function() {
+  onRenderSuccess() {
     View.prototype.onRenderSuccess.apply(this, arguments);
   },
   /**
@@ -42,7 +42,7 @@ var BaseView = View.extend(function() {
    *
    * @param {Event} e  The tap event.
    */
-  onTapCancel: function(e) {
+  onTapCancel(e) {
     e.preventDefault();
     viewManager.dismiss(e.currentTarget);
   },
@@ -51,7 +51,7 @@ var BaseView = View.extend(function() {
    * and hides the cordova splashscreen if it is included
    * @method enterHasCompleted
    */
-  enterHasCompleted: function() {
+  enterHasCompleted() {
     this.trigger('entercomplete');
     setTimeout(function() {
       if (navigator && navigator.splashscreen) {
@@ -69,7 +69,7 @@ var BaseView = View.extend(function() {
    * @param {Array} exitingViews  The views that are exiting as this one enters
    * @return {Lavaca.util.Promise} A promise
    */
-  enter: function(container, exitingViews) {
+  enter(container, exitingViews) {
     var isRoutingBack = History.isRoutingBack;
     return View.prototype.enter.apply(this, arguments)
       .then(function() {
@@ -119,7 +119,7 @@ var BaseView = View.extend(function() {
    * @param {Array} enteringViews  The views that are entering as this one exits
    * @return {Lavaca.util.Promise} A promise
    */
-  exit: function(container, enteringViews) {
+  exit(container, enteringViews) {
     var animation = History.isRoutingBack ? this.pageTransition['outReverse'] : (enteringViews.length ? enteringViews[0].pageTransition['out'] : '');
 
     if (History.isRoutingBack && !enteringViews.length) {

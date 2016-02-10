@@ -555,9 +555,7 @@ module.exports = function( grunt ) {
         watch: true,
         keepalive: true,
         plugins: [
-          new ExtractTextPlugin('css/app/app.css', {
-            allChunks: true
-          })
+          new webpack.HotModuleReplacementPlugin()
         ]
       }
     },
