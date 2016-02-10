@@ -8,7 +8,6 @@ import template from 'templates/pageviews/home';
  */
 module.exports = BaseView.extend(function() {
   BaseView.apply(this,arguments);
-  this.mapEvent('.test', 'tap', this.onTapCancel);
 },{
   /**
    * A class name added to the view container
@@ -17,10 +16,6 @@ module.exports = BaseView.extend(function() {
    */
   text:'Hello World',
   className: 'home',
-  onTapCancel(){
-    this.model.set('headline','Ello puppet');
-    this.render();
-  },
   generateHtml(model) {
     return new Promise(function(resolve) {
       template(model, function(err, html) {

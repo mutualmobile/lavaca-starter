@@ -18,7 +18,7 @@ module.exports = BaseController.extend({
    */
   index(params, history) {
     var model = new Model();
-    model.set('headline','test');
+    model.set('headline','Hello World');
     return this
       .view(null, HomeView, model)
       .then(this.updateState(history, 'Home Page', params.url));

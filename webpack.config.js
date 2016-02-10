@@ -46,6 +46,7 @@ module.exports = {
       jQuery: 'jquery',
       'jquery': path.join(__dirname, 'jquery/jquery.min'),
       hammer: 'hammer',
+      'Hammer': 'hammerjs/dist/jquery.hammer',
       dust: 'dustjs-linkedin',
     }),
     new ExtractTextPlugin('css/app/app.css', {
