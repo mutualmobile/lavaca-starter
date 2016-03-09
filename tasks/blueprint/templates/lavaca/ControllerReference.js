@@ -1,5 +1,3 @@
-var <%= className %>View = require('app/ui/views/pageviews/<%= className %>View')
-
 /**
  * <%= className %> action, creates a history state and shows a view
  * @method <%=classNameLowerCase %>
@@ -12,5 +10,5 @@ var <%= className %>View = require('app/ui/views/pageviews/<%= className %>View'
   var model = new Model();
   return this
     .view(null, <%= className %>View, model)
-    .then(this.updateState(history, '<%= className %> Page', params.url));
+    .then(this.updateState(history, '<%= className %>', params.url));
 }

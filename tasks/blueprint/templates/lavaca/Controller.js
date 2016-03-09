@@ -7,7 +7,7 @@ define(function(require) {
    * @super app.net.BaseController
    * <%= className %><%=postfix%>
    */
-  var <%= className %><%=postfix%> = Collection.extend(function <%= className %><%=postfix%>(){
+  var <%= className %><%=postfix%> = BaseController.extend(function <%= className %><%=postfix%>(){
       BaseController.apply(this, arguments);
     }, {
     /**
@@ -23,7 +23,7 @@ define(function(require) {
          model = {};
        }
        return this
-         .view(null, ExampleView, model)
+         .view(null, ExampleView, model, params)
          .then(this.updateState(model, 'Title', params.url));
      }
   });

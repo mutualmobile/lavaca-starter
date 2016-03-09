@@ -6,7 +6,7 @@ define(function(require) {
 
   /**
    * Base controller
-   * @class app.net.BaseController
+   * @class app.controllers.BaseController
    * @extends Lavaca.mvc.Controller
    */
   var BaseController = Controller.extend(function(){

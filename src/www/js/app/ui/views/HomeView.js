@@ -1,15 +1,15 @@
 define(function(require) {
 
-  var BaseView = require('./BaseView'),
+  var View = require('lavaca/mvc/View'),
       messages = require('i18n!app/nls/messages'),
-      template = require('rdust!templates/pageviews/home');
+      template = require('rdust!templates/home');
 
   /**
    * Example view type
    * @class app.ui.views.HomeView
-   * @extends app.ui.views.BaseView
+   * @extends lavaca.mvc.View
    */
-  var HomeView = BaseView.extend({
+  var HomeView = View.extend({
     /**
      * A class name added to the view container
      * @property {String} className

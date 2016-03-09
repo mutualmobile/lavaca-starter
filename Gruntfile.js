@@ -150,11 +150,14 @@ module.exports = function( grunt ) {
     },
 
     preprocess: {
-      www: {
+      web: {
         options: {
           locals: {
+            version: "<script>window.appVersion = '<%= buildConfigVariables.version %>';",
             css: '<link rel="stylesheet" type="text/css" href="<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css" />\n',
-            js: '<script src="<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js"></script>\n'
+            js: '<script src="<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js"></script>\n',
+            gtm: '<script>window.gtmid = "<%= buildConfigVariables.gtmWeb %>";</script>',
+            ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaWeb %>";</script>'
           }
         },
         files: [{
@@ -165,7 +168,8 @@ module.exports = function( grunt ) {
       ios: {
         options: {
           locals: {
-            css: '<%= preprocess.www.options.locals.css %>',
+            version: '<%= preprocess.web.options.locals.version %>',
+            css: '<%= preprocess.web.options.locals.css %>',
             js: (function() {
               return [
                 '<%= paths.out.cordova %>',
@@ -175,7 +179,9 @@ module.exports = function( grunt ) {
                   return '<script src="' + file + '"></script>';
                 })
                 .join('\n') + '\n';
-            })()
+            })(),
+            gtm: '<script>window.gtmid = "<%= buildConfigVariables.gtmIOS %>";</script>',
+            ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaIOS %>";</script>'
           }
         },
         files: [{
@@ -186,8 +192,11 @@ module.exports = function( grunt ) {
       android: {
         options: {
           locals: {
-            css: '<%= preprocess.www.options.locals.css %>',
-            js: '<%= preprocess.ios.options.locals.js %>'
+            version: '<%= preprocess.web.options.locals.version %>',
+            css: '<%= preprocess.web.options.locals.css %>',
+            js: '<%= preprocess.ios.options.locals.js %>',
+            gtm: '<script>window.gtmid = "<%= buildConfigVariables.gtmAndroid %>";</script>',
+            ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaAndroid %>";</script>'
           }
         },
         files: [{
@@ -217,6 +226,10 @@ module.exports = function( grunt ) {
           {
             src: '<%= paths.src.www %>/css/app/app.less',
             dest: '<%= paths.src.www %>/css/app/app.css'
+          },
+          {
+            src: '<%= paths.src.www %>/css/app/app.less',
+            dest: '<%= paths.src.www %>/assets/styleguide/app.css'
           }
         ]
       }
@@ -285,6 +298,13 @@ module.exports = function( grunt ) {
           port: 8080,
           vhost: 'localhost',
           base: 'doc'
+        }
+      },
+      styleguide: {
+        options: {
+          port: 8080,
+          vhost: 'localhost',
+          base: 'src/www/assets/styleguide'
         }
       }
     },
@@ -393,20 +413,13 @@ module.exports = function( grunt ) {
         cssRoot: '<%= paths.src.www %>/css/<%= blueprint.options.appName %>',
         jsRoot: '<%= paths.src.www %>/js/<%= blueprint.options.appName %>',
         templateRoot: '<%= paths.src.www %>/js/templates',
-        pageviewTemplateFolder: 'pageviews',
-        pageviewCssFolder: 'pageviews',
-        viewTemplateFolder: 'childviews',
-        viewCssFolder: 'childviews',
+        viewTemplateFolder: '',
+        viewCssFolder: 'views',
         templateFileType: '.html',
         cssFileType: '.less',
         map:{
           view: {
-            location: 'ui/views/childviews',
-            postfix: 'View',
-            filetype: '.js'
-          },
-          pageview: {
-            location: 'ui/views/pageviews',
+            location: 'ui/views',
             postfix: 'View',
             filetype: '.js'
           },
@@ -464,17 +477,35 @@ module.exports = function( grunt ) {
       }
     },
 
+    shell: {
+      mkCordovaDir: {
+        command: 'mkdir <%= paths.cordovaInit.cordovaRoot %>',
+        options: {
+          stdout: true
+        }
+      },
+      setShellVariables: {
+        command: 'echo "<%= buildConfigVariablesFlat %>" > .build-config'
+      },
+      buildStyleGuide: {
+        command: './node_modules/.bin/kss-node src/www/css/app/theme src/www/assets/styleguide --css app.css --template src/www/assets/template/',
+        options: {
+          stdout: true
+        }
+      }
+    },
+
     watch: {
       less: {
         files: ['src/www/css/**/*.less'],
-        tasks: ['less:dev'],
+        tasks: ['less:dev', 'shell:buildStyleGuide'],
         options: {
           spawn: false,
           livereload: true
         }
       },
       js: {
-        files: ['src/www/**/*.js','src/www/**/*.html'],
+        files: ['src/www/js/**/*.js','src/www/js/**/*.html'],
         options: {
           spawn: false,
           livereload: true
@@ -485,12 +516,12 @@ module.exports = function( grunt ) {
     buildProject: {
       local: {
         options: {
-          tasks: ['shell:setShellVariables', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'shell:buildStyleGuide', 'less:build', 'amd-dist:all', 'preprocess']
         }
       },
       staging: {
         options: {
-          tasks: ['shell:setShellVariables', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'less:build', 'amd-dist:all', 'preprocess']
         }
       },
       production: {
@@ -514,18 +545,6 @@ module.exports = function( grunt ) {
         options: {
           platforms: ['ios', 'android']
         }
-      }
-    },
-
-    shell: {
-      mkCordovaDir: {
-        command: 'mkdir <%= paths.cordovaInit.cordovaRoot %>',
-        options: {
-          stdout: true
-        }
-      },
-      setShellVariables: {
-        command: 'echo "<%= buildConfigVariablesFlat %>" > .build-config'
       }
     },
 
@@ -564,6 +583,19 @@ module.exports = function( grunt ) {
             ];
           }
         }
+      },
+      styleguide: {
+        options: {
+          port: 8080,
+          open: false,
+          base: 'src/www/assets/',
+          middleware: function(connect, opts) {
+            return [
+              require('connect-livereload')(),
+              connect.static(require('path').resolve(opts.base))
+            ];
+          }
+        }
       }
     }
 
@@ -573,7 +605,14 @@ module.exports = function( grunt ) {
   grunt.registerTask('default', 'runs the tests and starts local server', [
     'amd-test',
     'less:dev', 
-    'connect', 
+    'connect:dev', 
+    'watch'
+  ]);
+
+  grunt.registerTask('styleguide', 'runs styleguide and starts local server', [
+    'less:dev',
+    'shell:buildStyleGuide',
+    'connect:dev', 
     'watch'
   ]);
 
