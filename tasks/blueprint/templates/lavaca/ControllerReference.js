@@ -11,6 +11,6 @@ var <%= className %>View = require('app/ui/views/pageviews/<%= className %>View'
 <%=classNameLowerCase %>: function(params, history) {
   var model = new Model();
   return this
-    .view(null, <%= className %>View, model)
-    .then(this.updateState(history, '<%= className %> Page', params.url));
+    .view(null, <%= className %>View, model, params)
+    .then(this.updateState(history, '<%= className %>', params.url));
 }

@@ -1,5 +1,5 @@
-var HomeView = require('app/ui/views/pageviews/HomeView'),
-    BaseController = require('app/net/BaseController'),
+var HomeView = require('app/ui/views/HomeView'),
+    BaseController = require('app/controllers/BaseController'),
     Model = require('lavaca/mvc/Model');
 
 /**
@@ -20,7 +20,7 @@ module.exports = BaseController.extend({
     var model = new Model();
     model.set('headline','Hello World');
     return this
-      .view(null, HomeView, model)
+      .view(null, HomeView, model, params)
       .then(this.updateState(history, 'Home Page', params.url));
   }
 });

@@ -356,20 +356,13 @@ module.exports = function( grunt ) {
         cssRoot: '<%= paths.src.www %>/css/<%= blueprint.options.appName %>',
         jsRoot: '<%= paths.src.www %>/js/<%= blueprint.options.appName %>',
         templateRoot: '<%= paths.src.www %>/js/templates',
-        pageviewTemplateFolder: 'pageviews',
-        pageviewCssFolder: 'pageviews',
-        viewTemplateFolder: 'childviews',
-        viewCssFolder: 'childviews',
+        viewTemplateFolder: '',
+        viewCssFolder: 'views',
         templateFileType: '.html',
         cssFileType: '.less',
         map:{
           view: {
-            location: 'ui/views/childviews',
-            postfix: 'View',
-            filetype: '.js'
-          },
-          pageview: {
-            location: 'ui/views/pageviews',
+            location: 'ui/views',
             postfix: 'View',
             filetype: '.js'
           },

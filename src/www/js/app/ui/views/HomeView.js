@@ -1,13 +1,13 @@
-import BaseView from './BaseView';
-import template from 'templates/pageviews/home';
+let View = require('lavaca/mvc/View');
+import template from 'templates/home';
 
 /**
  * Example view type
  * @class app.ui.views.HomeView
- * @extends app.ui.views.BaseView
+ * @extends lavaca.mvc.View
  */
-module.exports = BaseView.extend(function() {
-  BaseView.apply(this,arguments);
+module.exports = View.extend(function HomeView() {
+  View.apply(this,arguments);
 },{
   /**
    * A class name added to the view container
