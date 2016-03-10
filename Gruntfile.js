@@ -140,8 +140,10 @@ module.exports = function( grunt ) {
       www: {
         options: {
           locals: {
+            version: "<script>window.appVersion = '<%= buildConfigVariables.version %>';",
             css: '<link rel="stylesheet" type="text/css" href="<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css" />\n',
-            js: '<script src="<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js"></script>\n'
+            js: '<script src="<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js"></script>\n',
+            ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaWeb %>";</script>'
           }
         },
         files: [{
@@ -152,6 +154,7 @@ module.exports = function( grunt ) {
       ios: {
         options: {
           locals: {
+            version: '<%= preprocess.wwww.options.locals.version %>',
             css: '<%= preprocess.www.options.locals.css %>',
             js: (function() {
               return [
@@ -162,7 +165,8 @@ module.exports = function( grunt ) {
                   return '<script src="' + file + '"></script>';
                 })
                 .join('\n') + '\n';
-            })()
+            })(),
+            ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaIOS %>";</script>'
           }
         },
         files: [{
@@ -173,8 +177,10 @@ module.exports = function( grunt ) {
       android: {
         options: {
           locals: {
+            version: '<%= preprocess.web.options.locals.version %>',
             css: '<%= preprocess.www.options.locals.css %>',
-            js: '<%= preprocess.ios.options.locals.js %>'
+            js: '<%= preprocess.ios.options.locals.js %>',
+            ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaAndroid %>";</script>'
           }
         },
         files: [{

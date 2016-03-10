@@ -13,5 +13,8 @@
   "hockeyAppTeams":"###",
   "serverAddress":"###",
   "serverRemoteFolder":"##",
-  "serverUserName":"##"
+  "serverUserName":"##",
+  "gaWeb":"UA-XXXXXXXX-X",
+  "gaIOS":"UA-XXXXXXXX-X",
+  "gaAndroid":"UA-XXXXXXXX-X"
 }

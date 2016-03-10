@@ -77,11 +77,49 @@
     <!-- @endexclude -->
     <!-- @echo config -->
 
+    <!-- version -->
+    <!-- @exclude -->
+    <script>window.appVersion = '1.0.0';</script>
+    <!-- @endexclude -->
+    <!-- @echo version -->
+
     <!-- js -->
     <!-- @exclude -->
     <script src="bundle.js"></script>
     <!-- @endexclude -->
     <!-- @echo js -->
+
+
+    <!-- Google Analytics -->
+    <!-- @echo ga_id -->
+    <!-- @exclude -->
+    <script>window.gaid = 'UA-XXXXXXXX-X';</script>
+    <!-- @endexclude -->
+    <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    
+    if (window.device && window.device.uuid) {
+      window.ga('create', {
+        trackingId: window.gaid,
+        'storage': 'none',
+        'cookieDomain': 'none',
+        'clientId': window.device.uuid
+      });
+    } else {
+      window.ga('create', {
+        trackingId: window.gaid
+      });
+    }
+    
+    //window.ga_debug = {trace: true};
+    window.ga('set', 'hostname', 'none.com');
+    window.ga('set', 'checkProtocolTask', function(data) {
+      data.set('location', 'https://www.none.com');
+    });
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
+
 
   </body>
 </html>

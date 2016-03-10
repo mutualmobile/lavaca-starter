@@ -2,9 +2,7 @@
 
 #---------------------------
 # For iOS, this build script assumes that your iOS project
-# has a target build scheme that is shared and 
-# that in your Build Settings, "Code Signing Resource Rules Path" 
-# is set to $(SDKROOT)/ResourceRules.plist
+# has a target build scheme that is shared
 #---------------------------
 
 EXPECTED_ARGS=2
