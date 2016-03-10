@@ -140,7 +140,7 @@ then
   cordova --version
   grunt build:$env:ios
   (cd cordova/platforms/ios/ && xcodebuild -scheme "$buildScheme" -sdk iphoneos archive -archivePath "$archiveFile" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
-  (cd cordova/platforms/ios/ && xcrun -sdk iphoneos PackageApplication -v "${archiveFile}/Products/Applications/${appFile}" -o "${workingDirectory}/${ipaFile}" --sign "$codesignIdentity")
+  (cd cordova/platforms/ios/ && xcodebuild -exportArchive -exportOptionsPlist "${workingDirectory}/provisioning/EnterpriseExportOptions.plist" -archivePath "$archiveFile" -exportPath "${workingDirectory}" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
 
 fi
 

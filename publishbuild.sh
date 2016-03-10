@@ -89,10 +89,10 @@ fi
 #---------------------------
 # Set Variables
 #---------------------------
-codesignIdentity="xxxxxx"
-appleProvisionId="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"
 PRIVATE_KEY_FILE="provisioning/xxxxxx.p12"
 PRIVATE_KEY_PASSPHRASE="`cat provisioning/AppStore-Passphrase.txt`"
+codesignIdentity="`cat provisioning/AppStore-CodesignIdentity.txt`"
+appleProvisionId="`cat provisioning/AppStore-ProvisionId.txt`"
 
 # notify this comma seperated email list
 emailAddress=""
