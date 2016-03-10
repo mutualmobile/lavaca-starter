@@ -27,6 +27,16 @@ splashSizePercentageAsDecimal=0.7
 #---------------------------
 
 
+grunt shell:setShellVariables
+if [ -e ".build-config" ]
+then
+  source ".build-config"
+else
+  echo "variable retrieval failed"
+  exit 1
+fi
+shouldGenerateIcons=false
+
 
 #---------------------------
 # Get Arguments
@@ -34,34 +44,30 @@ splashSizePercentageAsDecimal=0.7
 EXPECTED_ARGS=2
 if [ $# -lt $EXPECTED_ARGS ]
 then
-  echo "Usage: ./icongen.sh [app name] [platform] [environment (optional)] [buildString (optional)]"
+  echo "Usage: ./icongen.sh [platform] [environment (optional)] [buildString (optional)]"
   echo "ex: ./icongen.sh app ios production \"1.2.4\""
   exit 1
 fi
 
-appName="app"
+appName="${appName}"
 platform="web"
 env=""
 buildString=""
 
+
 if [ "$1" ]
 then
-  appName=$1
+  platform=$1
 fi
 
 if [ "$2" ]
 then
-  platform=$2
+  env=$2
 fi
 
 if [ "$3" ]
 then
-  env=$3
-fi
-
-if [ "$4" ]
-then
-  buildString=$4
+  buildString=$3
 fi
 
 #format
@@ -79,12 +85,14 @@ then
 fi
 
 
+
 #---------------------------
 # Set Variables
 #---------------------------
-path="_icon_source.png"
-splashPath="_splash_source.png"
-banner="_banner_source.png"
+path="src/_icon_source.png"
+pathAndroid="src/_icon_source_android.png"
+splashPath="src/_splash_source.png"
+banner="src/_banner_source.png"
 tmp="tmp.png"
 rootWebPath="src/www"
 webPath="${rootWebPath}/assets/img"
@@ -121,6 +129,13 @@ then
 
 fi
 
+
+if [ "$platform" == "android" ]
+then
+
+  path=$pathAndroid
+  
+fi
 
 
 #---------------------------
@@ -270,6 +285,7 @@ then
 
   createIconImage 40   ${iosPath}/icon-40.png
   createIconImage 80   ${iosPath}/icon-40@2x.png
+  createIconImage 120   ${iosPath}/icon-40@3x.png
   createIconImage 50   ${iosPath}/icon-50.png
   createIconImage 100  ${iosPath}/icon-50@2x.png
   createIconImage 60   ${iosPath}/icon-60.png
@@ -281,6 +297,10 @@ then
   createIconImage 152  ${iosPath}/icon-76@2x.png
   createIconImage 29   ${iosPath}/icon-small.png
   createIconImage 58   ${iosPath}/icon-small@2x.png
+  createIconImage 87   ${iosPath}/icon-small@3x.png
+  createIconImage 29   ${iosPath}/icon-29.png
+  createIconImage 58   ${iosPath}/icon-29@2x.png
+  createIconImage 87   ${iosPath}/icon-29@3x.png
   createIconImage 57   ${iosPath}/icon.png
   createIconImage 114  ${iosPath}/icon@2x.png
 

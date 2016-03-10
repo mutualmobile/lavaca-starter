@@ -2,9 +2,7 @@
 
 #---------------------------
 # For iOS, this build script assumes that your iOS project
-# has a target build scheme that is shared and 
-# that in your Build Settings, "Code Signing Resource Rules Path" 
-# is set to $(SDKROOT)/ResourceRules.plist
+# has a target build scheme that is shared
 #---------------------------
 
 EXPECTED_ARGS=2
@@ -61,7 +59,7 @@ else
   echo "variable retrieval failed"
   exit 1
 fi
-shouldGenerateIcons=true
+shouldGenerateIcons=false
 #---------------------------
 #***************************
 # End App Specific Configuration
@@ -74,7 +72,7 @@ shouldGenerateIcons=true
 #---------------------------
 # Get Arguments
 #---------------------------
-platform="web"
+platform="ios"
 env="production"
 
 if [ "$1" ]
@@ -91,19 +89,29 @@ fi
 #---------------------------
 # Set Variables
 #---------------------------
+codesignIdentity="xxxxxx"
+appleProvisionId="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx"
+PRIVATE_KEY_FILE="provisioning/xxxxxx.p12"
+PRIVATE_KEY_PASSPHRASE="`cat provisioning/AppStore-Passphrase.txt`"
+
+# notify this comma seperated email list
+emailAddress=""
+
 #General
 branchName="$(git rev-parse --abbrev-ref HEAD)"
 shortHash="$(git rev-parse --short HEAD)"
 hockeyMessage="${appName}-${env}-${branchName}-${shortHash}"
 buildString="${shortHash}"
+workingDirectory="$(pwd)"
 #iOS
 buildScheme="${appName}"
 archiveFile="${appName}.xcarchive"
 appFile="${appName}.app"
 ipaFile="${appName}-${shortHash}.ipa"
+intermediateIpaFile="${appName}.ipa"
 binaryFileName="${ipaFile}"
 releaseFolder="$PWD"
-otafile="_source-ota-manifest.plist"
+otafile="provisioning/_source-ota-manifest.plist"
 otafiletmp="ota-tmp.plist"
 otafileout="${appName}-${shortHash}.plist"
 #Android
@@ -131,15 +139,23 @@ fi
 if [ "$platform" == "ios" ]
 then
 
+  echo "Installing Provisioning Profile"
+  mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles/
+  cp provisioning/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+
+  echo "Importing private key";
+  echo $PRIVATE_KEY_PASSPHRASE
+
+  security import ${PRIVATE_KEY_FILE} -P "${PRIVATE_KEY_PASSPHRASE}" -k ~/Library/Keychains/login.keychain -A
+
   binaryFileName="${ipaFile}"
   hockeyAppId="${hockeyAppIdiOS}"
 
   cordova --version
   grunt build:$env:ios
-  #(cd cordova/platforms/ios/ && xcodebuild -scheme "$buildScheme" -sdk iphoneos archive -archivePath "$archiveFile" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
-  (cd cordova/platforms/ios/ && xcodebuild -scheme "$buildScheme" -sdk iphoneos archive -archivePath "$archiveFile")
-  #(cd cordova/platforms/ios/ && xcrun -sdk iphoneos PackageApplication -v "${archiveFile}/Products/Applications/${appFile}" -o "${releaseFolder}/${ipaFile}" --sign "$codesignIdentity")
-  (cd cordova/platforms/ios/ && xcrun -sdk iphoneos PackageApplication -v "${archiveFile}/Products/Applications/${appFile}" -o "${releaseFolder}/${ipaFile}")
+  (cd cordova/platforms/ios/ && xcodebuild -scheme "$buildScheme" -sdk iphoneos archive -archivePath "$archiveFile" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
+  (cd cordova/platforms/ios/ && xcodebuild -exportArchive -exportOptionsPlist "${workingDirectory}/provisioning/AdhocExportOptions.plist" -archivePath "$archiveFile" -exportPath "${workingDirectory}" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
+  mv "${workingDirectory}/${intermediateIpaFile}" "${workingDirectory}/${ipaFile}"
 
 fi
 
@@ -155,8 +171,6 @@ then
 
   (cd cordova/platforms/android/ &&  android update project -p ./ -t "android-21" -s)
   (cd cordova/platforms/android/CordovaLib/ &&  android update project -p ./ -t "android-21" -s)
-  #(cd cordova/platforms/android/com.urbanairship.phonegap.PushNotification/SleepIQ-google-play-services/ &&  android update project -p ./ -t "android-21" -s)
-  #(cd cordova/platforms/android/com.urbanairship.phonegap.PushNotification/SleepIQ-urbanairship-lib/ &&  android update project -p ./ -t "android-21" -s)
 
   cordova --version
   mkdir -p cordova/platforms/android/assets
@@ -255,7 +269,7 @@ fi
 
 
 
-
+echo "itms-services://?action=download-manifest&url=https%3A%2F%2Fs3.amazonaws.com%2F${appName}%2F${otafileout}" | mail -s "Beta Build ${appName}-${shortHash}" "${emailAddress}"
 
 
 
