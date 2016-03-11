@@ -55,6 +55,7 @@ module.exports = {
   ],
   module: {
     loaders: [
+      { test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader' },
       { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader!less-loader')},
       { test: /\.html$/, loader: 'dust-loader-complete', exclude: /node_modules/, query: { verbose: true } },
       {
