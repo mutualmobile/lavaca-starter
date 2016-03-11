@@ -1,4 +1,4 @@
-var <%= className %>View = require('app/ui/views/pageviews/<%= className %>View')
+var <%= className %>View = require('app/ui/views/<%= className %>View')
 
 /**
  * <%= className %> action, creates a history state and shows a view
