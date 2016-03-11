@@ -154,18 +154,9 @@ module.exports = function( grunt ) {
       ios: {
         options: {
           locals: {
-            version: '<%= preprocess.wwww.options.locals.version %>',
+            version: '<%= preprocess.www.options.locals.version %>',
             css: '<%= preprocess.www.options.locals.css %>',
-            js: (function() {
-              return [
-                '<%= paths.out.cordova %>',
-                '<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js'
-              ]
-                .map(function(file) {
-                  return '<script src="' + file + '"></script>';
-                })
-                .join('\n') + '\n';
-            })(),
+            js: '<script src="<%= paths.out.cordova %>"></script>\n<script src="<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js"></script>\n',
             ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaIOS %>";</script>'
           }
         },
@@ -177,7 +168,7 @@ module.exports = function( grunt ) {
       android: {
         options: {
           locals: {
-            version: '<%= preprocess.web.options.locals.version %>',
+            version: '<%= preprocess.www.options.locals.version %>',
             css: '<%= preprocess.www.options.locals.css %>',
             js: '<%= preprocess.ios.options.locals.js %>',
             ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaAndroid %>";</script>'
@@ -445,12 +436,12 @@ module.exports = function( grunt ) {
       },
       staging: {
         options: {
-          tasks: ['shell:setShellVariables', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'webpack', 'preprocess']
         }
       },
       production: {
         options: {
-          tasks: ['shell:setShellVariables', 'yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'yuidoc:compile', 'webpack', 'preprocess']
         }
       }
     },
