@@ -27,7 +27,7 @@ $ npm install
 ```
 
 ```bash
-$ grunt server
+$ grunt
 ```
 
 ## Grunt Tasks
@@ -41,7 +41,7 @@ A task that simply runs a static server for local development and testing. Defau
 - __Run the default static server__
 
 ```bash
-$ grunt server
+$ grunt
 ```
 
 ### Build
