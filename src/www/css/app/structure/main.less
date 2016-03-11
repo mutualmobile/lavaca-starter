@@ -1,18 +1,4 @@
-a,
-a:link,
-a:visited,
-a:active,
-a:hover {
-  color: #00a3de;
-}
-html {
-  font-size: 10px;
-}
-body {
-  font-family: Helvetica, Arial, sans-serif;
-  background: #e8ebed;
-  position: relative;
-}
+
 #view-root {
   overflow: hidden;
   .absolute();
@@ -21,9 +7,10 @@ body {
   background: #888888;
   >.view, .cvm >.view  {
     .absolute();
+    visibility: hidden;
     &.show,
     &.current {
-      z-index: 1;
+      z-index: 2;
     }
     &.page-ontop,
     &.pt-page-ontop {

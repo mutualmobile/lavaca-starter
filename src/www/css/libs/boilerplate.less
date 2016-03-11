@@ -1,19 +1,10 @@
-.overflow-scroll, .synthetic-scroll {
-	position: absolute;
-	top:0;
-	left: 0;
-	right: 0;
-	bottom: 0;
+.overflow-scroll {
 	overflow: hidden;
-	height: 100%;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
-  -moz-overflow-scrolling: touch;
-  -o-overflow-scrolling: touch;
-  -ms-overflow-scrolling: touch;
   overflow-scrolling: touch;
 }
 .overflow-scroll > .overflow-scroll-inner {
 	/* some level of transform keeps elements from blinking out of visibility on iOS */
-  -webkit-transform: rotateY(0);
+  transform: rotateY(0);
 }
