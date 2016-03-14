@@ -22,16 +22,6 @@ module.exports = function(grunt) {
     }
 
     if (preProcessIndex > 0){
-      if (isCordova) {
-        if (platform) {
-          platformTasks.push('preprocess' + ':' + platform + ':' + target)
-        } else {
-          platforms.forEach(function(value, index, array){
-            platformTasks.push('preprocess' + ':' + value + ':' + target);
-          });
-        }
-      }
-      platformTasks.push('preprocess:www:' + target);
       tasks.splice.apply(tasks, [preProcessIndex, 1].concat(platformTasks));
     } else {
       tasks = tasks.concat(platformTasks);
@@ -45,6 +35,17 @@ module.exports = function(grunt) {
         tasks.push('cordovaBuild');
       }
     }
+
+    if (isCordova) {
+      if (platform) {
+        tasks.push('preprocess' + ':' + platform + ':' + target);
+      } else {
+        platforms.forEach(function(value, index, array){
+          tasks.push('preprocess' + ':' + value + ':' + target);
+        });
+      }
+    }
+    tasks.push('preprocess:web:' + target);
 
     tasks.push('clean:tmp');
     grunt.verbose.writeln('Options:', options);
