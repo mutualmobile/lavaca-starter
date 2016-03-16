@@ -22,6 +22,16 @@ module.exports = function(grunt) {
     }
 
     if (preProcessIndex > 0){
+      if (isCordova) {
+        if (platform) {
+          platformTasks.push('preprocess' + ':' + platform + ':' + target);
+        } else {
+          platforms.forEach(function(value, index, array){
+            platformTasks.push('preprocess' + ':' + value + ':' + target);
+          });
+        }
+      }
+      platformTasks.push('preprocess:web:' + target);
       tasks.splice.apply(tasks, [preProcessIndex, 1].concat(platformTasks));
     } else {
       tasks = tasks.concat(platformTasks);
