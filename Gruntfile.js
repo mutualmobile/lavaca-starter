@@ -163,6 +163,9 @@ module.exports = function( grunt ) {
         },
         files: [{
           src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
+          dest: '<%= paths.build.cordova %>/<%= paths.out.index %>'
+        },{
+          src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
           dest: '<%= paths.asset.ios %>/<%= paths.out.index %>'
         }]
       },
@@ -176,6 +179,9 @@ module.exports = function( grunt ) {
           }
         },
         files: [{
+          src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
+          dest: '<%= paths.build.cordova %>/<%= paths.out.index %>'
+        },{
           src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
           dest: '<%= paths.asset.android %>/<%= paths.out.index %>'
         }]
