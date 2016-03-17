@@ -31,7 +31,7 @@ module.exports = function(grunt) {
           });
         }
       }
-      platformTasks.push('preprocess:web:' + target);
+      platformTasks.push('preprocess:www:' + target);
       tasks.splice.apply(tasks, [preProcessIndex, 1].concat(platformTasks));
     } else {
       tasks = tasks.concat(platformTasks);
