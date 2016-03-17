@@ -477,10 +477,11 @@ module.exports = function( grunt ) {
   });
 
   grunt.registerTask('default', 'runs the tests and starts local server', [
+    'test',
     'webpack-dev-server'
   ]);
 
-  grunt.registerTask('compile', 'runs the tests and starts local server', [
+  grunt.registerTask('compile', 'compiles the app', [
     'webpack'
   ]);
 
