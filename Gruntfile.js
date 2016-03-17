@@ -6,7 +6,6 @@ module.exports = function( grunt ) {
   //Android limits the interger value
   var timeStampVersionCodeAndroid = timeStampVersionCode.substring(2);
 
-  grunt.loadTasks('tasks/server');
   grunt.loadTasks('tasks/pkg');
   grunt.loadTasks('tasks/preprocess');
   grunt.loadTasks('tasks/blueprint');
@@ -18,7 +17,6 @@ module.exports = function( grunt ) {
   grunt.loadTasks('tasks/cordovaInit');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-amd-test');
   grunt.loadNpmTasks('grunt-amd-check');
