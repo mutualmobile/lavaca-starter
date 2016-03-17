@@ -20,11 +20,9 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
-  grunt.loadNpmTasks('grunt-amd-dist');
   grunt.loadNpmTasks('grunt-amd-test');
   grunt.loadNpmTasks('grunt-amd-check');
   grunt.loadNpmTasks('grunt-contrib-yuidoc');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-xmlstoke');
@@ -234,28 +232,6 @@ module.exports = function( grunt ) {
       files: 'test/unit/**/*.js'
     },
 
-    server: {
-      prod: {
-        options: {
-          port: process.env.PORT || 8080,
-          hostname: '0.0.0.0',
-          base: 'build/www',
-          apiPrefix: '/api*',
-          authUser: 'username',
-          authPassword: 'password',
-          proxyPort: '80',// change to 443 for https
-          proxyProtocol: 'http'//change to https if ssl is required
-        }
-      },
-      doc: {
-        options: {
-          port: 8080,
-          vhost: 'localhost',
-          base: 'doc'
-        }
-      }
-    },
-
     copy: {
       cordovaConfig: {
         files: [
@@ -335,25 +311,6 @@ module.exports = function( grunt ) {
       ]
     },
 
-    'amd-dist': {
-      all: {
-        options: {
-          standalone: true,
-          exports: '<%= buildConfigVariables.appName %>'
-        },
-        files: [
-          {
-            src: [
-              '<%= paths.tmp.www %>/js/libs/require.js',
-              '<%= paths.tmp.www %>/js/app/boot.js',
-              '<%= paths.tmp.www %>/js/templates.js'
-            ],
-            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js'
-          }
-        ]
-      }
-    },
-
     blueprint: {
       options: {
         appName: 'app',
@@ -394,20 +351,6 @@ module.exports = function( grunt ) {
       }
     },
 
-    requirejs: {
-      baseUrl: '<%= paths.src.www %>/js',
-      mainConfigFile: '<%= paths.src.www %>/js/app/boot.js',
-      optimize: 'none',
-      keepBuildDir: true,
-      locale: "en-us",
-      useStrict: false,
-      skipModuleInsertion: false,
-      findNestedDependencies: false,
-      removeCombined: false,
-      preserveLicenseComments: false,
-      logLevel: 0
-    },
-
     yuidoc: {
       compile: {
         name: '<%= pkg.name %>',
@@ -420,17 +363,6 @@ module.exports = function( grunt ) {
           exclude: '<%= paths.src.www %>/js/libs',
           linkNatives: true,
           themedir: 'libs/yuidoc/themes/default'
-        }
-      }
-    },
-
-    watch: {
-      less: {
-        files: ['src/www/css/**/*.less'],
-        tasks: ['less:dev'],
-        options: {
-          spawn: false,
-          livereload: true
         }
       }
     },
@@ -500,26 +432,6 @@ module.exports = function( grunt ) {
       }
     },
 
-
-    connect: {
-      options: {
-        base: 'src/www'
-      },
-      dev: {
-        options: {
-          port: 8080,
-          open: false,
-          base: 'src/www',
-          middleware: function(connect, opts) {
-            return [
-              require('connect-livereload')(),
-              connect.static(require('path').resolve(opts.base))
-            ];
-          }
-        }
-      }
-    },
-
     webpack: {
       options: webpackConfig,
       build: {
@@ -554,6 +466,14 @@ module.exports = function( grunt ) {
         plugins: [
           new webpack.HotModuleReplacementPlugin()
         ]
+      },
+      doc: {
+        contentBase: '<%= paths.doc %>',
+        webpack: {
+          devtool: 'eval',
+          debug: false
+        },
+        keepalive: true
       }
     },
   });
@@ -573,7 +493,7 @@ module.exports = function( grunt ) {
 
   grunt.registerTask('doc', 'compiles documentation and starts a server', [
     'yuidoc',
-    'server:doc'
+    'webpack-dev-server:doc'
   ]);
 
 };
