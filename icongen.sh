@@ -41,7 +41,7 @@ shouldGenerateIcons=false
 #---------------------------
 # Get Arguments
 #---------------------------
-EXPECTED_ARGS=2
+EXPECTED_ARGS=1
 if [ $# -lt $EXPECTED_ARGS ]
 then
   echo "Usage: ./icongen.sh [platform] [environment (optional)] [buildString (optional)]"
