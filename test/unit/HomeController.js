@@ -3,7 +3,7 @@ define(function(require) {
   var $ = require('$');
   var router = require('lavaca/mvc/Router');
   var viewManager = require('lavaca/mvc/ViewManager');
-  var HomeController = require('app/net/HomeController');
+  var HomeController = require('app/controllers/HomeController');
 
   describe('Home Controller', function() {
     beforeEach(function(){

@@ -6,6 +6,7 @@ module.exports = function( grunt ) {
   //Android limits the interger value
   var timeStampVersionCodeAndroid = timeStampVersionCode.substring(2);
 
+  grunt.loadTasks('tasks/server');
   grunt.loadTasks('tasks/pkg');
   grunt.loadTasks('tasks/preprocess');
   grunt.loadTasks('tasks/blueprint');
@@ -18,6 +19,7 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-amd-dist');
   grunt.loadNpmTasks('grunt-amd-test');
   grunt.loadNpmTasks('grunt-amd-check');
   grunt.loadNpmTasks('grunt-contrib-yuidoc');
@@ -88,6 +90,7 @@ module.exports = function( grunt ) {
         android: '<%= paths.package.root %>/<%= buildConfigVariables.appName %>.apk',
         ios: '<%= paths.package.root %>/<%= buildConfigVariables.appName %>.ipa'
       },
+      styleguide: 'src/www/assets/styleguide',
       doc: 'doc',
       copy: {
         www: [
@@ -208,6 +211,10 @@ module.exports = function( grunt ) {
           {
             src: '<%= paths.src.www %>/css/app/app.less',
             dest: '<%= paths.src.www %>/css/app/app.css'
+          },
+          {
+            src: '<%= paths.src.www %>/css/app/app.less',
+            dest: '<%= paths.src.www %>/assets/styleguide/app.css'
           }
         ]
       }
@@ -224,10 +231,24 @@ module.exports = function( grunt ) {
     },
 
 
-
     'amd-test': {
       mode: 'jasmine',
       files: 'test/unit/**/*.js'
+    },
+
+    server: {
+      prod: {
+        options: {
+          port: process.env.PORT || 8080,
+          hostname: '0.0.0.0',
+          base: 'build/www',
+          apiPrefix: '/api*',
+          authUser: 'username',
+          authPassword: 'password',
+          proxyPort: '80',// change to 443 for https
+          proxyProtocol: 'http'//change to https if ssl is required
+        }
+      }
     },
 
     copy: {
@@ -307,6 +328,25 @@ module.exports = function( grunt ) {
         '<%= paths.src.www %>/js/**/*.js',
         'test/unit/**/*.js'
       ]
+    },
+
+    'amd-dist': {
+      all: {
+        options: {
+          standalone: true,
+          exports: '<%= buildConfigVariables.appName %>'
+        },
+        files: [
+          {
+            src: [
+              '<%= paths.tmp.www %>/js/libs/require.js',
+              '<%= paths.tmp.www %>/js/app/boot.js',
+              '<%= paths.tmp.www %>/js/templates.js'
+            ],
+            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js'
+          }
+        ]
+      }
     },
 
     blueprint: {
@@ -409,6 +449,12 @@ module.exports = function( grunt ) {
       },
       setShellVariables: {
         command: 'echo "<%= buildConfigVariablesFlat %>" > .build-config'
+      },
+      buildStyleGuide: {
+        command: './node_modules/.bin/kss-node src/www/css/app/theme src/www/assets/styleguide --css ../../css/app/app.css --template src/www/assets/template/',
+        options: {
+          stdout: true
+        }
       }
     },
 
@@ -472,12 +518,19 @@ module.exports = function( grunt ) {
           debug: false
         },
         keepalive: true
+      },
+      styleguide: {
+        contentBase: '<%= paths.styleguide %>',
+        webpack: {
+          devtool: 'eval',
+          debug: false
+        },
+        keepalive: true
       }
     },
   });
 
   grunt.registerTask('default', 'runs the tests and starts local server', [
-    'test',
     'webpack-dev-server'
   ]);
 
@@ -486,8 +539,11 @@ module.exports = function( grunt ) {
   ]);
 
   grunt.registerTask('test', 'generates runner and runs the tests', [
-    'amd-test',
     'jasmine'
+  ]);
+
+  grunt.registerTask('styleguide', 'compiles documentation and starts a server', [
+    'shell:buildStyleGuide'
   ]);
 
   grunt.registerTask('doc', 'compiles documentation and starts a server', [
