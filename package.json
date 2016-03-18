@@ -1,6 +1,6 @@
 {
   "name": "lavaca-starter",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "A Lavaca app",
   "main": "Gruntfile.js",
   "url": "http://getlavaca.com",

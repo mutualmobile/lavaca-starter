@@ -14,9 +14,8 @@ module.exports = View.extend(function HomeView() {
    * @property {String} className
    * @default 'home'
    */
-  text:'Hello World',
   className: 'home',
-  generateHtml(model) {
+  generateHtml: function(model) {
     return new Promise(function(resolve) {
       template(model, function(err, html) {
         resolve(html);
