@@ -2,9 +2,7 @@ define(function(require) {
   var Disposable = require('lavaca/util/Disposable'),
       Transition = require('lavaca/fx/Transition'),
       Transform = require('lavaca/fx/Transform'),
-      viewManager = require('lavaca/mvc/ViewManager'),
-      AnalyticsManager = require('app/managers/AnalyticsManager'),
-      $ = require('$');
+      viewManager = require('lavaca/mvc/ViewManager');
 
   var SwipeHistoryBackManager = Disposable.extend(function SwipeHistoryBackManager() {
     Disposable.call(this, arguments);
@@ -77,7 +75,6 @@ define(function(require) {
           this.elReturning.addClass('current').removeClass('returning-view');
           setTimeout(function(){
             this.pageView.enterHasCompleted();
-            AnalyticsManager.trackEvent('action', 'swipeback', 'action', 'finish');
           }.bind(this),50);
 
         }.bind(this));
