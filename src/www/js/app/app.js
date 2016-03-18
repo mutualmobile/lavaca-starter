@@ -32,4 +32,7 @@ module.exports = new Application(function() {
   this.viewManager.pageViewMixin = ViewManagerViewMixin;
   this.viewManager.pageViewFillin = ViewManagerViewFillin;
   //this.viewManager.initBreadcrumbTracking();
+
+  // SwipeHistoryBackManager
+  // require('app/managers/SwipeHistoryBackManager');
 });
