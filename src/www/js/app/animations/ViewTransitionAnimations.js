@@ -1,3 +1,5 @@
+require('lavaca/fx/Transition');
+
 var _commonTiming = "250ms";
 module.exports = {
   "FADE": {

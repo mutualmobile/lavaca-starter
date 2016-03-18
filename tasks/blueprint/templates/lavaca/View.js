@@ -1,5 +1,5 @@
 let View = require('lavaca/mvc/View');
-var template = require('rdust!templates/<%=templateFolder%><%= className %><%=postfix%>');
+import template from 'templates/<%=templateFolder%><%= className %><%=postfix%>';
 
 /**
  * @class <%= classDotNotation %>
@@ -17,7 +17,7 @@ module.exports = View.extend(function <%= className %><%=postfix%>(){
   className: '<%=classNameLowerCase %>',
   generateHtml: function(model) {
     return new Promise(function(resolve) {
-      template.render(model, function(err, html) {
+      template(model, function(err, html) {
         resolve(html);
       });
     });
