@@ -55,7 +55,7 @@ module.exports = function(grunt) {
         });
       }
     }
-    tasks.push('preprocess:web:' + target);
+    tasks.push('preprocess:www:' + target);
 
     tasks.push('clean:tmp');
     grunt.verbose.writeln('Options:', options);

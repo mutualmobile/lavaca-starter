@@ -140,7 +140,7 @@ module.exports = function( grunt ) {
       www: {
         options: {
           locals: {
-            version: "<script>window.appVersion = '<%= buildConfigVariables.version %>';",
+            version: "<script>window.appVersion = '<%= buildConfigVariables.version %>';</script>",
             css: '<link rel="stylesheet" type="text/css" href="<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css" />\n',
             js: '<script src="<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js"></script>\n',
             ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaWeb %>";</script>'
