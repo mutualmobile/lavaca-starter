@@ -187,39 +187,6 @@ module.exports = function( grunt ) {
       }
     },
 
-    less: {
-      build: {
-        options: {
-          compress: true
-        },
-        files: [
-          {
-            src: '<%= paths.tmp.www %>/css/app/app.less',
-            dest: '<%= paths.tmp.www %>/<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css'
-          }
-        ]
-      },
-      dev: {
-        options: {
-          compress: true
-        },
-        plugins: [
-            new (require('less-plugin-autoprefix'))({browsers: ['last 2 versions']}),
-            new (require('less-plugin-clean-css'))()
-        ],
-        files: [
-          {
-            src: '<%= paths.src.www %>/css/app/app.less',
-            dest: '<%= paths.src.www %>/css/app/app.css'
-          },
-          {
-            src: '<%= paths.src.www %>/css/app/app.less',
-            dest: '<%= paths.src.www %>/assets/styleguide/app.css'
-          }
-        ]
-      }
-    },
-
     jasmine: {
       all: ['test/runner.html'],
       options: {
@@ -488,7 +455,8 @@ module.exports = function( grunt ) {
         plugins: [
           new webpack.optimize.UglifyJsPlugin(),
           new ExtractTextPlugin('../<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css', {
-            allChunks: true
+            allChunks: true,
+            publicPath:'/'
           })
         ]
       }
@@ -532,6 +500,10 @@ module.exports = function( grunt ) {
 
   grunt.registerTask('default', 'runs the tests and starts local server', [
     'webpack-dev-server'
+  ]);
+
+  grunt.registerTask('prod', 'runs the tests and starts local server', [
+    'server'
   ]);
 
   grunt.registerTask('compile', 'compiles the app', [
