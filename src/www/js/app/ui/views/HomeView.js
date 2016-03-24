@@ -1,4 +1,4 @@
-let View = require('lavaca/mvc/View');
+import { View } from 'lavaca';
 import template from 'templates/home';
 
 /**

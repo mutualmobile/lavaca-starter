@@ -27,7 +27,7 @@ module.exports = {
     extensions: ['', '.js','.html'],
     modulesDirectories: ['src','components','node_modules'],
     alias: {
-      lavaca: 'lavaca/src',
+      lavaca: 'lavaca',
       app: 'www/js/app',
       css: 'www/css',
       templates: 'www/js/templates',
@@ -66,9 +66,10 @@ module.exports = {
       {
         loader: 'babel-loader',
         include: [
-          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'src/www/js'),
+          path.resolve(__dirname, 'src/www/components/lavaca'),
         ],
-        exclude: /(node_modules|components)/,
+        exclude: /(node_modules)/,
         test: /\.js?$/,
         query: {
           plugins: ['transform-runtime'],

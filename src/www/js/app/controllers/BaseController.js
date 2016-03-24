@@ -1,6 +1,6 @@
-var Controller = require('lavaca/mvc/Controller');
-var merge = require('mout/object/merge');
-var stateModel = require('app/models/StateModel');
+import {Controller} from 'lavaca';
+import {merge} from 'mout/object';
+import {default as StateModel} from 'app/models/StateModel';
 
 /**
  * Base controller
@@ -15,8 +15,8 @@ var BaseController = Controller.extend(function(){
     this.history(historyState, title, url)();
 
     stateProps = merge(stateProps || {}, defaultStateProps);
-    stateModel.apply(stateProps, true);
-    stateModel.trigger('change');
+    StateModel.apply(stateProps, true);
+    StateModel.trigger('change');
   }
 });
 

@@ -1,8 +1,4 @@
-var View = require('lavaca/mvc/View'),
-    stateModel = require('app/models/StateModel'),
-    viewManager = require('lavaca/mvc/ViewManager'),
-    History = require('lavaca/net/History');
-require('lavaca/fx/Animation'); //jquery plugins
+import {View, History, ViewManager as viewManager, Animation} from 'lavaca';
 
 module.exports = {
   /**

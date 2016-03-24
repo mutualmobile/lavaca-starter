@@ -1,4 +1,4 @@
-require('lavaca/fx/Transition');
+import {Transitions} from 'lavaca';
 
 var _commonTiming = "250ms";
 module.exports = {

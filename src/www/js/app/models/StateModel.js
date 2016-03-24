@@ -1,2 +1,2 @@
-let Model = require('lavaca/mvc/Model');
-module.exports = new Model();
+import { Model } from 'lavaca';
+export default new Model();
