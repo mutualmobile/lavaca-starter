@@ -1,6 +1,6 @@
+import {Animations} from 'lavaca';
 var ViewTransitionAnimations = require('app/animations/ViewTransitionAnimations');
-require('lavaca/fx/Animation'); //jquery plugins
 
-module.exports = {
+export let ChildViewManagerViewFillin = {
   pageTransition: ViewTransitionAnimations.SLIDE
 };

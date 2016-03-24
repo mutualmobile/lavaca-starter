@@ -6,7 +6,8 @@ import template from 'templates/home';
  * @class app.ui.views.HomeView
  * @extends lavaca.mvc.View
  */
-module.exports = View.extend(function HomeView() {
+
+export let HomeView = View.extend(function HomeView() {
   View.apply(this,arguments);
 },{
   /**
@@ -15,12 +16,11 @@ module.exports = View.extend(function HomeView() {
    * @default 'home'
    */
   className: 'home',
-  generateHtml: function(model) {
-    return new Promise(function(resolve) {
-      template(model, function(err, html) {
+  generateHtml(model) {
+    return new Promise((resolve) => {
+      template(model, (err, html) => {
         resolve(html);
       });
     });
   }
-
 });

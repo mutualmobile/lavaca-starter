@@ -1,14 +1,14 @@
 import {View, History, ViewManager as viewManager, Animation} from 'lavaca';
 
-module.exports = {
+export let ViewManagerViewMixin = {
   /**
    * Handler for when a view has completed its animation into view
    * and hides the cordova splashscreen if it is included
    * @method enterHasCompleted
    */
-  enterHasCompleted: function() {
+  enterHasCompleted() {
     this.trigger('entercomplete');
-    setTimeout(function() {
+    setTimeout(() => {
       if (navigator && navigator.splashscreen) {
         navigator.splashscreen.hide();
       }
@@ -24,10 +24,10 @@ module.exports = {
    * @param {Array} exitingViews  The views that are exiting as this one enters
    * @return {Lavaca.util.Promise} A promise
    */
-  enter: function(container, exitingViews) {
+  enter(container, exitingViews) {
     var isRoutingBack = History.isRoutingBack;
     return View.prototype.enter.apply(this, arguments)
-      .then(function() {
+      .then(() => {
         var animation = viewManager.breadcrumb.length > 1 && !window.Modernizr['should-use-desktop-nav'] ? this.pageTransition : this.rootPageTransition;
 
         if (isRoutingBack) {
@@ -60,17 +60,17 @@ module.exports = {
         }
 
         if ((this.layer > 0 || exitingViews.length > 0)) {
-          animationIn.call(this, this.el).then(function() {
+          animationIn.call(this, this.el).then(() => {
             this.enterHasCompleted();
             this.el.addClass('current');
-          }.bind(this));
+          });
 
         } else {
           this.el.addClass('current').css('visibility', 'visible');
           this.enterHasCompleted();
         }
 
-      }.bind(this));
+      });
   },
   /**
    * Executes when the user navigates away from this view. This implementation
@@ -82,7 +82,7 @@ module.exports = {
    * @param {Array} enteringViews  The views that are entering as this one exits
    * @return {Lavaca.util.Promise} A promise
    */
-  exit: function(container, enteringViews) {
+  exit(container, enteringViews) {
     var animation = viewManager.breadcrumb.length > 1 && !window.Modernizr['should-use-desktop-nav'] ? this.pageTransition : this.rootPageTransition;
     var animationOut = History.isRoutingBack ? animation['outReverse'] : (enteringViews.length ? enteringViews[0].pageTransition['out'] : '');
 
@@ -95,12 +95,12 @@ module.exports = {
 
     if (!enteringViews.length) {
       animationOut.call(this, this.el).then(
-        function() {
+        () => {
           View.prototype.exit.apply(this, arguments).then(
-            function() {
+            () => {
               this.exitPromise.resolve();
-            }.bind(this));
-        }.bind(this));
+            });
+        });
     }
 
     return this.exitPromise;

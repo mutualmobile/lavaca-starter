@@ -1,13 +1,10 @@
 import 'css/app/app.less';
 import 'imports?$=jquery!hammer';
-import {History, Connectivity, Application} from 'lavaca';
-
-var HomeController = require('app/controllers/HomeController');
-var ViewManagerViewMixin = require('app/mixins/ViewManagerViewMixin');
-var ViewManagerViewFillin = require('app/mixins/ViewManagerViewFillin');
-
 import 'app/env/ModernizrTests';
 import 'app/utils/hammer_extensions';
+import {History, Connectivity, Application} from 'lavaca';
+import {HomeController} from 'app/controllers/HomeController';
+import {ViewManagerViewMixin, ViewManagerViewFillin} from 'app/mixins';
 
 History.overrideStandardsMode();
 

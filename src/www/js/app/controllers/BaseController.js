@@ -1,13 +1,13 @@
 import {Controller} from 'lavaca';
 import {merge} from 'mout/object';
-import {default as StateModel} from 'app/models/StateModel';
+import {default as stateModel} from 'app/models/StateModel';
 
 /**
  * Base controller
  * @class app.net.BaseController
  * @extends Lavaca.mvc.Controller
  */
-var BaseController = Controller.extend(function(){
+export let BaseController = Controller.extend(function(){
     Controller.apply(this, arguments);
   }, {
   updateState: function(historyState, title, url, stateProps){
@@ -15,9 +15,7 @@ var BaseController = Controller.extend(function(){
     this.history(historyState, title, url)();
 
     stateProps = merge(stateProps || {}, defaultStateProps);
-    StateModel.apply(stateProps, true);
-    StateModel.trigger('change');
+    stateModel.apply(stateProps, true);
+    stateModel.trigger('change');
   }
 });
-
-module.exports = BaseController;

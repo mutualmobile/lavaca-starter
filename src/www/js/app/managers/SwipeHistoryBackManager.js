@@ -14,14 +14,14 @@ define(function(require) {
     completionSpeed: 0.1,
     returningViewAnimationRatio: 0.2,
 
-    init: function() {
+    init() {
       viewManager.el.on('touchstart', this.onTouchStart.bind(this));
       viewManager.el.on('touchmove', this.onTouchMove.bind(this));
       viewManager.el.on('touchend', this.onTouchEnd.bind(this));
       this.el = viewManager.el.find('>.view.current');
     },
 
-    onTouchStart: function(e) {
+    onTouchStart(e) {
       this.el = viewManager.el.find('>.view.current');
       this.lastX = e.originalEvent.touches[0].clientX;
       this.startX = this.lastX;
@@ -52,7 +52,7 @@ define(function(require) {
       }
     },
 
-    onTouchMove: function(e) {
+    onTouchMove(e) {
       if (!this.isTracking) {
         return;
       }
@@ -61,7 +61,7 @@ define(function(require) {
       this.update(this.lastX);
     },
 
-    onTouchEnd: function(e) {
+    onTouchEnd(e) {
       if (!this.isTracking) {
         return;
       }
@@ -90,7 +90,7 @@ define(function(require) {
       }
     },
 
-    update: function (value, speed) {
+    update(value, speed) {
       function isNumber(n) {
         return !isNaN(parseFloat(n)) && isFinite(n);
       }
@@ -102,32 +102,32 @@ define(function(require) {
       }
     },
 
-    elReturningStartingTranslateValue: function() {
+    elReturningStartingTranslateValue() {
       var value = 0 - (this.windowWidth * this.returningViewAnimationRatio);
       return value+'px,0,0';
     },
-    elReturningValue: function(value) {
+    elReturningValue(value) {
       value = (0 - (this.windowWidth * this.returningViewAnimationRatio)) + (value * this.returningViewAnimationRatio);
       return value;
     },
 
-    updateCss: function (value) {
+    updateCss(value) {
       var translateValue = value+'px,0,0';
       var returningTranslateValue = this.elReturningValue(value)+'px,0,0';
       this.updateCssEl(this.el, translateValue);
       this.updateCssEl(this.elReturning, returningTranslateValue);
     },
-    updateCssEl: function (el, translateValue) {
+    updateCssEl(el, translateValue) {
       if (el) {
         el.css(Transform.cssProperty(), 'translate3d('+translateValue+')');
       }
     },
 
-    updateTransitionSpeed: function (value) {
+    updateTransitionSpeed(value) {
       this.updateTransitionSpeedEl(this.el, value);
       this.updateTransitionSpeedEl(this.elReturning, value);
     },
-    updateTransitionSpeedEl: function (el, value) {
+    updateTransitionSpeedEl(el, value) {
       if (el) {
         el.css(Transition.cssProperty(),'all '+value+'s ease-out');
       }

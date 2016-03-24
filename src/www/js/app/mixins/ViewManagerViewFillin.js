@@ -1,6 +1,6 @@
 var ViewTransitionAnimations = require('app/animations/ViewTransitionAnimations');
 
-module.exports = {
+export let ViewManagerViewFillin = {
   pageTransition: ViewTransitionAnimations.SLIDE,
   rootPageTransition: ViewTransitionAnimations.FADE
 };
