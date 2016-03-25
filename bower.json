@@ -16,6 +16,7 @@
   "dependencies": {
     "lavaca": "mutualmobile/lavaca#es6",
     "less.js": "1.7.x",
-    "i18n": "requirejs/i18n#2.0.4"
+    "i18n": "requirejs/i18n#2.0.4",
+    "jquery-touch-events": "^1.0.1"
   }
 }
