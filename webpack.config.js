@@ -32,8 +32,7 @@ module.exports = {
       css: 'www/css',
       templates: 'www/js/templates',
       'jquery': 'jquery/jquery.min.js',
-      'hammer': 'hammerjs/dist/jquery.hammer',
-      'Hammer': 'hammerjs/dist/jquery.hammer',
+      'jquery-mobile': 'jquery-touch-events/src/1.0.1/jquery.mobile-events.min.js',
       'mout': 'mout/src',
       dustjs: 'dustjs-linkedin',
       'dust.core': 'dustjs-linkedin',
@@ -45,8 +44,6 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       'jquery': path.join(__dirname, 'jquery/jquery.min'),
-      hammer: 'hammer',
-      'Hammer': 'hammerjs/dist/jquery.hammer',
       dust: 'dustjs-linkedin',
     }),
     new ExtractTextPlugin('css/app/app.css', {

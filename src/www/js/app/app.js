@@ -1,5 +1,5 @@
 import 'css/app/app.less';
-import 'imports?$=jquery!hammer';
+import 'imports?$=jquery!jquery-mobile';
 
 var History = require('lavaca/net/History');
 var HomeController = require('app/controllers/HomeController');
