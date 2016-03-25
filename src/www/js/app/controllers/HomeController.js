@@ -1,5 +1,5 @@
 import {BaseController} from 'app/controllers/BaseController';
-import {HomeView} from 'app/ui/views';
+import {HomeView} from 'app/ui/views/HomeView';
 import {Model} from 'lavaca';
 /**
  * Home controller

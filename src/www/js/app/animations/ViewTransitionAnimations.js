@@ -1,7 +1,7 @@
 import {Transitions} from 'lavaca';
 
 var _commonTiming = "250ms";
-module.exports = {
+export let ViewTransitionAnimations = {
   "FADE": {
     'in': function(el){
             return new Promise(function(resolve,reject){
