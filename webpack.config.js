@@ -52,12 +52,9 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.(jpg|png|gif)$/, loader: 'url-loader?name=assets/img/[name]-[hash].[ext]' },
+      { test: /\.(jpg|png|gif)$/, loader: 'url-loader?name=assets/img/[name].[ext]' },
       { test: /\.(woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?name=assets/fonts/[name].[ext]' },
-      { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader','css-loader!postcss-loader!less-loader',
-        {
-          publicPath: "/"
-        })
+      { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader','css-loader!postcss-loader!less-loader?relativeUrls=false')
       },
       { test: /\.html$/, loader: 'dust-loader-complete', exclude: /node_modules/, query: { verbose: true } },
       {
