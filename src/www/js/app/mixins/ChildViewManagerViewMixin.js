@@ -1,8 +1,8 @@
 import {ViewTransitionAnimations} from 'app/animations/ViewTransitionAnimations';
 import {History, Animation, View} from 'lavaca';
+import {get} from 'mout/object';
 
 export let ChildViewManagerViewMixin = {
-  pageTransition: ViewTransitionAnimations.SLIDE,
   /**
    * Executes when a hardware back button is pressed
    * @method onTapBack
@@ -20,11 +20,11 @@ export let ChildViewManagerViewMixin = {
    * @param {Array} exitingViews  The views that are exiting as this one enters
    * @return {Lavaca.util.Promise} A promise
    */
-  enter(container, exitingViews) {
+  enter(container, exitingViews, isRedraw) {
     if (window.Modernizr['should-use-desktop-nav']) {
       $(window).scrollTop(0);
     }
-    if(!this.parentView.childViewManager){
+    if(!get(this, 'parentView.childViewManager')){
       return View.prototype.enter.apply(this, arguments);
     }
     var isRoutingBack = this.parentView.childViewManager.isRoutingBack;
@@ -46,7 +46,7 @@ export let ChildViewManagerViewMixin = {
           i = -1;
           while (!!(exitingView = exitingViews[++i])) {
             exitingView.el.removeClass('current');
-            animationOut.call(this, exitingView.el);
+            !isRedraw && animationOut.call(this, exitingView.el);
             if (exitingView.exitPromise) {
               exitingView.exitPromise.resolve();
             }
@@ -77,7 +77,7 @@ export let ChildViewManagerViewMixin = {
    * @return {Lavaca.util.Promise} A promise
    */
   exit: function(container, enteringViews) {
-    if(!this.parentView.childViewManager){
+    if(!get(this, 'parentView.childViewManager')){
       return View.prototype.exit.apply(this, arguments);
     }
     var animation = this.parentView.childViewManager.isRoutingBack ? this.pageTransition['outReverse'] : (enteringViews.length ? enteringViews[0].pageTransition['out'] : '');
