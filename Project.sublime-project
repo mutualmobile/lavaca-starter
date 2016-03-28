@@ -3,7 +3,7 @@
 	[
 		{
 			"path": "./",
-      "folder_exclude_patterns": ["provisioning", "cordova", "release", "build", "doc", "apk", "ipa", "libs", "node_modules", "thirdParty", "pkg", "tasks", "test", "src/www/js/extlibs", "src/www/assets", "src/www/components"],
+      "folder_exclude_patterns": ["provisioning", "cordova", "release", "build", "doc", "apk", "ipa", "libs", "node_modules", "thirdParty", "pkg", "tasks", "test", "tmp", "src/www/js/extlibs", "src/www/assets", "src/www/components"],
       "file_exclude_patterns": ["Project.sublime-project", "src/www/css/app/app.css", "*.min.js", "*.min.css", "getlavaca", "*.ico", "*.png", "*.txt", "*.md", ".jshintrc", "src/www/js/app/ui/templates.js", ".*"]
 		}
 	]

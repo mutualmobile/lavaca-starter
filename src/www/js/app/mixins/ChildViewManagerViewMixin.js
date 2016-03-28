@@ -61,7 +61,7 @@ export let ChildViewManagerViewMixin = {
 
         } else {
           this.trigger('entercomplete');
-          this.el.addClass('current');
+          this.el.addClass('current').css('visibility', 'visible');
         }
         return Promise.resolve();
       });
