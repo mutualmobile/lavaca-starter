@@ -16,7 +16,7 @@ export let <%= className %><%=postfix%> = BaseController.extend(function <%= cla
    * @param {Object} model  History state model
    * @return {Lavaca.util.Promise}  A promise
    */
-   index: function(params, model) {
+   index(params, model) {
      if (!model) {
        model = {};
      }

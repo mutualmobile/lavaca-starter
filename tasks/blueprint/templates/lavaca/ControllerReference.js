@@ -8,7 +8,7 @@ import {<%= className %>View} from 'app/ui/views/<%= className %>View';
  * @param {Object} history  History state model
  * @return {Lavaca.util.Promise}  A promise
  */
-<%=classNameLowerCase %>: function(params, history) {
+<%=classNameLowerCase %>(params, history) {
   var model = new Model();
   return this
     .view(null, <%= className %>View, model, params)
