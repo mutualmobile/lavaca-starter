@@ -1,13 +1,14 @@
-var Config = {};
+var cfg = {};
 
-  switch(window.env) {
-    case 'production':
-        Config = {};
-        break;
-    case 'staging':
-        Config = {};
-        break;
-    default:
-        Config = {};
-  }
-module.exports = Config;
+switch(window.env) {
+  case 'production':
+      cfg = {};
+      break;
+  case 'staging':
+      cfg = {};
+      break;
+  default:
+      cfg = {};
+}
+
+export let Config = cfg;

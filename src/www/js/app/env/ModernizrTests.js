@@ -1,32 +1,31 @@
+import {Config} from 'app/env/Config';
 
-var ModernizrTests = {},
-    Config = require('app/env/Config');
-
-ModernizrTests.agent = navigator.userAgent.toLowerCase();
-ModernizrTests.otherBrowser = (ModernizrTests.agent.search(/series60/i) > -1) || (ModernizrTests.agent.search(/symbian/i) > -1) || (ModernizrTests.agent.search(/windows\sce/i) > -1) || (ModernizrTests.agent.search(/blackberry/i) > -1);
-ModernizrTests.mobileOS = typeof orientation !== 'undefined';
-ModernizrTests.blackberry = ModernizrTests.agent.search(/blackberry/i) > -1;
-ModernizrTests.ipad = ModernizrTests.agent.search(/ipad/i) > -1;
-ModernizrTests.ipod = ModernizrTests.agent.search(/ipod/i) > -1;
-ModernizrTests.iphone = ModernizrTests.agent.search(/iphone/i) > -1;
-ModernizrTests.palm = ModernizrTests.agent.search(/palm/i) > -1;
-ModernizrTests.symbian = ModernizrTests.agent.search(/symbian/i) > -1;
-ModernizrTests.nexus7 = ModernizrTests.agent.search(/Nexus 7/i) > -1;
-ModernizrTests.msie = ModernizrTests.agent.search(/MSIE/i) > -1;
-ModernizrTests.msie9 = ModernizrTests.msie && ModernizrTests.agent.search(/rv:9|MSIE 9/i) > -1;
-ModernizrTests.msie10 = ModernizrTests.msie && ModernizrTests.agent.search(/rv:10|MSIE 10/i) > -1;
-ModernizrTests.msie11 = ModernizrTests.msie && ModernizrTests.agent.search(/rv:11|MSIE 11/i) > -1;
-ModernizrTests.iOS = ModernizrTests.iphone || ModernizrTests.ipod || ModernizrTests.ipad;
-ModernizrTests.iOS5 = ModernizrTests.iOS && ModernizrTests.agent.search(/os 5_/i) > 0;
-ModernizrTests.iOSChrome = ModernizrTests.iOS && ModernizrTests.agent.search(/CriOS/i) > 0;
-ModernizrTests.android = (ModernizrTests.agent.search(/android/i) > -1) || (!ModernizrTests.iOS && !ModernizrTests.otherBrowser && ModernizrTests.mobileOS);
-ModernizrTests.android2 = ModernizrTests.android && (ModernizrTests.agent.search(/android\s2/i) > -1);
-ModernizrTests.isMobile = ModernizrTests.android || ModernizrTests.iOS || ModernizrTests.mobileOS;
-ModernizrTests.macintosh = ModernizrTests.agent.search(/macintosh/i) > -1;
-ModernizrTests.desktop = !ModernizrTests.isMobile && (!window.cordova ? true : false) && !ModernizrTests.iOS;
-ModernizrTests.animation = typeof document.documentElement.animate === 'function';
-ModernizrTests.android23AndBelow = (function() {
-  var matches = ModernizrTests.agent.match(/android\s(\d)\.(\d)/i);
+let Tests = {};
+Tests.agent = navigator.userAgent.toLowerCase();
+Tests.otherBrowser = (Tests.agent.search(/series60/i) > -1) || (Tests.agent.search(/symbian/i) > -1) || (Tests.agent.search(/windows\sce/i) > -1) || (Tests.agent.search(/blackberry/i) > -1);
+Tests.mobileOS = typeof orientation !== 'undefined';
+Tests.blackberry = Tests.agent.search(/blackberry/i) > -1;
+Tests.ipad = Tests.agent.search(/ipad/i) > -1;
+Tests.ipod = Tests.agent.search(/ipod/i) > -1;
+Tests.iphone = Tests.agent.search(/iphone/i) > -1;
+Tests.palm = Tests.agent.search(/palm/i) > -1;
+Tests.symbian = Tests.agent.search(/symbian/i) > -1;
+Tests.nexus7 = Tests.agent.search(/Nexus 7/i) > -1;
+Tests.msie = Tests.agent.search(/MSIE/i) > -1;
+Tests.msie9 = Tests.msie && Tests.agent.search(/rv:9|MSIE 9/i) > -1;
+Tests.msie10 = Tests.msie && Tests.agent.search(/rv:10|MSIE 10/i) > -1;
+Tests.msie11 = Tests.msie && Tests.agent.search(/rv:11|MSIE 11/i) > -1;
+Tests.iOS = Tests.iphone || Tests.ipod || Tests.ipad;
+Tests.iOS5 = Tests.iOS && Tests.agent.search(/os 5_/i) > 0;
+Tests.iOSChrome = Tests.iOS && Tests.agent.search(/CriOS/i) > 0;
+Tests.android = (Tests.agent.search(/android/i) > -1) || (!Tests.iOS && !Tests.otherBrowser && Tests.mobileOS);
+Tests.android2 = Tests.android && (Tests.agent.search(/android\s2/i) > -1);
+Tests.isMobile = Tests.android || Tests.iOS || Tests.mobileOS;
+Tests.macintosh = Tests.agent.search(/macintosh/i) > -1;
+Tests.desktop = !Tests.isMobile && (!window.cordova ? true : false) && !Tests.iOS;
+Tests.animation = typeof document.documentElement.animate === 'function';
+Tests.android23AndBelow = (function() {
+  var matches = Tests.agent.match(/android\s(\d)\.(\d)/i);
   var vi, vd;
   if (Array.isArray(matches) && matches.length === 3) {
     vi = parseInt(matches[1], 10);
@@ -35,8 +34,8 @@ ModernizrTests.android23AndBelow = (function() {
   }
   return false;
 }());
-ModernizrTests.androidBelow5 = (function() {
-  var matches = ModernizrTests.agent.match(/android\s(\d)\.(\d)/i);
+Tests.androidBelow5 = (function() {
+  var matches = Tests.agent.match(/android\s(\d)\.(\d)/i);
   var vi, vd;
   if (Array.isArray(matches) && matches.length === 3) {
     vi = parseInt(matches[1], 10);
@@ -45,8 +44,8 @@ ModernizrTests.androidBelow5 = (function() {
   }
   return false;
 }());
-ModernizrTests.iOS4AndBelow = (function() {
-  var matches = ModernizrTests.agent.match(/os\s(\d)_/i);
+Tests.iOS4AndBelow = (function() {
+  var matches = Tests.agent.match(/os\s(\d)_/i);
   var v;
   if (Array.isArray(matches) && matches.length === 2) {
     v = parseInt(matches[1], 10);
@@ -54,8 +53,8 @@ ModernizrTests.iOS4AndBelow = (function() {
   }
   return false;
 }());
-ModernizrTests.iOS7AndBelow = (function() {
-  var matches = ModernizrTests.agent.match(/os\s(\d)_/i);
+Tests.iOS7AndBelow = (function() {
+  var matches = Tests.agent.match(/os\s(\d)_/i);
   var v;
   if (Array.isArray(matches) && matches.length === 2) {
     v = parseInt(matches[1], 10);
@@ -81,25 +80,25 @@ if (window.Modernizr) {
     return window.Modernizr;
   };
 
-  window.Modernizr.setTest('animation', ModernizrTests.animation);
-  window.Modernizr.setTest('android', ModernizrTests.android);
-  window.Modernizr.setTest('ios', ModernizrTests.iOS);
-  window.Modernizr.setTest('ipad', ModernizrTests.ipad);
-  window.Modernizr.setTest('nexus7', ModernizrTests.nexus7);
-  window.Modernizr.setTest('msie', ModernizrTests.msie);
-  window.Modernizr.setTest('msie9', ModernizrTests.msie9);
-  window.Modernizr.setTest('msie10', ModernizrTests.msie10);
-  window.Modernizr.setTest('msie11', ModernizrTests.msie11);
-  window.Modernizr.setTest('macintosh', ModernizrTests.macintosh);
-  window.Modernizr.setTest('desktop', ModernizrTests.desktop);
-  window.Modernizr.setTest('mobile-browser', (ModernizrTests.isMobile && (!window.cordova ? true : false)));
-  window.Modernizr.setTest('mobile-app', ModernizrTests.isMobile && ((window.cordova) ? true : false) );
-  window.Modernizr.setTest('ios-installed', (ModernizrTests.iOS && (window.cordova ? true : false)));
-  window.Modernizr.setTest('android-installed', (ModernizrTests.android && (window.cordova ? true : false)));
+  window.Modernizr.setTest('animation', Tests.animation);
+  window.Modernizr.setTest('android', Tests.android);
+  window.Modernizr.setTest('ios', Tests.iOS);
+  window.Modernizr.setTest('ipad', Tests.ipad);
+  window.Modernizr.setTest('nexus7', Tests.nexus7);
+  window.Modernizr.setTest('msie', Tests.msie);
+  window.Modernizr.setTest('msie9', Tests.msie9);
+  window.Modernizr.setTest('msie10', Tests.msie10);
+  window.Modernizr.setTest('msie11', Tests.msie11);
+  window.Modernizr.setTest('macintosh', Tests.macintosh);
+  window.Modernizr.setTest('desktop', Tests.desktop);
+  window.Modernizr.setTest('mobile-browser', (Tests.isMobile && (!window.cordova ? true : false)));
+  window.Modernizr.setTest('mobile-app', Tests.isMobile && ((window.cordova) ? true : false) );
+  window.Modernizr.setTest('ios-installed', (Tests.iOS && (window.cordova ? true : false)));
+  window.Modernizr.setTest('android-installed', (Tests.android && (window.cordova ? true : false)));
   window.Modernizr.setTest('cordova', (window.cordova ? true : false));
   window.Modernizr.setTest('debugging', (Config.debugging));   
 }
 
-module.exports = ModernizrTests;
+export let ModernizrTests = Tests;
 
 
