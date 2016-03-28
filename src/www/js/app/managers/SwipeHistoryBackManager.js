@@ -1,10 +1,6 @@
-define(function(require) {
-  var Disposable = require('lavaca/util/Disposable'),
-      Transition = require('lavaca/fx/Transition'),
-      Transform = require('lavaca/fx/Transform'),
-      viewManager = require('lavaca/mvc/ViewManager');
+import {Disposable,Transition,Transform,ViewManager} from 'lavaca';
 
-  var SwipeHistoryBackManager = Disposable.extend(function SwipeHistoryBackManager() {
+  var SwipeBackManager = Disposable.extend(function SwipeHistoryBackManager() {
     Disposable.call(this, arguments);
 
     this.init();
@@ -136,6 +132,4 @@ define(function(require) {
   });
 
 
-  return new SwipeHistoryBackManager();
-
-});
+  export let SwipeHistoryBackManager = new SwipeBackManager();
