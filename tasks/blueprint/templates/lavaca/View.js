@@ -1,4 +1,4 @@
-let View = require('lavaca/mvc/View');
+import { View } from 'lavaca';
 import template from 'templates/<%=templateFolder%><%= className %><%=postfix%>';
 
 /**
@@ -6,7 +6,7 @@ import template from 'templates/<%=templateFolder%><%= className %><%=postfix%>'
  * @super lavaca.mvc.View
  * <%= className %><%=postfix%> view type
  */
-module.exports = View.extend(function <%= className %><%=postfix%>(){
+export let <%= className %><%=postfix%> = View.extend(function <%= className %><%=postfix%>(){
   View.apply(this, arguments);
 },{
   /**
@@ -15,9 +15,9 @@ module.exports = View.extend(function <%= className %><%=postfix%>(){
   * A class name added to the view container
   */
   className: '<%=classNameLowerCase %>',
-  generateHtml: function(model) {
-    return new Promise(function(resolve) {
-      template(model, function(err, html) {
+  generateHtml(model) {
+    return new Promise((resolve) => {
+      template(model, (err, html) => {
         resolve(html);
       });
     });

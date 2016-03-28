@@ -1,12 +1,11 @@
-let Collection = require('lavaca/mvc/Collection');
-let Model = require('lavaca/mvc/Model');
+import { Collection, Model } from 'lavaca';
 
 /**
  * @class <%= classDotNotation %>
  * @super lavaca.mvc.Collection
  * <%= className %><%=postfix%> collection type
  */
-module.exports = Collection.extend(function <%= className %><%=postfix%>(){
+export let <%= className %><%=postfix%> = Collection.extend(function <%= className %><%=postfix%>(){
   Collection.apply(this, arguments);
 },{
 

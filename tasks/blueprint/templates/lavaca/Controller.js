@@ -1,11 +1,11 @@
-let BaseController = require('app/controllers/BaseController');
+import {BaseController} from 'app/controllers/BaseController';
 
 /**
  * @class <%= classDotNotation %>
  * @super app.controllers.BaseController
  * <%= className %><%=postfix%>
  */
-module.exports = BaseController.extend(function <%= className %><%=postfix%>(){
+export let <%= className %><%=postfix%> = BaseController.extend(function <%= className %><%=postfix%>(){
     BaseController.apply(this, arguments);
   }, {
   /**
@@ -21,7 +21,7 @@ module.exports = BaseController.extend(function <%= className %><%=postfix%>(){
        model = {};
      }
      return this
-       .view(null, ExampleView, model)
+       .view(null, ExampleView, model, params)
        .then(this.updateState(model, 'Title', params.url));
    }
 });

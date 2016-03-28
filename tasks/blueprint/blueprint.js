@@ -88,7 +88,7 @@ module.exports = function(grunt) {
         grunt.log.writeln('');
         grunt.log.writeln('Require the View where you intend to use it.');
         var tmpString = '';
-        tmpString = 'var '+options.className+'View = require(\'app/'+options.jsViewFolder+options.className+'View\')';
+        tmpString = 'import {'+options.className+'View} from \'app/'+options.jsViewFolder+options.className+'View\';';
         grunt.log.writeln(tmpString['cyan']);
         grunt.log.writeln('');
         

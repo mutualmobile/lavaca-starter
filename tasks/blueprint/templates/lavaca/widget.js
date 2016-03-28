@@ -1,4 +1,4 @@
-let Widget = require('lavaca/ui/Widget');
+import { Widget } from 'lavaca';
 
 /**
  *
@@ -9,7 +9,7 @@ let Widget = require('lavaca/ui/Widget');
  * @param {jQuery} el  The DOM element that is the root of the widget
  */
 
-module.exports = Widget.extend(function <%= className %><%=postfix%>() {
+export let <%= className %><%=postfix%> = Widget.extend(function <%= className %><%=postfix%>() {
   Widget.apply(this, arguments);
 }, {
 

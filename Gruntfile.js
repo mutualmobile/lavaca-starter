@@ -319,7 +319,7 @@ module.exports = function( grunt ) {
     blueprint: {
       options: {
         appName: 'app',
-        cssRoot: '<%= paths.src.www %>/css/<%= blueprint.options.appName %>',
+        cssRoot: '<%= paths.src.www %>/css',
         jsRoot: '<%= paths.src.www %>/js/<%= blueprint.options.appName %>',
         templateRoot: '<%= paths.src.www %>/js/templates',
         viewTemplateFolder: '',
