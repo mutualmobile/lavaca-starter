@@ -1,21 +1,29 @@
 import {Transitions} from 'lavaca';
 
 var _commonTiming = "250ms";
+var _clearAnimation = function(el) {
+    el.css({
+      'transform': 'none',
+      'transition': 'none'
+    });
+  };
+
 export let ViewTransitionAnimations = {
   "FADE": {
     'in': function(el){
             return new Promise(function(resolve,reject){
               el.css({
                 'opacity': '0',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '999'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -29,15 +37,16 @@ export let ViewTransitionAnimations = {
             return new Promise(function(resolve,reject){
               el.css({
                 'opacity': '1',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '1'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -51,15 +60,16 @@ export let ViewTransitionAnimations = {
             return new Promise(function(resolve,reject){
               el.css({
                 'opacity': '0',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '999'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -73,15 +83,16 @@ export let ViewTransitionAnimations = {
             return new Promise(function(resolve,reject){
               el.css({
                 'opacity': '1',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '1'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -98,15 +109,16 @@ export let ViewTransitionAnimations = {
               //console.log('SLIDE in');
               el.css({
                 'transform': 'translate3d(100%,0,0)',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '999'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -121,15 +133,16 @@ export let ViewTransitionAnimations = {
               //console.log('SLIDE out');
               el.css({
                 'transform': 'translate3d(0,0,0)',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '1'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -144,15 +157,16 @@ export let ViewTransitionAnimations = {
               //console.log('SLIDE inReverse');
               el.css({
                 'transform': 'translate3d(-20%,0,0)',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '1'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -168,15 +182,16 @@ export let ViewTransitionAnimations = {
               //console.log('SLIDE outReverse');
               el.css({
                 'transform': 'translate3d(0,0,0)',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '999'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -192,15 +207,16 @@ export let ViewTransitionAnimations = {
             return new Promise(function(resolve,reject){
               el.css({
                 'transform': 'translate3d(0,100%,0)',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '999'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -214,15 +230,16 @@ export let ViewTransitionAnimations = {
             return new Promise(function(resolve,reject){
               el.css({
                 'transform': 'translate3d(0,0,0)',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '1'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -236,15 +253,16 @@ export let ViewTransitionAnimations = {
             return new Promise(function(resolve,reject){
               el.css({
                 'transform': 'translate3d(0,5%,0)',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '1'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
@@ -258,15 +276,16 @@ export let ViewTransitionAnimations = {
             return new Promise(function(resolve,reject){
               el.css({
                 'transform': 'translate3d(0,0,0)',
-                'transition': 'all '+_commonTiming+' ease-out',
                 'z-index': '999'
               });
               setTimeout(function(){
                 el.css({
-                  'visibility': 'visible'
+                  'visibility': 'visible',
+                  'transition': 'all '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
+                    _clearAnimation.call(this, el);
                     return resolve();
                   });
                   el.css({
