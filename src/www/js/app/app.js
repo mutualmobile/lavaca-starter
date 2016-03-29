@@ -1,7 +1,6 @@
 import 'css/app/app.less';
 import 'imports?$=jquery!jquery-mobile';
 import 'app/env/ModernizrTests';
-import 'app/utils/hammer_extensions';
 import {History, Connectivity, Application} from 'lavaca';
 import {HomeController} from 'app/controllers/HomeController';
 import {ViewManagerViewMixin, ViewManagerViewFillin} from 'app/mixins';
