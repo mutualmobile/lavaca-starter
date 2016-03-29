@@ -1,31 +1,27 @@
-define(function(require) {
-
-  var View = require('lavaca/mvc/View');
-  require('rdust!templates/<%=objectName %>');
+import { View } from 'lavaca';
+import template from 'templates/<%=templateFolder%><%= className %><%=postfix%>';
 
 /**
- * @class <%= fqn %>
+ * @class <%= classDotNotation %>
  * @super lavaca.mvc.View
- * <%= className %> view type
+ * <%= className %><%=postfix%> view type
  */
-  var <%= className %> = View.extend(function(){
-    View.apply(this, arguments);
-  },{
-  /**
-   * @field {String} template
-  * @default '<%=objectName %>'
-  * The name of the template used by the view
-  */
-  template: 'templates/<%=objectName %>',
+export let <%= className %><%=postfix%> = View.extend(function <%= className %><%=postfix%>(){
+  View.apply(this, arguments);
+},{
   /**
   * @field {String} className
-  * @default '<%=objectName %>'
+  * @default '<%=classNameLowerCase %>'
   * A class name added to the view container
   */
-  className: '<%=objectName %>'
+  className: '<%=classNameLowerCase %>',
+  generateHtml(model) {
+    return new Promise((resolve) => {
+      template(model, (err, html) => {
+        resolve(html);
+      });
+    });
+  }
 
-  });
-
-  return <%= className %>;
 
 });

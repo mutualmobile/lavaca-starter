@@ -1,21 +1,15 @@
-define(function(require) {
+import { Collection, Model } from 'lavaca';
 
-  var Collection = require('lavaca/mvc/Collection');
-  var Config = require('lavaca/util/Config');
+/**
+ * @class <%= classDotNotation %>
+ * @super lavaca.mvc.Collection
+ * <%= className %><%=postfix%> collection type
+ */
+export let <%= className %><%=postfix%> = Collection.extend(function <%= className %><%=postfix%>(){
+  Collection.apply(this, arguments);
+},{
 
-  /**
-   * @class <%= fqn %>
-   * @super lavaca.mvc.Collection
-   * <%= className %> collection type
-   */
-  var <%= className %> = Collection.extend(function(){
-    Collection.apply(this, arguments);
-  },{
-
-  TModel:null
-
-  });
-
-  return <%= className %>;
+  TModel: Model,
+  itemsProperty: 'item'
 
 });

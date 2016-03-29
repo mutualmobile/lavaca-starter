@@ -19,17 +19,12 @@ module.exports = function(grunt) {
     if (isCordova) {
       platformTasks.push('clean:cordova');
       platformTasks.push('copy:cordova');
-      if (platform) {
-        platformTasks.push('cordovaBuild:' + platform);
-      } else {
-        platformTasks.push('cordovaBuild');
-      }
     }
 
     if (preProcessIndex > 0){
       if (isCordova) {
         if (platform) {
-          platformTasks.push('preprocess' + ':' + platform + ':' + target)
+          platformTasks.push('preprocess' + ':' + platform + ':' + target);
         } else {
           platforms.forEach(function(value, index, array){
             platformTasks.push('preprocess' + ':' + value + ':' + target);
@@ -42,6 +37,25 @@ module.exports = function(grunt) {
       tasks = tasks.concat(platformTasks);
     }
 
+    if (isCordova) {
+      tasks.push('xmlstoke');
+      if (platform) {
+        tasks.push('cordovaBuild:' + platform);
+      } else {
+        tasks.push('cordovaBuild');
+      }
+    }
+
+    if (isCordova) {
+      if (platform) {
+        tasks.push('preprocess' + ':' + platform + ':' + target);
+      } else {
+        platforms.forEach(function(value, index, array){
+          tasks.push('preprocess' + ':' + value + ':' + target);
+        });
+      }
+    }
+    tasks.push('preprocess:www:' + target);
 
     tasks.push('clean:tmp');
     grunt.verbose.writeln('Options:', options);

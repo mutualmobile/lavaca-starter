@@ -1,29 +1,26 @@
-define(function(require) {
+import { View } from 'lavaca';
+import template from 'templates/home';
 
-  var BaseView = require('./BaseView');
-  require('rdust!templates/home');
+/**
+ * Example view type
+ * @class app.ui.views.HomeView
+ * @extends lavaca.mvc.View
+ */
 
+export let HomeView = View.extend(function HomeView() {
+  View.apply(this,arguments);
+},{
   /**
-   * Example view type
-   * @class app.ui.views.HomeView
-   * @extends app.ui.views.BaseView
+   * A class name added to the view container
+   * @property {String} className
+   * @default 'home'
    */
-  var HomeView = BaseView.extend({
-    /**
-     * The name of the template used by the view
-     * @property {String} template
-     * @default 'home'
-     */
-    template: 'templates/home',
-    /**
-     * A class name added to the view container
-     * @property {String} className
-     * @default 'home'
-     */
-    className: 'home'
-
-  });
-
-  return HomeView;
-
+  className: 'home',
+  generateHtml(model) {
+    return new Promise((resolve) => {
+      template(model, (err, html) => {
+        resolve(html);
+      });
+    });
+  }
 });

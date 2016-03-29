@@ -2,6 +2,10 @@ module.exports = function( grunt ) {
 
   'use strict';
 
+  var timeStampVersionCode = String(Math.floor(new Date().getTime() / 1000));
+  //Android limits the interger value
+  var timeStampVersionCodeAndroid = timeStampVersionCode.substring(2);
+
   grunt.loadTasks('tasks/server');
   grunt.loadTasks('tasks/pkg');
   grunt.loadTasks('tasks/preprocess');
@@ -13,19 +17,36 @@ module.exports = function( grunt ) {
   grunt.loadTasks('tasks/cordovaBuild');
   grunt.loadTasks('tasks/cordovaInit');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-amd-dist');
   grunt.loadNpmTasks('grunt-amd-test');
   grunt.loadNpmTasks('grunt-amd-check');
   grunt.loadNpmTasks('grunt-contrib-yuidoc');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-xmlstoke');
+  grunt.loadNpmTasks('grunt-modernizr');
+  grunt.loadNpmTasks('grunt-webpack');
+
+
+  var ExtractTextPlugin = require('extract-text-webpack-plugin');
+  var webpackConfig = require('./webpack.config.js'),
+      webpack = require("webpack");
+
+  var variablesObj = grunt.file.readJSON('./build-config.json');
+  var variables = '';
+  for (var key in variablesObj) {
+    variables += key + '="' + variablesObj[key] + '"\n';
+  }
+  variables += 'timeStampVersionCode="' + timeStampVersionCode + '"\n';
+  variables += 'timeStampVersionCodeAndroid="' + timeStampVersionCodeAndroid + '"\n';
 
   grunt.initConfig({
+    timeStampVersionCode: timeStampVersionCode,
+    timeStampVersionCodeAndroid: timeStampVersionCodeAndroid,
+    buildConfigVariables: variablesObj,
+    buildConfigVariablesFlat: variables,
     paths: {
       src: {
         root: 'src',
@@ -49,6 +70,7 @@ module.exports = function( grunt ) {
       build: {
         root: 'build',
         www: '<%= paths.build.root %>/www',
+        cordova: '<%= paths.cordovaInit.root %>/www',
         ios: '<%= paths.cordovaInit.root %>/platforms/ios',
         android: '<%= paths.cordovaInit.root %>/platforms/android',
         androidLocalProperties: '<%= paths.build.android %>local.properties'
@@ -59,21 +81,26 @@ module.exports = function( grunt ) {
       },
       out: {
         index: 'index.html',
-        css: 'css/app',
+        css: 'css',
         js: 'js',
         cordova: 'cordova.js'
       },
       'package': {
         root: 'pkg',
-        android: '<%= paths.package.root %>/<%= package.name %>.apk',
-        ios: '<%= paths.package.root %>/<%= package.name %>.ipa'
+        android: '<%= paths.package.root %>/<%= buildConfigVariables.appName %>.apk',
+        ios: '<%= paths.package.root %>/<%= buildConfigVariables.appName %>.ipa'
       },
+      styleguide: 'src/www/assets/styleguide',
       doc: 'doc',
       copy: {
         www: [
           '<%= paths.out.index %>',
-          '<%= paths.out.css %>/<%= package.name %>.css ',
-          '<%= paths.out.js %>/<%= package.name %>.min.js',
+          'manifest.json',
+          'favicon.ico',
+          'browserconfig.xml',
+          '<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css ',
+          '<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js',
+          '<%= paths.out.js %>/modernizr.js',
           'configs/**/*',
           'assets/**/*',
           'messages/**/*',
@@ -93,18 +120,19 @@ module.exports = function( grunt ) {
       init: ['<%= paths.cordovaInit.root %>']
     },
 
-    uglify: {
-      all: {
+    xmlstoke: {
+      updateVersion: {
         options: {
-          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-             '<%= grunt.template.today("yyyy-mm-dd") %> |  License: <%= package.license %> */'
+          actions: [
+            { xpath: '/widget/@id', value: '<%= buildConfigVariables.bundleId %>' },
+            { xpath: '/widget/@version', value: '<%= buildConfigVariables.version %>' },
+            { type: 'I', xpath: '/widget', node: '@ios-CFBundleVersion', value: '<%= timeStampVersionCode %>'},
+            { type: 'I', xpath: '/widget', node: '@android-versionCode', value: '<%= timeStampVersionCodeAndroid %>' }
+          ]
         },
-        files: [
-          {
-            src: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= package.name %>.min.js',
-            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= package.name %>.min.js'
-          }
-        ]
+        files: {
+          '<%= paths.cordovaInit.root %>/config.xml': '<%= paths.cordovaInit.root %>/config.xml'
+        }
       }
     },
 
@@ -112,8 +140,10 @@ module.exports = function( grunt ) {
       www: {
         options: {
           locals: {
-            css: '<link rel="stylesheet" type="text/css" href="<%= paths.out.css %>/<%= package.name %>.css" />\n',
-            js: '<script src="<%= paths.out.js %>/<%= package.name %>.min.js"></script>\n'
+            version: "<script>window.appVersion = '<%= buildConfigVariables.version %>';</script>",
+            css: '<link rel="stylesheet" type="text/css" href="<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css" />\n',
+            js: '<script src="<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js"></script>\n',
+            ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaWeb %>";</script>'
           }
         },
         files: [{
@@ -124,20 +154,16 @@ module.exports = function( grunt ) {
       ios: {
         options: {
           locals: {
+            version: '<%= preprocess.www.options.locals.version %>',
             css: '<%= preprocess.www.options.locals.css %>',
-            js: (function() {
-              return [
-                '<%= paths.out.cordova %>',
-                '<%= paths.out.js %>/<%= package.name %>.min.js'
-              ]
-                .map(function(file) {
-                  return '<script src="' + file + '"></script>';
-                })
-                .join('\n') + '\n';
-            })()
+            js: '<script src="<%= paths.out.cordova %>"></script>\n<script src="<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js"></script>\n',
+            ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaIOS %>";</script>'
           }
         },
         files: [{
+          src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
+          dest: '<%= paths.build.cordova %>/<%= paths.out.index %>'
+        },{
           src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
           dest: '<%= paths.asset.ios %>/<%= paths.out.index %>'
         }]
@@ -145,28 +171,19 @@ module.exports = function( grunt ) {
       android: {
         options: {
           locals: {
+            version: '<%= preprocess.www.options.locals.version %>',
             css: '<%= preprocess.www.options.locals.css %>',
-            js: '<%= preprocess.ios.options.locals.js %>'
+            js: '<%= preprocess.ios.options.locals.js %>',
+            ga_id: '<script>window.gaid = "<%= buildConfigVariables.gaAndroid %>";</script>'
           }
         },
         files: [{
           src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
+          dest: '<%= paths.build.cordova %>/<%= paths.out.index %>'
+        },{
+          src: '<%= paths.tmp.www %>/<%= paths.out.index %>',
           dest: '<%= paths.asset.android %>/<%= paths.out.index %>'
         }]
-      }
-    },
-
-    less: {
-      build: {
-        options: {
-          compress: true
-        },
-        files: [
-          {
-            src: '<%= paths.tmp.www %>/css/app/app.less',
-            dest: '<%= paths.tmp.www %>/<%= paths.out.css %>/<%= package.name %>.css'
-          }
-        ]
       }
     },
 
@@ -181,56 +198,22 @@ module.exports = function( grunt ) {
     },
 
 
-
     'amd-test': {
       mode: 'jasmine',
       files: 'test/unit/**/*.js'
     },
 
-    jshint: {
-      src: {
-        options: {
-          jshintrc: '<%= paths.src.www %>/js/.jshintrc'
-        },
-        files: {
-          src: '<%= paths.src.www %>/js/**/*.js'
-        }
-      },
-      test: {
-        options: {
-          jshintrc: 'test/unit/.jshintrc'
-        },
-        files: {
-          src: 'test/unit/**/*.js'
-        }
-      }
-    },
-
     server: {
-      local: {
-        options: {
-          port: 8080,
-          vhost: 'localhost',
-          base: 'src/www',
-          apiPrefix: '/api',
-          apiBaseUrl: 'configure-to-specific-api',
-          proxyPort: '80',// change to 443 for https
-          proxyProtocol: 'http'//change to https if ssl is required
-        }
-      },
       prod: {
         options: {
           port: process.env.PORT || 8080,
           hostname: '0.0.0.0',
           base: 'build/www',
-          apiPrefix: '/api*'
-        }
-      },
-      doc: {
-        options: {
-          port: 8080,
-          vhost: 'localhost',
-          base: 'doc'
+          apiPrefix: '/api*',
+          authUser: 'username',
+          authPassword: 'password',
+          proxyPort: '80',// change to 443 for https
+          proxyProtocol: 'http'//change to https if ssl is required
         }
       }
     },
@@ -317,7 +300,8 @@ module.exports = function( grunt ) {
     'amd-dist': {
       all: {
         options: {
-          standalone: true
+          standalone: true,
+          exports: '<%= buildConfigVariables.appName %>'
         },
         files: [
           {
@@ -326,7 +310,7 @@ module.exports = function( grunt ) {
               '<%= paths.tmp.www %>/js/app/boot.js',
               '<%= paths.tmp.www %>/js/templates.js'
             ],
-            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= package.name %>.min.js'
+            dest: '<%= paths.tmp.www %>/<%= paths.out.js %>/<%= buildConfigVariables.appName %>.min.js'
           }
         ]
       }
@@ -334,35 +318,42 @@ module.exports = function( grunt ) {
 
     blueprint: {
       options: {
-        dest: '<%= paths.src.www %>/js/app',
-        appName: 'app'
-      },
-      lavaca:{
-        options:{
-          map:{
-            View: 'ui/views/View',
-            PageView: 'ui/views/pageviews/PageView',
-            Model: 'models/Model',
-            Collection: 'collections/Collection',
-            Controller: 'net/Controller',
-            Control: 'ui/views/controls/Control'
+        appName: 'app',
+        cssRoot: '<%= paths.src.www %>/css',
+        jsRoot: '<%= paths.src.www %>/js/<%= blueprint.options.appName %>',
+        templateRoot: '<%= paths.src.www %>/js/templates',
+        viewTemplateFolder: '',
+        viewCssFolder: 'views',
+        templateFileType: '.html',
+        cssFileType: '.less',
+        map:{
+          view: {
+            location: 'ui/views',
+            postfix: 'View',
+            filetype: '.js'
+          },
+          model: {
+            location: 'models',
+            postfix: 'Model',
+            filetype: '.js'
+          },
+          collection: {
+            location: 'collections',
+            postfix: 'Collection',
+            filetype: '.js'
+          },
+          controller: {
+            location: 'net',
+            postfix: 'Controller',
+            filetype: '.js'
+          },
+          widget: {
+            location: 'ui/widgets',
+            postfix: 'Widget',
+            filetype: '.js'
           }
         }
       }
-    },
-
-    requirejs: {
-      baseUrl: '<%= paths.src.www %>/js',
-      mainConfigFile: '<%= paths.src.www %>/js/app/boot.js',
-      optimize: 'none',
-      keepBuildDir: true,
-      locale: "en-us",
-      useStrict: false,
-      skipModuleInsertion: false,
-      findNestedDependencies: false,
-      removeCombined: false,
-      preserveLicenseComments: false,
-      logLevel: 0
     },
 
     yuidoc: {
@@ -381,27 +372,20 @@ module.exports = function( grunt ) {
       }
     },
 
-    watch: {
-      scripts: {
-        files: ['src/www/**/*.js'],
-        tasks: ['yuidoc']
-      }
-    },
-
     buildProject: {
       local: {
         options: {
-          tasks: ['less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'webpack', 'preprocess']
         }
       },
       staging: {
         options: {
-          tasks: ['less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'webpack', 'preprocess']
         }
       },
       production: {
         options: {
-          tasks: ['yuidoc:compile', 'less:build', 'amd-dist:all', 'uglify:all', 'preprocess']
+          tasks: ['shell:setShellVariables', 'yuidoc:compile', 'webpack', 'preprocess']
         }
       }
     },
@@ -409,8 +393,8 @@ module.exports = function( grunt ) {
     initCordova: {
       init: {
         options: {
-          appName: 'App',
-          id: 'com.mm.App'
+          appName: '<%= buildConfigVariables.appName %>',
+          id: '<%= buildConfigVariables.bundleId %>'
         }
       }
     },
@@ -429,26 +413,114 @@ module.exports = function( grunt ) {
         options: {
           stdout: true
         }
+      },
+      setShellVariables: {
+        command: 'echo "<%= buildConfigVariablesFlat %>" > .build-config'
+      },
+      buildStyleGuide: {
+        command: './node_modules/.bin/kss-node src/www/css/app/theme src/www/assets/styleguide --css ../../css/app/app.css --template src/www/assets/template/',
+        options: {
+          stdout: true
+        }
       }
-    }
+    },
 
 
+    modernizr: {
+      devFile: 'src/www/js/modernizr.js',
+      outputFile: '<%= paths.tmp.www %>/<%= paths.out.js %>/modernizr.js',
+      files: [
+        'src/www/css/**/*.less',
+        'src/www/js/**/*.js',
+        'src/www/js/templates/**/*.html'
+      ],
+      extra: {
+        "shiv" : true,
+        "printshiv" : false,
+        "load" : true,
+        "mq" : false,
+        "cssclasses" : true
+      }
+    },
+
+    webpack: {
+      options: webpackConfig,
+      build: {
+        output: {
+          path: './<%= paths.tmp.www %>/<%= paths.out.js %>',
+          filename: '<%= buildConfigVariables.appName %>.min.js',
+        },
+        failOnError: true, 
+        keepalive: false,
+        plugins: [
+          new webpack.optimize.UglifyJsPlugin(),
+          new ExtractTextPlugin('../<%= paths.out.css %>/<%= buildConfigVariables.appName %>.css', {
+            allChunks: true,
+            publicPath:'/'
+          })
+        ]
+      }
+    },
+
+    'webpack-dev-server': {
+      options: {
+        webpack: webpackConfig,
+        port: 8080
+      },
+      start: {
+        contentBase: '<%= paths.src.www %>',
+        webpack: {
+          devtool: 'eval',
+          debug: false
+        },
+        watch: true,
+        keepalive: true,
+        plugins: [
+          new webpack.HotModuleReplacementPlugin()
+        ]
+      },
+      doc: {
+        contentBase: '<%= paths.doc %>',
+        webpack: {
+          devtool: 'eval',
+          debug: false
+        },
+        keepalive: true
+      },
+      styleguide: {
+        contentBase: '<%= paths.styleguide %>',
+        webpack: {
+          devtool: 'eval',
+          debug: false
+        },
+        keepalive: true
+      }
+    },
   });
 
   grunt.registerTask('default', 'runs the tests and starts local server', [
-    'amd-test',
-    'jasmine',
+    'webpack-dev-server'
+  ]);
+
+  grunt.registerTask('prod', 'runs the tests and starts local server', [
     'server'
   ]);
 
+  grunt.registerTask('compile', 'compiles the app', [
+    'webpack'
+  ]);
+
   grunt.registerTask('test', 'generates runner and runs the tests', [
-    'amd-test',
     'jasmine'
+  ]);
+
+  grunt.registerTask('styleguide', 'compiles documentation and starts a server', [
+    'shell:buildStyleGuide'
   ]);
 
   grunt.registerTask('doc', 'compiles documentation and starts a server', [
     'yuidoc',
-    'server:doc'
+    'webpack-dev-server:doc'
   ]);
 
 };

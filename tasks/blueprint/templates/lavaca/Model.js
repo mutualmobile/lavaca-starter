@@ -1,19 +1,12 @@
-define(function(require) {
+import { Model } from 'lavaca';
 
-  var Model = require('lavaca/mvc/Model');
-  var Config = require('lavaca/util/Config');
-
-  /**
-   * @class <%= fqn %>
-   * @super lavaca.mvc.Model
-   * <%= className %> model type
-   */
-  var <%= className %> = Model.extend(function(){
-    Model.apply(this, arguments);
-  },{
-
-  });
-
-  return <%= className %>;
+/**
+ * @class <%= classDotNotation %>
+ * @super lavaca.mvc.Model
+ * <%= className %><%=postfix%> model type
+ */
+export let <%= className %><%=postfix%> = Model.extend(function <%= className %><%=postfix%>(){
+  Model.apply(this, arguments);
+},{
 
 });

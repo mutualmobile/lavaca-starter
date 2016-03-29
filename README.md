@@ -1,38 +1,34 @@
-Lavaca-starter 2.3.0
+Lavaca-starter 3.0.0
 
 [![Build Status](https://travis-ci.org/mutualmobile/lavaca.png?branch=master)](https://travis-ci.org/mutualmobile/lavaca-starter)
 
 This project is a seed for creating a new Lavaca app. It includes a build system and opional integration with Cordova.
 
-[Startup guide](http://getlavaca.com/#/guide#@3)
+[Startup guide](http://getlavaca.com/#/guide)
 
 ## Getting Started
 
-1. __Get the code__
-  - [Download source](https://github.com/mutualmobile/lavaca-starter/archive/master.zip)
+__Get the code__
+[Download source](https://github.com/mutualmobile/lavaca-starter/archive/master.zip)
 
-2. __Install grunt-cli globally__
-Note: this may require sudo
+__Install Node Packages__
 ```bash
-$ npm install -g grunt-cli
+$ npm install
 ```
-
-3. __Install bower globally__
-Note: this may require sudo
+    
+__Set Your Path__
 ```bash
-$ npm install -g bower
+$ source ./set_path.sh
 ```
 
 4. __Install dev dependencies__
 ```bash
-$ npm install && bower install
+$ npm install
 ```
 
-4. __Start Development Server__
 ```bash
-$ grunt server
+$ grunt
 ```
-Your application should now be running on `localhost:8080`.
 
 ## Grunt Tasks
 
@@ -45,7 +41,7 @@ A task that simply runs a static server for local development and testing. Defau
 - __Run the default static server__
 
 ```bash
-$ grunt server
+$ grunt
 ```
 
 ### Build

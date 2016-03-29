@@ -1,6 +1,7 @@
 {
   "globals": {
-    "define": false
+    "define": false,
+    "Promise": false
   },
 
   "browser":   true,

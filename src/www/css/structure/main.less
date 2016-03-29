@@ -1,0 +1,24 @@
+
+#view-root {
+  overflow: hidden;
+  .absolute();
+  backface-visibility: hidden;
+  perspective: 1200px;
+  background: #888888;
+  >.view, .cvm >.view  {
+    .absolute();
+    visibility: hidden;
+    &.show,
+    &.current {
+      z-index: 2;
+    }
+    &.page-ontop,
+    &.pt-page-ontop {
+      z-index: 999;
+    }
+  }
+}
+.ui-blocker {
+  background: rgba(107, 23, 59, 0.25);
+  .absolute();
+}

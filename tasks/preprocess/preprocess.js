@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     if (!env) {
       env = 'local';
     }
-    options.locals.config = '<script type="text/x-config" data-name="' + env + '" data-src="configs/' + env + '.json" data-default></script>\n';
+    options.locals.config = '<script>window.env = "'+env+'";</script>\n';
     this.files.forEach(function(f) {
       var contents = grunt.file.read(f.src[0]);
       var result = preprocess.preprocess(contents, options.locals);

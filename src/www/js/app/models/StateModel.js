@@ -1,5 +1,2 @@
-define(function(require) {
-  var Model = require('lavaca/mvc/Model');
-
-  return new Model();
-});
+import { Model } from 'lavaca';
+export default new Model();
