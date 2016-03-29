@@ -1,7 +1,6 @@
-'use strict'; 
+'use strict';
 var path = require('path');
 var webpack = require('webpack');
-var LessPluginCleanCSS = require('less-plugin-clean-css');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
@@ -16,8 +15,8 @@ module.exports = {
     modules: true,
     reasons: true
   },
-  progress: true, 
-  failOnError:false, 
+  progress: true,
+  failOnError:false,
   watch: true,
   hot: false,
   keepalive: true,
@@ -66,8 +65,11 @@ module.exports = {
         exclude: /(node_modules)/,
         test: /\.js?$/,
         query: {
-          plugins: ['transform-runtime'],
-          presets: ['es2015'],
+          presets: ['es2015-webpack'],
+          plugins: [
+            'transform-runtime',
+            ['transform-es2015-modules-commonjs-simple', { 'noMangle': true, 'addExports': true }]
+          ]
         }
       }
     ]
