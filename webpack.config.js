@@ -1,6 +1,7 @@
-'use strict';
+'use strict'; 
 var path = require('path');
 var webpack = require('webpack');
+var LessPluginCleanCSS = require('less-plugin-clean-css');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
@@ -15,8 +16,8 @@ module.exports = {
     modules: true,
     reasons: true
   },
-  progress: true,
-  failOnError:false,
+  progress: true, 
+  failOnError:false, 
   watch: true,
   hot: false,
   keepalive: true,
@@ -24,14 +25,13 @@ module.exports = {
   resolve: {
     root: __dirname,
     extensions: ['', '.js','.html'],
-    modulesDirectories: ['src','components','node_modules'],
+    modulesDirectories: ['src','node_modules'],
     alias: {
-      lavaca: 'lavaca',
+      lavaca: 'node_modules/lavaca',
       app: 'www/js/app',
       css: 'www/css',
       templates: 'www/js/templates',
-      'jquery': 'jquery/jquery.min.js',
-      'jquery-mobile': 'jquery-touch-events/src/1.0.1/jquery.mobile-events.min.js',
+      'jquery-mobile': 'jquery-touch-events',
       'mout': 'mout/src',
       dustjs: 'dustjs-linkedin',
       'dust.core': 'dustjs-linkedin',
@@ -42,7 +42,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
-      'jquery': path.join(__dirname, 'jquery/jquery.min'),
+      'jquery': path.join(__dirname, 'node_modules/jquery'),
       dust: 'dustjs-linkedin',
     }),
     new ExtractTextPlugin('css/app/app.css', {
@@ -52,7 +52,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.(jpg|png|gif|svg)$/, loader: 'url-loader' },
-      { test: /\.(woff|woff2|eot|ttf|svg)$/, loader: 'url-loader' },
+      { test: /\.(woff|woff2|eot|ttf)$/, loader: 'url-loader' },
       { test: /\.less$/, loader: ExtractTextPlugin.extract('style-loader','css-loader!postcss-loader!less-loader?relativeUrls=false')
       },
       { test: /\.html$/, loader: 'dust-loader-complete', exclude: /node_modules/, query: { verbose: true } },
@@ -60,9 +60,8 @@ module.exports = {
         loader: 'babel-loader',
         include: [
           path.resolve(__dirname, 'src/www/js'),
-          path.resolve(__dirname, 'src/www/components/lavaca'),
+          path.resolve(__dirname, 'node_modules/lavaca'),
         ],
-        exclude: /(node_modules)/,
         test: /\.js?$/,
         query: {
           presets: ['es2015-webpack'],
