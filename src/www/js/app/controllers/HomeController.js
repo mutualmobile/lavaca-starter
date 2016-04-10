@@ -5,7 +5,7 @@ import {Model} from 'lavaca';
  * Home controller
  * @class app.net.HomeController
  * @extends app.net.BaseController
- */ 
+ */
 
 export let HomeController = BaseController.extend({
   /**
@@ -18,7 +18,7 @@ export let HomeController = BaseController.extend({
    */
   index(params, history) {
     var model = new Model();
-    model.set('headline','Hello World');
+    model.headline = 'Hello World';
     return this.view(null, HomeView, model, params)
                .then(this.updateState(history, 'Home Page', params.url));
   }
