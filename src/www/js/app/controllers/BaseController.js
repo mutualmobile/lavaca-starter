@@ -15,7 +15,6 @@ export let BaseController = Controller.extend(function(){
     this.history(historyState, title, url)();
 
     stateProps = merge(stateProps || {}, defaultStateProps);
-    stateModel.apply(stateProps, true);
-    stateModel.trigger('change');
+    stateModel.$apply(stateProps);
   }
 });
