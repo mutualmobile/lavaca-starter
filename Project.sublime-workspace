@@ -1,0 +1,1100 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"curre",
+				"currentTarget"
+			],
+			[
+				"current",
+				"currentView"
+			],
+			[
+				"trigg",
+				"triggerError"
+			],
+			[
+				"leader",
+				"leaderboardPromise"
+			],
+			[
+				"percent",
+				"percentPerChild"
+			],
+			[
+				"client",
+				"clientY"
+			],
+			[
+				"leaderboa",
+				"leaderboardIndex"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"equip",
+				"equipmentCollection	equipment.service.js"
+			],
+			[
+				"equipment",
+				"equipmentItem	equipment.service.js"
+			],
+			[
+				"hours",
+				"hours_to_next_interval	serviceReport.controller.js"
+			],
+			[
+				"days",
+				"days_to_next_maintenance"
+			],
+			[
+				"lates",
+				"latest_point"
+			],
+			[
+				"_",
+				"_getDaysToNextService"
+			],
+			[
+				"_get",
+				"_getCurrentHours"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/www/js/app/controllers/HomeController.js",
+			"settings":
+			{
+				"buffer_size": 751,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/www/js/app/controllers/BaseController.js",
+			"settings":
+			{
+				"buffer_size": 610,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "css",
+		"selected_items":
+		[
+			[
+				"css",
+				"Tidy CSS"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/alexwasner/Projects/lavaca-starter"
+	],
+	"file_history":
+	[
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/models/FoodCollection.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/css/views/ProfileView.less",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/templates/ProfileView.html",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/models/data.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/css/views/Tabbar.less",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/css/theme/theme.less",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/css/views/FoodView.less",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/lavaca/mvc/Model.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/controllers/HomeController.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/ui/views/ProfileView.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/templates/home.html",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/css/app.less",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/app.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/controllers/BaseController.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/ui/views/FoodView.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/jquery-touch-events/index.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/css/views/HomeView.less",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/templates/FoodView.html",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/ui/views/HomeView.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/models/UserModel.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/models/StateModel.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/lavaca/util/diff.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/animations/ViewTransitionAnimations.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/mixins/ChildViewManagerViewFillin.js",
+		"/Users/alexwasner/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/lavaca/mvc/ChildViewManager.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/lavaca/mvc/View.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/lavaca/util/Observable.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/lavaca/mvc/Collection.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/js/app/models/FoodModel.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/src/www/css/structure/Food.less",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/lavaca/events/EventDispatcher.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/lavaca/mvc/Router.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-dev/node_modules/lavaca/mvc/Application.js",
+		"/Users/alexwasner/Desktop/lavaca-starter-master/src/www/js/templates/pageviews/home.html",
+		"/Users/alexwasner/Desktop/lavaca-starter-master/src/www/js/app/ui/views/pageviews/HomeView.js",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/reports/serviceReport/serviceReport.html",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/reports/serviceReport/serviceReport.controller.js",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/unitConverter/unitConverter.service.js",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/bower_components/moment/min/locales.js",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/equipment/equipment.service.js",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/equipment-detail/notification-history-tab/notification-history-tab.directive.js",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/equipment-detail/equipment-detail.html",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/equipment-detail/telemetry-tab/telemetry-tab.directive.js",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/equipment-detail/equipment-detail.controller.js",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/resolved-card/resolved-card.html",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/equipment-detail/notification-history-tab/notification-history-tab.html",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/equipment-detail/equipment-detail.js",
+		"/Users/alexwasner/Projects/agco/agcommand2/client/app/equipment-detail/equipment-detail.controller.spec.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/models/DataModel.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/Join.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/ui/widgets/CustomSelectWidget.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/leaderboard_entries.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/Stats.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/StepOne.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/Leaders.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/Challenge.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/Awards.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/Rules.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/Error.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/assets/img/ic_loading_red.svg",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/ui/widgets/SwipeControlWidget.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/views/Challenge.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/theme/theme.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/views/Leaders.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/Gruntfile.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/Loader.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/data/DataService.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/mixins/ChildViewManagerViewMixin.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/ui/views/HomeView.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/libs/boilerplate.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/theme/fonts.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/ui/widgets/TouchTrackerWidget.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/webpack.config.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/build/www/css/lavaca.css",
+		"/Users/alexwasner/Library/Application Support/Sublime Text 3/Packages/Javascript Beautify/Default (OSX).sublime-keymap",
+		"/Users/alexwasner/Library/Application Support/Sublime Text 3/Packages/CSSTidy/CSSTidy.sublime-settings",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/views/JoinView.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/StepTwo.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/views/StepTwo.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/ui/views/StepTwo.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/views/StepOne.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/app.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/views/HomeView.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/home.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/tmp/www/css/app/views/HomeView.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/tmp/www/js/templates/Leaders.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/data/mock.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/svg/icon-arrow.html",
+		"/Users/alexwasner/Downloads/icon_dropdown.svg",
+		"/Users/alexwasner/Projects/ua-cha-framework/tmp/www/components/lavaca/src/mvc/View.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/ui/views/Challenge.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/ui/views/JoinView.js",
+		"/Users/alexwasner/Projects/trago/trago-app/src/www/js/app/ui/widgets/CustomSelectWidget.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/utils/dust-helpers.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/svg/icon-arrow.svg",
+		"/Users/alexwasner/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/templates/svg/icon-duration.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/css/app/structure/main.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/animations/ViewTransitionAnimations.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/mixins/ViewManagerViewMixin.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/tmp/www/components/lavaca/src/fx/Transition.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/tmp/www/bundle.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/tmp/www/components/lavaca/src/mvc/ChildViewManager.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/tmp/www/js/templates/home.html",
+		"/Users/alexwasner/Projects/ua-cha-framework/tmp/www/css/app/views/Challenge.less",
+		"/Users/alexwasner/Projects/ua-cha-framework/package.json",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/mvc/Collection.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/bower.json",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/controllers/BaseController.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/mvc/ChildViewManager.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/mout/src/array/join.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/mvc/Controller.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/net/History.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/util/uuid.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/util/extend.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/util/Disposable.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/util/Cache.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/events/EventDispatcher.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/controllers/HomeController.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/js/app/app.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/ui/LoadingIndicator.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/net/Connectivity.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/mvc/ViewManager.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/mvc/View.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/mvc/Router.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/mvc/Route.js",
+		"/Users/alexwasner/Projects/ua-cha-framework/src/www/components/lavaca/src/mvc/Model.js"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"change",
+			".on(",
+			"$trigger",
+			"obj",
+			"callback",
+			"watchProperties",
+			"m',\n				id:",
+			",\n				id:",
+			"dom'",
+			"HomeView",
+			"like",
+			"lik",
+			"nextAnim",
+			"95",
+			"1",
+			"tap2",
+			"doubletap",
+			"33.33333",
+			"followers",
+			"statemod",
+			"h1",
+			"http://scontent-mia1-1.cdninstagram.com/t51.2885-19/s150x150/12976307_518471701671775_720761461_a.jpg",
+			"FoodCollection",
+			"http://scontent-mia1-1.cdninstagram.com/t51.2885-19/11325471_1102149516466488_579951840_a.jpg",
+			"	},{",
+			"200",
+			"childviewmanag",
+			"none",
+			"fillin",
+			"&.",
+			"route",
+			"FoodView",
+			"HomeView",
+			"https",
+			" class=\"home\"",
+			"section",
+			"3rem",
+			"1rem",
+			"3rem",
+			"4rem",
+			"\n	user:{",
+			"4rem",
+			"3rem",
+			"cover",
+			"png",
+			"share",
+			"4rem",
+			"'\n}",
+			"FoodModel",
+			"?ig_cache_key=MTIyNzcyNzE1NzQ3MjQ0OTc1OQ%3D%3D.2",
+			"?ig_cache_key=MTIyNzcyNzEyMjAwMzU0Nzg4Ng%3D%3D.2",
+			"FoodModel",
+			"console",
+			"callbacks",
+			"'ready",
+			"ready",
+			"initRoute",
+			"forEach",
+			"statemodel.a",
+			"END_DATE_HEADING",
+			"isEndDateFieldEnabled",
+			"END_DATE_HEADING",
+			"gb",
+			"localPreferredUnits",
+			"figure",
+			"_remainingHours",
+			"_getNextRecurringHours",
+			"resolvedIssues",
+			"<noti",
+			"valueThreshold =",
+			"valueThreshold",
+			".directive",
+			"getUnit",
+			"EquipmentDetailCtrl",
+			"notificationHistory",
+			"resolvedIssues in equipmentItem.resolvedIssues",
+			"<!-- end ngRepeat: resolvedIssues in equipmentItem.resolvedIssues -->",
+			"\n",
+			"\n	",
+			" \n	",
+			" \n",
+			"scrolltop",
+			"fetchLeaderboard",
+			"leadersStatus",
+			"{@eq",
+			"resetClasses",
+			"updateLeaderboard",
+			"_embedded",
+			"Connectivity",
+			"connectivity",
+			"@eq",
+			"challenges",
+			"refetch",
+			"refetchLeaderboard",
+			"selected",
+			"refetch",
+			"resetClasses",
+			"refetch",
+			"Error.html\" ",
+			"Error.ht",
+			"to=\"co",
+			"_callHttp",
+			"onModelChange",
+			"error",
+			"_callGet",
+			"14px",
+			"\"",
+			"from",
+			"div",
+			"#leaders-view, #stats-view, #awards-view, #rules-view",
+			"onModelChange",
+			"trigger('error",
+			"e=>console.error('error fetching challenge')",
+			"onChallengeError",
+			"-error",
+			"error",
+			"Error",
+			"error",
+			"challenge-",
+			"r(e",
+			"e",
+			"setLeaderboard",
+			"_callGet",
+			"setInactive",
+			"determineSnap",
+			"_scrollingStopped",
+			"updateLeaderboard",
+			"overflow-sc"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Error.html\" connectivity=connectivity "
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/www/js/app/controllers/HomeController.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/www/js/app/controllers/BaseController.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 610,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								601,
+								601
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Project.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"basecon",
+				"src/www/js/app/controllers/BaseController.js"
+			],
+			[
+				"homecon",
+				"src/www/js/app/controllers/HomeController.js"
+			],
+			[
+				"obser",
+				"lavaca/util/Observable.js"
+			],
+			[
+				"event",
+				"lavaca/events/EventDispatcher.js"
+			],
+			[
+				"view",
+				"lavaca/mvc/View.js"
+			],
+			[
+				"foodcol",
+				"lavaca-starter-dev/src/www/js/app/models/FoodCollection.js"
+			],
+			[
+				"obse",
+				"lavaca/util/Observable.js"
+			],
+			[
+				"foodvi",
+				"lavaca-starter-dev/src/www/js/app/ui/views/FoodView.js"
+			],
+			[
+				"home",
+				"lavaca-starter-dev/src/www/js/app/ui/views/HomeView.js"
+			],
+			[
+				"model",
+				"lavaca/mvc/Model.js"
+			],
+			[
+				"foodview",
+				"lavaca-starter-dev/src/www/js/app/ui/views/FoodView.js"
+			],
+			[
+				"homeview",
+				"lavaca-starter-dev/src/www/js/app/ui/views/HomeView.js"
+			],
+			[
+				"state",
+				"lavaca-starter-dev/src/www/js/app/models/StateModel.js"
+			],
+			[
+				"profile",
+				"lavaca-starter-dev/src/www/js/templates/ProfileView.html"
+			],
+			[
+				"data",
+				"lavaca-starter-dev/src/www/js/app/models/data.js"
+			],
+			[
+				"app.js",
+				"lavaca-starter-dev/src/www/js/app/app.js"
+			],
+			[
+				"theme",
+				"lavaca-starter-dev/src/www/css/theme/theme.less"
+			],
+			[
+				"food",
+				"lavaca-starter-dev/src/www/js/templates/FoodView.html"
+			],
+			[
+				"foodvie",
+				"lavaca-starter-dev/src/www/js/app/ui/views/FoodView.js"
+			],
+			[
+				"them",
+				"lavaca-starter-dev/src/www/css/theme/theme.less"
+			],
+			[
+				"profil",
+				"lavaca-starter-dev/src/www/js/templates/ProfileView.html"
+			],
+			[
+				"",
+				"lavaca-starter-dev/src/www/js/app/models/UserModel.js"
+			],
+			[
+				"usermod",
+				"lavaca-starter-dev/src/www/js/app/models/UserModel.js"
+			],
+			[
+				"collect",
+				"lavaca-starter-dev/src/www/js/app/models/FoodCollection.js"
+			],
+			[
+				"childview",
+				"lavaca/mvc/ChildViewManager.js"
+			],
+			[
+				"home.",
+				"lavaca-starter-dev/src/www/css/views/HomeView.less"
+			],
+			[
+				"viewtra",
+				"lavaca-starter-dev/src/www/js/app/animations/ViewTransitionAnimations.js"
+			],
+			[
+				"child",
+				"lavaca-starter-dev/src/www/js/app/mixins/ChildViewManagerViewFillin.js"
+			],
+			[
+				"profilevi",
+				"lavaca-starter-dev/src/www/css/views/ProfileView.less"
+			],
+			[
+				"app.le",
+				"lavaca-starter-dev/src/www/css/app.less"
+			],
+			[
+				"collec",
+				"lavaca/mvc/Collection.js"
+			],
+			[
+				"colle",
+				"lavaca/mvc/Collection.js"
+			],
+			[
+				"collection",
+				"lavaca/mvc/Collection.js"
+			],
+			[
+				"ob",
+				"lavaca/util/Observable.js"
+			],
+			[
+				"diff.js",
+				"lavaca/util/diff.js"
+			],
+			[
+				"router",
+				"lavaca/mvc/Router.js"
+			],
+			[
+				"statemo",
+				"src/www/js/app/models/StateModel.js"
+			],
+			[
+				"home.h",
+				"src/www/js/templates/pageviews/home.html"
+			],
+			[
+				"repo",
+				"client/app/reports/reports.html"
+			],
+			[
+				"locale",
+				"client/bower_components/moment/min/locales.js"
+			],
+			[
+				"unitcon",
+				"client/app/unitConverter/unitConverter.service.js"
+			],
+			[
+				"servicerepo",
+				"client/app/reports/serviceReport/serviceReport.html"
+			],
+			[
+				"reportscon",
+				"client/app/reports/serviceReport/serviceReport.controller.js"
+			],
+			[
+				"servicerepor",
+				"client/app/reports/serviceReport/serviceReport.html"
+			],
+			[
+				"notification-hi",
+				"client/app/equipment-detail/notification-history-tab/notification-history-tab.directive.js"
+			],
+			[
+				"notification-",
+				"client/app/equipment-detail/notification-history-tab/notification-history-tab.html"
+			],
+			[
+				"equipmentcon",
+				"client/app/equipment-detail/equipment-detail.controller.js"
+			],
+			[
+				"resolved",
+				"client/app/resolved-card/resolved-card.html"
+			],
+			[
+				"notificationhi",
+				"client/app/equipment-detail/notification-history-tab/notification-history-tab.html"
+			],
+			[
+				"equipmentser",
+				"client/app/equipment/equipment.service.js"
+			],
+			[
+				"equipmentdetails",
+				"client/app/equipment-detail/equipment-detail.js"
+			],
+			[
+				"notificationhis",
+				"client/app/equipment-detail/notification-history-tab/notification-history-tab.directive.js"
+			],
+			[
+				"resolved-card",
+				"client/app/resolved-card/resolved-card.html"
+			],
+			[
+				"dataser",
+				"ua-cha-framework/src/www/js/app/data/DataService.js"
+			],
+			[
+				"lead",
+				"ua-cha-framework/src/www/js/templates/Leaders.html"
+			],
+			[
+				"laeder",
+				"ua-cha-framework/src/www/js/templates/Leaders.html"
+			],
+			[
+				"datas",
+				"ua-cha-framework/src/www/js/app/data/DataService.js"
+			],
+			[
+				"leader",
+				"ua-cha-framework/src/www/css/app/views/Leaders.less"
+			],
+			[
+				"customsee",
+				"ua-cha-framework/src/www/js/app/ui/widgets/CustomSelectWidget.js"
+			],
+			[
+				"challenge",
+				"ua-cha-framework/src/www/css/app/views/Challenge.less"
+			],
+			[
+				"lea",
+				"ua-cha-framework/src/www/js/templates/Leaders.html"
+			],
+			[
+				"leaders",
+				"ua-cha-framework/src/www/js/templates/leaderboard_entries.html"
+			],
+			[
+				"erro",
+				"ua-cha-framework/src/www/js/templates/Error.html"
+			],
+			[
+				"step",
+				"ua-cha-framework/src/www/css/app/views/StepTwo.less"
+			],
+			[
+				"steptwo",
+				"ua-cha-framework/src/www/css/app/views/StepTwo.less"
+			],
+			[
+				"join",
+				"ua-cha-framework/src/www/js/app/ui/views/JoinView.js"
+			],
+			[
+				"ste",
+				"ua-cha-framework/src/www/js/templates/StepOne.html"
+			],
+			[
+				"err",
+				"ua-cha-framework/src/www/js/templates/Error.html"
+			],
+			[
+				"joinvie",
+				"ua-cha-framework/src/www/js/app/ui/views/JoinView.js"
+			],
+			[
+				"error",
+				"ua-cha-framework/src/www/js/templates/Error.html"
+			],
+			[
+				"stats",
+				"ua-cha-framework/src/www/js/templates/Stats.html"
+			],
+			[
+				"challen",
+				"ua-cha-framework/src/www/css/app/views/Challenge.less"
+			],
+			[
+				"rules",
+				"ua-cha-framework/src/www/js/templates/Rules.html"
+			],
+			[
+				"awards",
+				"ua-cha-framework/src/www/js/templates/Awards.html"
+			],
+			[
+				"service",
+				"ua-cha-framework/src/www/js/app/data/DataService.js"
+			],
+			[
+				"datamod",
+				"ua-cha-framework/src/www/js/app/models/DataModel.js"
+			],
+			[
+				"awar",
+				"ua-cha-framework/src/www/js/templates/Awards.html"
+			],
+			[
+				"leadr",
+				"ua-cha-framework/src/www/js/templates/Leaders.html"
+			],
+			[
+				"swip",
+				"ua-cha-framework/src/www/js/app/ui/widgets/SwipeControlWidget.js"
+			],
+			[
+				"touchtra",
+				"ua-cha-framework/src/www/js/app/ui/widgets/TouchTrackerWidget.js"
+			],
+			[
+				"swipe",
+				"ua-cha-framework/src/www/js/app/ui/widgets/SwipeControlWidget.js"
+			],
+			[
+				"grunt",
+				"ua-cha-framework/Gruntfile.js"
+			],
+			[
+				"childviewmana",
+				"ua-cha-framework/src/www/js/app/mixins/ChildViewManagerViewMixin.js"
+			],
+			[
+				"fonts.le",
+				"ua-cha-framework/src/www/css/app/theme/fonts.less"
+			],
+			[
+				"datamo",
+				"ua-cha-framework/src/www/js/app/models/DataModel.js"
+			],
+			[
+				"leae",
+				"ua-cha-framework/src/www/css/app/views/Leaders.less"
+			],
+			[
+				"challeg",
+				"ua-cha-framework/src/www/css/app/views/Challenge.less"
+			],
+			[
+				"webpack",
+				"ua-cha-framework/webpack.config.js"
+			],
+			[
+				"th",
+				"ua-cha-framework/src/www/css/app/theme/theme.less"
+			],
+			[
+				"stepwo",
+				"ua-cha-framework/src/www/css/app/views/StepTwo.less"
+			],
+			[
+				"steptw",
+				"ua-cha-framework/src/www/js/templates/StepTwo.html"
+			],
+			[
+				"stepone",
+				"ua-cha-framework/src/www/js/templates/StepOne.html"
+			],
+			[
+				"joinvi",
+				"ua-cha-framework/src/www/css/app/views/JoinView.less"
+			],
+			[
+				"view.sj",
+				"ua-cha-framework/tmp/www/components/lavaca/src/mvc/View.js"
+			],
+			[
+				"datamode",
+				"ua-cha-framework/src/www/js/app/models/DataModel.js"
+			],
+			[
+				"widget",
+				"ua-cha-framework/src/www/js/app/ui/widgets/SwipeControlWidget.js"
+			],
+			[
+				"arrow",
+				"ua-cha-framework/src/www/js/templates/svg/icon-arrow.html"
+			],
+			[
+				"icona",
+				"ua-cha-framework/src/www/js/templates/svg/icon-arrow.html"
+			],
+			[
+				"dust",
+				"ua-cha-framework/src/www/js/app/utils/dust-helpers.js"
+			],
+			[
+				"the",
+				"ua-cha-framework/src/www/css/app/theme/theme.less"
+			],
+			[
+				"mock",
+				"ua-cha-framework/src/www/js/app/data/mock.js"
+			],
+			[
+				"homevi",
+				"ua-cha-framework/src/www/js/app/ui/views/HomeView.js"
+			],
+			[
+				"icondura",
+				"ua-cha-framework/src/www/js/templates/svg/icon-duration.html"
+			],
+			[
+				"transition",
+				"ua-cha-framework/tmp/www/components/lavaca/src/fx/Transition.js"
+			],
+			[
+				"viewmana",
+				"ua-cha-framework/src/www/js/app/mixins/ViewManagerViewMixin.js"
+			],
+			[
+				"viewmanagerviewmix",
+				"ua-cha-framework/src/www/js/app/mixins/ViewManagerViewMixin.js"
+			],
+			[
+				"join.less",
+				"ua-cha-framework/src/www/css/app/views/JoinView.less"
+			],
+			[
+				"stats.",
+				"ua-cha-framework/src/www/js/templates/Stats.html"
+			],
+			[
+				"main.le",
+				"ua-cha-framework/src/www/css/app/structure/main.less"
+			],
+			[
+				"home.le",
+				"ua-cha-framework/src/www/css/app/views/HomeView.less"
+			],
+			[
+				"home.ht",
+				"ua-cha-framework/tmp/www/js/templates/home.html"
+			],
+			[
+				"dusthel",
+				"ua-cha-framework/src/www/js/app/utils/dust-helpers.js"
+			],
+			[
+				"bower.json",
+				"ua-cha-framework/bower.json"
+			],
+			[
+				"packa",
+				"ua-cha-framework/package.json"
+			],
+			[
+				"webp",
+				"ua-cha-framework/webpack.config.js"
+			],
+			[
+				"challe",
+				"ua-cha-framework/src/www/js/templates/Challenge.html"
+			],
+			[
+				"stepon",
+				"ua-cha-framework/src/www/js/templates/StepOne.html"
+			],
+			[
+				"childviewman",
+				"components/lavaca/src/mvc/ChildViewManager.js"
+			],
+			[
+				"join.h",
+				"ua-cha-framework/src/www/js/templates/Join.html"
+			],
+			[
+				"main",
+				"ua-cha-framework/src/www/css/app/structure/main.less"
+			],
+			[
+				"app.les",
+				"ua-cha-framework/src/www/css/app/app.less"
+			],
+			[
+				"history",
+				"components/lavaca/src/net/History.js"
+			],
+			[
+				"controlelr",
+				"components/lavaca/src/mvc/Controller.js"
+			],
+			[
+				"controller",
+				"components/lavaca/src/mvc/Controller.js"
+			],
+			[
+				"eventdis",
+				"components/lavaca/src/events/EventDispatcher.js"
+			],
+			[
+				"route",
+				"components/lavaca/src/mvc/Route.js"
+			],
+			[
+				"exten",
+				"components/lavaca/src/util/extend.js"
+			],
+			[
+				"app",
+				"components/lavaca/src/mvc/Application.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 231.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

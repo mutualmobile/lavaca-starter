@@ -53,7 +53,6 @@ releaseFileName="${appName}-${version}"
 #iOS
 PRIVATE_KEY_FILE="provisioning/xxxxxx.p12"
 PRIVATE_KEY_PASSPHRASE="`cat provisioning/AppStore-Passphrase.txt`"
-codesignIdentity="`cat provisioning/AppStore-CodesignIdentity.txt`"
 appleProvisionId="`cat provisioning/AppStore-ProvisionId.txt`"
 buildScheme="${appName}"
 archiveFile="${appName}.xcarchive"
@@ -89,7 +88,7 @@ grunt build:production
 
 echo "Installing Provisioning Profile"
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles/
-cp certificates/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+cp provisioning/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
 echo "Importing private key";
 echo $PRIVATE_KEY_PASSPHRASE
@@ -99,7 +98,7 @@ security import ${PRIVATE_KEY_FILE} -P "${PRIVATE_KEY_PASSPHRASE}" -k ~/Library/
 binaryFileName="${ipaFile}"
 
 cordova --version
-(cd cordova/platforms/ios/ && xcodebuild -scheme "$buildScheme" -sdk iphoneos archive -archivePath "$archiveFile" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
+(cd cordova/platforms/ios/ && xcodebuild -scheme "$buildScheme" -sdk iphoneos archive -archivePath "$archiveFile" PROVISIONING_PROFILE=$appleProvisionId)
 (cd cordova/platforms/ios/ && xcodebuild -exportArchive -exportOptionsPlist "${workingDirectory}/provisioning/AppStoreExportOptions.plist" -archivePath "$archiveFile" -exportPath "${workingDirectory}/release" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
 mv "${workingDirectory}/release/${ipaFile}" "${workingDirectory}/release/${releaseFileName}.ipa"
 

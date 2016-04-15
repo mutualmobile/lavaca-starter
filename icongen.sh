@@ -43,7 +43,7 @@ shouldGenerateIcons=false
 #---------------------------
 EXPECTED_ARGS=1
 if [ $# -lt $EXPECTED_ARGS ]
-then
+then 
   echo "Usage: ./icongen.sh [platform] [environment (optional)] [buildString (optional)]"
   echo "ex: ./icongen.sh app ios production \"1.2.4\""
   exit 1
@@ -96,8 +96,8 @@ banner="src/_banner_source.png"
 tmp="tmp.png"
 rootWebPath="src/www"
 webPath="${rootWebPath}/assets/img"
-iosPath="cordova/platforms/ios/${appName}/Resources/icons"
-iosSplashPath="cordova/platforms/ios/${appName}/Resources/splash"
+iosPath="cordova/platforms/ios/${appName}/Images.xcassets/AppIcon.appiconset"
+iosSplashPath="cordova/platforms/ios/${appName}/Images.xcassets/LaunchImage.launchimage"
 androidPath="cordova/platforms/android/res"
 iconFillColor=$(convert $path -format "%[pixel: u.p{0,0}]" info:)
 splashFillColor=$(convert $splashPath -format "%[pixel: u.p{0,0}]" info:)
