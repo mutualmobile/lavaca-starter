@@ -44,7 +44,7 @@
     "babel-plugin-transform-es2015-modules-commonjs-simple": "6.7.0",
     "babel-plugin-transform-runtime": "^6.5.0",
     "babel-runtime": "6.6.1",
-    "css-loader": "^0.23.1",
+    "css-loader": "^0.14.5",
     "dust-loader": "^1.0.1",
     "dust-loader-complete": "^1.4.0",
     "dustjs-helpers": "^1.1.1",
