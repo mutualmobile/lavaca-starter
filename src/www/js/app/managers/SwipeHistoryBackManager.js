@@ -53,6 +53,7 @@ import {Disposable,Transition,Transform,ViewManager as viewManager} from 'lavaca
       if (!this.isTracking) {
         return;
       }
+      e.preventDefault();
 
       this.lastX = e.originalEvent.touches[0].clientX;
       this.update(this.lastX);
