@@ -42,6 +42,7 @@ import {Disposable,Transition,Transform,ViewManager as viewManager} from 'lavaca
             {'visibility': 'visible'}
           );
           this.pageView.insertInto(viewManager.el);
+          setTimeout(()=>this.pageView.trigger('enter'),0);
           this.elReturning = $('.returning-view');
         }
 
