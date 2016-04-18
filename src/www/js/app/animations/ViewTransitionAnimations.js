@@ -19,7 +19,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'opacity '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -42,7 +42,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'opacity '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -65,7 +65,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'opacity '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -88,7 +88,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'opacity '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -114,7 +114,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'transform '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -138,7 +138,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'transform '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -162,7 +162,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'transform '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -187,7 +187,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'transform '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -212,7 +212,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'transform '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -235,7 +235,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'transform '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -258,7 +258,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'transform '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
@@ -281,7 +281,7 @@ export let ViewTransitionAnimations = {
               setTimeout(function(){
                 el.css({
                   'visibility': 'visible',
-                  'transition': 'all '+_commonTiming+' ease-out'
+                  'transition': 'transform '+_commonTiming+' ease-out'
                 });
                 setTimeout(function(){
                   el.nextTransitionEnd(function(){
