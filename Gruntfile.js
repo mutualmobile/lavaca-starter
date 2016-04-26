@@ -418,7 +418,7 @@ module.exports = function( grunt ) {
         command: 'echo "<%= buildConfigVariablesFlat %>" > .build-config'
       },
       buildStyleGuide: {
-        command: './node_modules/.bin/kss-node src/www/css/app/theme src/www/assets/styleguide --css ../../css/app/app.css --template src/www/assets/template/',
+        command: './node_modules/.bin/kss-node src/www/css/theme src/www/assets/styleguide --css ../../css/app/app.css --template src/www/assets/template/',
         options: {
           stdout: true
         }
@@ -514,7 +514,7 @@ module.exports = function( grunt ) {
     'jasmine'
   ]);
 
-  grunt.registerTask('styleguide', 'compiles documentation and starts a server', [
+  grunt.registerTask('styleguide', 'Builds a styleguide', [
     'shell:buildStyleGuide'
   ]);
 
