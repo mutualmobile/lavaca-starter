@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var LessPluginCleanCSS = require('less-plugin-clean-css');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
+var WebpackShellPlugin = require('webpack-shell-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname,'./<%= paths.src.www %>/js/app/app.js'),
@@ -47,7 +48,8 @@ module.exports = {
     }),
     new ExtractTextPlugin('css/app/app.css', {
       allChunks: true,
-    })
+    }),
+    new WebpackShellPlugin({onBuildExit:['./node_modules/.bin/kss-node src/www/css/theme src/www/assets/styleguide --css ../../css/app/app.css --template src/www/assets/template/']})
   ],
   module: {
     loaders: [

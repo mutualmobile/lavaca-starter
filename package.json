@@ -62,7 +62,8 @@
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "webpack-shell-plugin": "^0.4.2"
   },
   "repository": "git@github.com:mutualmobile/lavaca.git",
   "keywords": [
