@@ -1,6 +1,6 @@
-Lavaca-starter 3.0.0
+Lavaca-starter 4.0.0
 
-[![Build Status](https://travis-ci.org/mutualmobile/lavaca.png?branch=master)](https://travis-ci.org/mutualmobile/lavaca-starter)
+[![Build Status](https://travis-ci.org/mutualmobile/lavaca.png?branch=dev)](https://travis-ci.org/mutualmobile/lavaca-starter)
 
 This project is a seed for creating a new Lavaca app. It includes a build system and opional integration with Cordova.
 

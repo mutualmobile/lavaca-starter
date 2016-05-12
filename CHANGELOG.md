@@ -1,3 +1,7 @@
+Changed in 4.0.0
+======
+* Major overhaul es6
+
 Changed in 3.0.0
 ======
 * Major overhaul
