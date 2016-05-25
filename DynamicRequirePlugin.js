@@ -14,8 +14,11 @@ DynamicRequirePlugin.prototype.apply = function(compiler) {
     var source = '\n\nwindow.webpackModuleMap = {\n';
     var basePath = compilation.options.context;
     compilation.modules.forEach(function(m) {
-      var filename = path.relative(basePath, m.resource);
-      source += '  "' + filename + '": ' + m.id + ',\n';
+      var filename = m.resource || m.userRequest;
+      if (filename) {
+        filename = path.relative(basePath, filename);
+        source += '  "' + filename + '": ' + m.id + ',\n';
+      }
     });
     source += '};\n';
 
