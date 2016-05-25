@@ -1,10 +1,11 @@
-'use strict'; 
+'use strict';
 var path = require('path');
 var webpack = require('webpack');
 var LessPluginCleanCSS = require('less-plugin-clean-css');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 var WebpackShellPlugin = require('webpack-shell-plugin');
+var DynamicRequirePlugin = require('./DynamicRequirePlugin');
 
 module.exports = {
   entry: path.resolve(__dirname,'./<%= paths.src.www %>/js/app/app.js'),
@@ -17,8 +18,8 @@ module.exports = {
     modules: true,
     reasons: true
   },
-  progress: true, 
-  failOnError:false, 
+  progress: true,
+  failOnError:false,
   watch: true,
   hot: false,
   keepalive: true,
@@ -49,6 +50,7 @@ module.exports = {
     new ExtractTextPlugin('css/app/app.css', {
       allChunks: true,
     }),
+    new DynamicRequirePlugin(),
     new WebpackShellPlugin({onBuildExit:['./node_modules/.bin/kss-node src/www/css/theme src/www/assets/styleguide --css ../../css/app/app.css --template src/www/assets/template/']})
   ],
   module: {

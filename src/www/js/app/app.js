@@ -20,3 +20,9 @@ export default new Application(function() {
   this.viewManager.pageViewMixin = ViewManagerViewMixin;
   this.viewManager.pageViewFillin = ViewManagerViewFillin;
 });
+
+// Uses the output of DynamicRequirePlugin to load modules by name in the
+// DevTools console
+window.webpackRequire = function(name) {
+  return __webpack_require__(window.webpackModuleMap[name]);
+};
