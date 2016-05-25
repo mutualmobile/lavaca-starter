@@ -1,4 +1,4 @@
-import {Disposable,Transition,Transform,ViewManager as viewManager} from 'lavaca';
+import {Disposable,Transition,Transform,Router,ViewManager as viewManager} from 'lavaca';
 
   var SwipeBackManager = Disposable.extend(function SwipeHistoryBackManager() {
     Disposable.call(this, arguments);
@@ -18,6 +18,13 @@ import {Disposable,Transition,Transform,ViewManager as viewManager} from 'lavaca
     },
 
     onTouchStart(e) {
+      if (e.originalEvent.touches[1]) {
+        e.preventDefault();
+        return;
+      }
+
+      this.touchId = e.originalEvent.changedTouches[0].identifier;
+
       this.el = viewManager.el.find('>.view.current');
       this.lastX = e.originalEvent.touches[0].clientX;
       this.startX = this.lastX;
@@ -26,6 +33,9 @@ import {Disposable,Transition,Transform,ViewManager as viewManager} from 'lavaca
                         window.Modernizr['ios-installed'];
 
       if (this.isTracking) {
+
+        this.start();
+        Router.locked = true;
 
         this.windowWidth = Number($(window).innerWidth());
         this.updateTransitionSpeed(0);
@@ -60,9 +70,14 @@ import {Disposable,Transition,Transform,ViewManager as viewManager} from 'lavaca
     },
 
     onTouchEnd(e) {
+      if (this.touchId !== e.originalEvent.changedTouches[0].identifier) {
+        return;
+      }
+
       if (!this.isTracking) {
         return;
       }
+      Router.locked = false;
 
       var threshold = this.windowWidth / 2;
       this.updateTransitionSpeed(this.completionSpeed);
@@ -73,6 +88,7 @@ import {Disposable,Transition,Transform,ViewManager as viewManager} from 'lavaca
           this.elReturning.addClass('current').removeClass('returning-view');
           setTimeout(function(){
             this.pageView.enterHasCompleted();
+            this.complete();
           }.bind(this),50);
 
         }.bind(this));
@@ -80,12 +96,21 @@ import {Disposable,Transition,Transform,ViewManager as viewManager} from 'lavaca
       } else if ((this.lastX - this.startX) > 0) {
         this.el.nextTransitionEnd(function () {
           this.elReturning.detach();
+          this.complete();
         }.bind(this));
         this.update(0);
       } else {
         this.elReturning.detach();
         this.update(0);
+        this.complete();
       }
+    },
+
+    start() {
+      this.active = true;
+    },
+    complete() {
+      this.active = false;
     },
 
     update(value, speed) {
