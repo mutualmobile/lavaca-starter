@@ -27,7 +27,7 @@
     "i18n": "0.8.1",
     "jquery": "^2.2.2",
     "jquery-touch-events": "^1.0.1",
-    "lavaca": "4.0.0-alpha.5",
+    "lavaca": "4.0.0-alpha-962a51e.0",
     "mout": "0.x",
     "preprocess": "1.0.x",
     "promisemonkey": "0.1.x",
