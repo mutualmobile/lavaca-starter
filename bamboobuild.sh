@@ -100,6 +100,15 @@ buildFolder="${appName}-${buildNumber}-${revisionNumber}-${buildTimeStamp}"
 
 
 
+branchPrefix=$(echo ${branchName} | cut -c 1-7)
+if [ $branchPrefix == "release" ]
+then
+  ./release.sh ${platform}
+  exit
+fi
+
+
+
 #---------------------------
 # generate icons
 #---------------------------

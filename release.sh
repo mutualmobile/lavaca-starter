@@ -6,11 +6,25 @@ set -e
 node --version
 npm --version
 
+
+
+#---------------------------
+# if no platform, consider this a local run
+#---------------------------
+platform=""
+if [ "$1" ]
+then
+  platform=$1
+fi
+
 #---------------------------
 # Set PATH
 #---------------------------
 node_mods=$(pwd)/node_modules
-export ANDROID_HOME=~/Documents/development/adt/sdk
+if [ $branchPrefix != "release" ]
+then
+  export ANDROID_HOME=~/Documents/development/adt/sdk
+fi
 export ANDROID_BUILD_TOOLS=$ANDROID_HOME/build-tools/"23.0.0"/
 export PATH=/usr/local/bin/:$node_mods/grunt-cli/bin:$node_mods/bower/bin:$node_mods/cordova/bin:$PATH
 export PATH=$ANDROID_HOME/build-tools/"23.0.0":$PATH
@@ -50,8 +64,14 @@ workingDirectory="$(pwd)"
 shortHash="$(git rev-parse --short HEAD)"
 slug="${appName}-${platform}"
 releaseFileName="${appName}-${version}"
+if [ $branchPrefix == "release" ]
+then
+  buildOutputDirectory="${workingDirectory}"
+else
+  buildOutputDirectory="${workingDirectory}/release"
+fi
 #iOS
-PRIVATE_KEY_FILE="provisioning/xxxxxx.p12"
+PRIVATE_KEY_FILE="provisioning/AppStore.p12"
 PRIVATE_KEY_PASSPHRASE="`cat provisioning/AppStore-Passphrase.txt`"
 appleProvisionId="`cat provisioning/AppStore-ProvisionId.txt`"
 buildScheme="${appName}"
@@ -60,14 +80,19 @@ appFile="${appName}.app"
 ipaFile="${appName}.ipa"
 binaryFileNameIOS="${ipaFile}"
 #Android
-KEYSTORE="provisioning/xxxxxx.keystore"
+KEYSTORE="provisioning/GooglePlay.keystore"
 KEYSTORE_PASSPHRASE="`cat provisioning/GooglePlay-Passphrase.txt`"
-UNSIGNED="${workingDirectory}/release/${apkFileUnsigned}"
-SIGNED="${workingDirectory}/release/${apkFileSigned}"
 KEYSTORE_ALIAS="`cat provisioning/GooglePlay-PrivateAlias.txt`"
-apkFileUnsigned="android-release-unsigned.apk"
-apkFileSigned="android-release-signed.apk"
+apkFileUnsigned="android-armv7-release-unsigned.apk"
+x86apkFileUnsigned="android-x86-release-unsigned.apk"
+apkFileSigned="android-armv7-release-signed.apk"
+x86apkFileSigned="android-x86-release-signed.apk"
 binaryFileNameAndroid="cordova/platforms/android/build/outputs/apk/${apkFileUnsigned}"
+x86binaryFileNameAndroid="cordova/platforms/android/build/outputs/apk/${x86apkFileUnsigned}"
+UNSIGNED="${buildOutputDirectory}/${apkFileUnsigned}"
+x86UNSIGNED="${buildOutputDirectory}/${x86apkFileUnsigned}"
+SIGNED="${buildOutputDirectory}/${apkFileSigned}"
+x86SIGNED="${buildOutputDirectory}/${x86apkFileSigned}"
 
 
 
@@ -79,44 +104,56 @@ grunt build:production
 #---------------------------
 # Do Web specific things
 #---------------------------
-(cd build/www && zip -r -X "${workingDirectory}/release/${releaseFileName}.zip" *)
+if [ "$platform" == "web" -o "$platform" == "www" -o "$platform" == "" ]
+then
+  (cd build/www && zip -r -X "${buildOutputDirectory}/${releaseFileName}.zip" *)
+fi
 
 
 #---------------------------
 # Do iOS specific things
 #---------------------------
+if [ "$platform" == "ios" -o "$platform" == "" ]
+then
+  echo "Installing Provisioning Profile"
+  mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles/
+  cp provisioning/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
 
-echo "Installing Provisioning Profile"
-mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles/
-cp provisioning/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/
+  echo "Importing private key";
+  echo $PRIVATE_KEY_PASSPHRASE
 
-echo "Importing private key";
-echo $PRIVATE_KEY_PASSPHRASE
+  security import ${PRIVATE_KEY_FILE} -P "${PRIVATE_KEY_PASSPHRASE}" -k ~/Library/Keychains/login.keychain -A
 
-security import ${PRIVATE_KEY_FILE} -P "${PRIVATE_KEY_PASSPHRASE}" -k ~/Library/Keychains/login.keychain -A
+  binaryFileName="${ipaFile}"
 
-binaryFileName="${ipaFile}"
+  cordova --version
+  (cd cordova/platforms/ios/ && xcodebuild -scheme "$buildScheme" -sdk iphoneos archive -archivePath "$archiveFile" PROVISIONING_PROFILE=$appleProvisionId)
+  (cd cordova/platforms/ios/ && xcodebuild -exportArchive -exportOptionsPlist "${workingDirectory}/provisioning/AppStoreExportOptions.plist" -archivePath "$archiveFile" -exportPath "${buildOutputDirectory}" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
+  mv "${buildOutputDirectory}/${ipaFile}" "${buildOutputDirectory}/${releaseFileName}.ipa"
+fi
 
-cordova --version
-(cd cordova/platforms/ios/ && xcodebuild -scheme "$buildScheme" -sdk iphoneos archive -archivePath "$archiveFile" PROVISIONING_PROFILE=$appleProvisionId)
-(cd cordova/platforms/ios/ && xcodebuild -exportArchive -exportOptionsPlist "${workingDirectory}/provisioning/AppStoreExportOptions.plist" -archivePath "$archiveFile" -exportPath "${workingDirectory}/release" CODE_SIGN_IDENTITY="$codesignIdentity" PROVISIONING_PROFILE=$appleProvisionId)
-mv "${workingDirectory}/release/${ipaFile}" "${workingDirectory}/release/${releaseFileName}.ipa"
 
 #---------------------------
 # Do Android specific things
 #---------------------------
+if [ "$platform" == "android" -o "$platform" == "" ]
+then
+  (cd cordova/platforms/android/ &&  android update project -p ./ -t "android-23" -s)
+  (cd cordova/platforms/android/CordovaLib/ &&  android update project -p ./ -t "android-23" -s)
 
-(cd cordova/platforms/android/ &&  android update project -p ./ -t "android-21" -s)
-(cd cordova/platforms/android/CordovaLib/ &&  android update project -p ./ -t "android-21" -s)
+  cordova --version
+  mkdir -p cordova/platforms/android/assets
+  (cd cordova && cordova build android --release)
 
-cordova --version
-mkdir -p cordova/platforms/android/assets
-(cd cordova && cordova build android --release)
-
-mv ${binaryFileNameAndroid} ${workingDirectory}/release/${apkFileUnsigned}
+  mv ${binaryFileNameAndroid} ${buildOutputDirectory}/${apkFileUnsigned}
+  mv ${x86binaryFileNameAndroid} ${buildOutputDirectory}/${x86apkFileUnsigned}
 
 
-jarsigner -verbose -tsa http://timestamp.digicert.com -keystore ${KEYSTORE} -storepass ${KEYSTORE_PASSPHRASE} ${UNSIGNED} ${KEYSTORE_ALIAS}
-$ANDROID_BUILD_TOOLS/zipalign -v 4 ${workingDirectory}/release/${apkFileUnsigned} ${workingDirectory}/release/${releaseFileName}.apk
-rm ${workingDirectory}/release/${apkFileUnsigned}
+  jarsigner -verbose -tsa http://timestamp.digicert.com -keystore ${KEYSTORE} -storepass ${KEYSTORE_PASSPHRASE} ${UNSIGNED} ${KEYSTORE_ALIAS}
+  $ANDROID_BUILD_TOOLS/zipalign -v 4 ${buildOutputDirectory}/${apkFileUnsigned} ${buildOutputDirectory}/${releaseFileName}-armv7.apk
+  rm ${buildOutputDirectory}/${apkFileUnsigned}
 
+  jarsigner -verbose -tsa http://timestamp.digicert.com -keystore ${KEYSTORE} -storepass ${KEYSTORE_PASSPHRASE} ${x86UNSIGNED} ${KEYSTORE_ALIAS}
+  $ANDROID_BUILD_TOOLS/zipalign -v 4 ${buildOutputDirectory}/${x86apkFileUnsigned} ${buildOutputDirectory}/${releaseFileName}-x86.apk
+  rm ${buildOutputDirectory}/${x86apkFileUnsigned}
+fi

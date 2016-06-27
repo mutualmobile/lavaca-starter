@@ -79,11 +79,12 @@ pre .regexp {
 #kss-node .kss-sidebar {
   float: left;
   width: 220px;
+  margin-top: 8px;
   overflow: hidden;
 }
 #kss-node .kss-sidebar.kss-fixed {
   position: fixed;
-  top: 0;
+  margin-top: 4px;
 }
 #kss-node .kss-sidebar.kss-fixed .kss-sidebar-inner {
   padding-top: 44px;
@@ -574,7 +575,6 @@ pre .regexp {
 }
 #kss-node .kss-modifier-example {
   padding: 25px 20px 35px;
-  background-color: #f5f5f5;
 }
 #kss-node .kss-modifier-example:before,
 #kss-node .kss-modifier-example:after {
@@ -609,7 +609,7 @@ pre .regexp {
 }
 #kss-node .kss-depth-1 .kss-title,
 #kss-node .kss-overview > h1:first-child {
-  margin: -0.15em 0 20px;
+  margin: 0 0 20px;
   border-bottom: 2px solid #0079c2;
   font-size: 42px;
 }
