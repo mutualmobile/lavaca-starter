@@ -303,6 +303,8 @@ then
   createIconImage 87   ${iosPath}/icon-29@3x.png
   createIconImage 57   ${iosPath}/icon.png
   createIconImage 114  ${iosPath}/icon@2x.png
+  createIconImage 87   ${iosPath}/icon-small@3x.png
+  createIconImage 167  ${iosPath}/icon-83.5@2x.png
 
   createSplashImage 640 1136 ${iosSplashPath}/Default-568h@2x~iphone.png
   createSplashImage 750 1334 ${iosSplashPath}/Default-667h.png
