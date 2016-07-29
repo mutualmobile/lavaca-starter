@@ -17,7 +17,22 @@ DynamicRequirePlugin.prototype.apply = function(compiler) {
       var filename = m.resource || m.userRequest;
       if (filename) {
         filename = path.relative(basePath, filename);
-        source += '  "' + filename + '": ' + m.id + ',\n';
+
+        filename = filename.replace('node_modules/lavaca', 'lavaca')
+                           .replace('node_modules/mout/src', 'mout')
+                           .replace('src/www/js/', '')
+                           .replace('.js', '')
+                           .replace('.html', '');
+
+        if (filename.indexOf('node_modules/jquery/') === 0) {
+          filename = '$';
+        }
+
+        if (filename.indexOf('.less') === -1 && 
+            filename.indexOf('node_modules/babel') === -1 && 
+            filename.indexOf('node_modules/webpack') === -1) {
+          source += '  "' + filename + '": ' + m.id + ',\n';
+        }
       }
     });
     source += '};\n';
