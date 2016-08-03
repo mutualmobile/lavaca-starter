@@ -1,6 +1,6 @@
-import {ViewTransitionAnimations} from 'app/animations/ViewTransitionAnimations';
-import {History, Animation, View} from 'lavaca';
-import {get} from 'mout/object';
+import {default as History} from 'lavaca/net/History';
+import {default as View} from 'lavaca/mvc/View';
+import {get} from 'mout/object/get';
 
 export let ChildViewManagerViewMixin = {
   /**

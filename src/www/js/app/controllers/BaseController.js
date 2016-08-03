@@ -1,4 +1,4 @@
-import {Controller} from 'lavaca';
+import {default as Controller} from 'lavaca/mvc/Controller';
 
 /**
  * Base controller

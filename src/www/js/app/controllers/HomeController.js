@@ -1,6 +1,6 @@
 import {BaseController} from 'app/controllers/BaseController';
 import {HomeView} from 'app/ui/views/HomeView';
-import {Model} from 'lavaca';
+import {default as Model} from 'lavaca/mvc/Model';
 /**
  * Home controller
  * @class app.net.HomeController
@@ -18,7 +18,7 @@ export let HomeController = BaseController.extend({
    */
   index(params, history) {
     var model = new Model();
-    model.headline = 'Hello World';
+    model.set('headline','Hello World');
     return this.view(null, HomeView, model, params)
                .then(this.updateState(history, 'Home Page', params.url));
   }

@@ -1,4 +1,4 @@
-import {Transitions} from 'lavaca';
+import {default as Transition} from 'lavaca/fx/Transition';
 
 var _commonTiming = "250ms";
 var _clearAnimation = function(el) {

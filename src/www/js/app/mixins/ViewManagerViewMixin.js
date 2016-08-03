@@ -1,4 +1,6 @@
-import {View, History, ViewManager as viewManager, Animation} from 'lavaca';
+import {default as View} from 'lavaca/mvc/View';
+import {default as History} from 'lavaca/net/History';
+import {default as ViewManager} from 'lavaca/mvc/ViewManager';
 
 export let ViewManagerViewMixin = {
   /**
@@ -28,7 +30,7 @@ export let ViewManagerViewMixin = {
     var isRoutingBack = History.isRoutingBack;
     return View.prototype.enter.apply(this, arguments)
       .then(() => {
-        var animation = viewManager.breadcrumb.length > 1 && !window.Modernizr['should-use-desktop-nav'] ? this.pageTransition : this.rootPageTransition;
+        var animation = ViewManager.breadcrumb.length > 1 && !window.Modernizr['should-use-desktop-nav'] ? this.pageTransition : this.rootPageTransition;
 
         if (isRoutingBack) {
           if (History.animationBreadcrumb.length > 0) {
@@ -83,7 +85,7 @@ export let ViewManagerViewMixin = {
    * @return {Lavaca.util.Promise} A promise
    */
   exit(container, enteringViews) {
-    var animation = viewManager.breadcrumb.length > 1 && !window.Modernizr['should-use-desktop-nav'] ? this.pageTransition : this.rootPageTransition;
+    var animation = ViewManager.breadcrumb.length > 1 && !window.Modernizr['should-use-desktop-nav'] ? this.pageTransition : this.rootPageTransition;
     var animationOut = History.isRoutingBack ? animation['outReverse'] : (enteringViews.length ? enteringViews[0].pageTransition['out'] : '');
 
     if (History.isRoutingBack && !enteringViews.length) {

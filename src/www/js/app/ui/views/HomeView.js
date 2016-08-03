@@ -1,4 +1,4 @@
-import { View } from 'lavaca';
+import {default as View} from 'lavaca/mvc/View';
 import template from 'templates/home';
 
 /**

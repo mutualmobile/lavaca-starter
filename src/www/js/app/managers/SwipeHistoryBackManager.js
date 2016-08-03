@@ -1,4 +1,8 @@
-import {Disposable,Transition,Transform,Router,ViewManager as viewManager} from 'lavaca';
+import {default as Disposable} from 'lavaca/util/Disposable';
+import {default as Transition} from 'lavaca/fx/Transition';
+import {default as Transform} from 'lavaca/fx/Tranition';
+import {default as Router} from 'lavaca/mvc/Router';
+import {ViewManager as viewManager} from 'lavaca/mvc/ViewManager';
 
   var SwipeBackManager = Disposable.extend(function SwipeHistoryBackManager() {
     Disposable.call(this, arguments);

@@ -2,9 +2,12 @@ import 'css/app.less';
 import 'imports?$=jquery!jquery-mobile';
 import 'app/env/ModernizrTests';
 import 'dustjs-helpers';
-import {History, Connectivity, Application} from 'lavaca';
+import {default as History} from 'lavaca/net/History';
+import {default as Connectivity} from 'lavaca/net/Connectivity';
+import {default as Application} from 'lavaca/mvc/Application';
 import {HomeController} from 'app/controllers/HomeController';
-import {ViewManagerViewMixin, ViewManagerViewFillin} from 'app/mixins';
+import {ViewManagerViewMixin} from 'app/mixins/ViewManagerViewMixin';
+import {ViewManagerViewFillin} from 'app/mixins/ViewManagerViewFillin';
 
 History.overrideStandardsMode();
 
