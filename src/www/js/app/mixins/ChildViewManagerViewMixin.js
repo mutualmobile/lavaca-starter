@@ -1,6 +1,6 @@
 import {default as History} from 'lavaca/net/History';
 import {default as View} from 'lavaca/mvc/View';
-import {get} from 'mout/object/get';
+import get from 'mout/object/get';
 
 export let ChildViewManagerViewMixin = {
   /**
