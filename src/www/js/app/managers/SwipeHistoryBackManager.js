@@ -1,8 +1,8 @@
 import {default as Disposable} from 'lavaca/util/Disposable';
 import {default as Transition} from 'lavaca/fx/Transition';
-import {default as Transform} from 'lavaca/fx/Tranition';
+import {default as Transform} from 'lavaca/fx/Transform';
 import {default as Router} from 'lavaca/mvc/Router';
-import {ViewManager as viewManager} from 'lavaca/mvc/ViewManager';
+import {default as ViewManager} from 'lavaca/mvc/ViewManager';
 
   var SwipeBackManager = Disposable.extend(function SwipeHistoryBackManager() {
     Disposable.call(this, arguments);
@@ -15,10 +15,10 @@ import {ViewManager as viewManager} from 'lavaca/mvc/ViewManager';
     returningViewAnimationRatio: 0.2,
 
     init() {
-      viewManager.el.on('touchstart', this.onTouchStart.bind(this));
-      viewManager.el.on('touchmove', this.onTouchMove.bind(this));
-      viewManager.el.on('touchend', this.onTouchEnd.bind(this));
-      this.el = viewManager.el.find('>.view.current');
+      ViewManager.el.on('touchstart', this.onTouchStart.bind(this));
+      ViewManager.el.on('touchmove', this.onTouchMove.bind(this));
+      ViewManager.el.on('touchend', this.onTouchEnd.bind(this));
+      this.el = ViewManager.el.find('>.view.current');
     },
 
     onTouchStart(e) {
@@ -29,11 +29,11 @@ import {ViewManager as viewManager} from 'lavaca/mvc/ViewManager';
 
       this.touchId = e.originalEvent.changedTouches[0].identifier;
 
-      this.el = viewManager.el.find('>.view.current');
+      this.el = ViewManager.el.find('>.view.current');
       this.lastX = e.originalEvent.touches[0].clientX;
       this.startX = this.lastX;
       this.isTracking = this.lastX < this.leftThreshold && 
-                        (viewManager.breadcrumb.length > 1) && 
+                        (ViewManager.breadcrumb.length > 1) && 
                         window.Modernizr['ios-installed'];
 
       if (this.isTracking) {
@@ -44,8 +44,8 @@ import {ViewManager as viewManager} from 'lavaca/mvc/ViewManager';
         this.windowWidth = Number($(window).innerWidth());
         this.updateTransitionSpeed(0);
 
-        if (viewManager.breadcrumb.length > 0) {
-          this.pageView = viewManager.buildPageView(viewManager.breadcrumb[viewManager.breadcrumb.length - 2]);
+        if (ViewManager.breadcrumb.length > 0) {
+          this.pageView = ViewManager.buildPageView(ViewManager.breadcrumb[ViewManager.breadcrumb.length - 2]);
           this.pageView.render();
           this.updateTransitionSpeedEl(this.pageView.el, 0);
           this.updateCssEl(this.pageView.el, this.elReturningStartingTranslateValue());
@@ -55,7 +55,7 @@ import {ViewManager as viewManager} from 'lavaca/mvc/ViewManager';
           this.pageView.el.addClass('returning-view').css(
             {'visibility': 'visible'}
           );
-          this.pageView.insertInto(viewManager.el);
+          this.pageView.insertInto(ViewManager.el);
           setTimeout(()=>this.pageView.trigger('enter'),0);
           this.elReturning = $('.returning-view');
         }
@@ -88,7 +88,7 @@ import {ViewManager as viewManager} from 'lavaca/mvc/ViewManager';
       if (this.lastX >= threshold) {
         this.el.nextTransitionEnd(function () {
 
-          viewManager.rewind(this.pageView);
+          ViewManager.rewind(this.pageView);
           this.elReturning.addClass('current').removeClass('returning-view');
           setTimeout(function(){
             this.pageView.enterHasCompleted();
