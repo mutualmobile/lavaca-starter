@@ -68,7 +68,7 @@ $ grunt build:production
 
 ### Test
 
-Runs unit tests defined in `test/unit` directory with [Jasmine](http://pivotal.github.com/jasmine/) in a headless instance of Webkit using [PhantomJS](http://phantomjs.org/).
+Runs unit tests defined in `test/unit` directory with [Jasmine](https://jasmine.github.io/) in a headless instance of Webkit using [PhantomJS](http://phantomjs.org/).
 
 - __Run unit tests from `test/unit`__
 
